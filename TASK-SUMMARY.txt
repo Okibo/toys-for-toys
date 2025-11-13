@@ -1,0 +1,621 @@
+================================================================================
+  TOY-FOR-TOY MVP: COMPLETE TASK BREAKDOWN & EXECUTION PLAN
+================================================================================
+
+Project: Toy-for-Toy (Cashless Toy Exchange Platform)
+Phase: MVP (Months 1-3)
+Created: November 13, 2025
+Status: Ready for Team Review
+
+================================================================================
+EXECUTIVE SUMMARY
+================================================================================
+
+The Toy-for-Toy PRD has been successfully analyzed and decomposed into a 
+comprehensive task breakdown system spanning 75+ granular tasks organized into 
+10 strategic epics. All tasks are sized for 1-2 day completion windows, enabling 
+efficient parallel work across a 3-4 person team.
+
+KEY METRICS:
+  • Total Tasks: 75+
+  • Total Epics: 10
+  • Estimated Effort: 95-105 developer-days
+  • Optimal Team Size: 3-4 engineers
+  • Target Timeline: 12 weeks (3 months)
+  • Critical Path: 12 weeks (no parallelization slack)
+
+================================================================================
+TASK ORGANIZATION STRUCTURE
+================================================================================
+
+All tasks are located in: /docs/tasks/
+
+Master Documents:
+  ✓ /docs/tasks/README.md
+      - Quick navigation guide
+      - Task statistics table
+      - File organization reference
+  
+  ✓ /docs/tasks/TASK-BREAKDOWN-SUMMARY.md
+      - Executive overview (10-page comprehensive summary)
+      - Effort breakdown by discipline
+      - Resource allocation by phase
+      - Top 5 priority tasks
+      - Risk mitigation strategies
+      - Success criteria
+  
+  ✓ /docs/tasks/SPRINT-PROGRESS.md
+      - Weekly progress tracker (live document)
+      - Dependencies between tasks
+      - Risk assessment
+      - Success metrics
+      - Status update template
+  
+  ✓ /docs/tasks/EXECUTION-CHECKLIST.md
+      - Week-by-week execution plan
+      - Team composition per week
+      - Deliverables checklist
+      - Gating criteria (go/no-go)
+      - Daily standup format
+
+Detailed Epic Documentation:
+  ✓ /docs/tasks/00-PROJECT-SETUP/task.md (6 tasks, 6 days)
+  ✓ /docs/tasks/01-DATABASE-SCHEMA/task.md (10 tasks, 12 days)
+  ✓ /docs/tasks/02-AUTHENTICATION-GDPR/task.md (9 tasks, 11 days)
+  ✓ /docs/tasks/03-CORE-APIs/task.md (10 tasks, 10 days)
+  
+  Additional epics (Skeleton ready, detailed tasks to be added):
+    - 04-GAMES-REWARDS (6 tasks, 7 days)
+    - 05-FRONTEND-UI (12 tasks, 14 days)
+    - 06-NOTIFICATIONS (7 tasks, 7 days)
+    - 07-MATCHING-ENGINE (5 tasks, 6 days)
+    - 08-ADS-ANALYTICS (5 tasks, 5 days)
+    - 09-TESTING-QA (8 tasks, 10 days)
+
+================================================================================
+COMPLETE TASK BREAKDOWN BY EPIC
+================================================================================
+
+EPIC 1: PROJECT SETUP & INFRASTRUCTURE (Week 1)
+  Status: 6 tasks, 6 days
+  Owner: DevOps Lead
+  
+  1.1 Initialize Monorepo Structure & Dependencies (1 day)
+      - Next.js 14+ setup, TypeScript config, core dependencies
+      - Directory structure created, .env example
+  
+  1.2 Configure Supabase Project & Local Development (1 day)
+      - Supabase project created (EU region)
+      - Local Supabase running via Docker
+      - Connection verified
+  
+  1.3 Set Up Firebase Project for Push Notifications (1 day)
+      - Firebase project created
+      - Cloud Messaging enabled
+      - Service account credentials secured
+  
+  1.4 Configure GitHub Actions CI/CD (1 day)
+      - GitHub Actions workflows (.github/workflows/)
+      - Automated testing, linting, building
+      - Branch protection rules
+  
+  1.5 Set Up Vercel Deployment & Staging (1 day)
+      - Vercel project linked to GitHub
+      - Environment variables configured
+      - Auto-deploy on main, previews on PRs
+  
+  1.6 Create Development & Testing Documentation (1 day)
+      - CONTRIBUTING.md, testing guide, troubleshooting
+      - Development setup instructions
+      - Database development guide
+
+---
+
+EPIC 2: DATABASE SCHEMA & CORE MODELS (Weeks 2-3)
+  Status: 10 tasks, 12 days
+  Owner: Database Architect
+  
+  2.1 Create Core Tables Schema (1 day)
+      - profiles, kids tables created
+      - Constraints, indexes, soft delete mechanism
+  
+  2.2 Create Tickets & Wallet System Tables (1 day)
+      - tickets, transaction_log, game_fragments tables
+      - Triggers for automatic balance calculation
+  
+  2.3 Create Toy Listing Tables (1 day)
+      - toys, toy_photos, toy_views tables
+      - Categories, tags, condition tracking
+  
+  2.4 Create Exchange & Escrow Tables (1 day)
+      - exchanges, delivery_confirmations, disputes tables
+      - Status enums, state transition constraints
+  
+  2.5 Create Messaging & Communication Tables (1 day)
+      - exchange_messages, blocklist tables
+      - Message moderation logic, soft delete
+  
+  2.6 Create Wishlist & Matching Tables (1 day)
+      - wishlists, wishlist_items, matching_log tables
+      - Priority ordering, preferences tracking
+  
+  2.7 Create Notification & Preference Tables (1 day)
+      - notifications, notification_preferences tables
+      - JSONB preferences, quiet hours support
+  
+  2.8 Create Ratings & Review Tables (1 day)
+      - ratings, user_stats tables (denormalized)
+      - Badge logic for "Trusted" status
+  
+  2.9 Set Up Row-Level Security (RLS) Policies (2 days) ⚠️ CRITICAL
+      - RLS enabled on all tables
+      - User data isolation verified
+      - Admin access patterns defined
+      - Security audit required
+  
+  2.10 Create Database Views for Common Queries (1 day)
+       - toy_detail_view, exchange_detail_view, etc.
+       - Optimized for frontend integration
+
+---
+
+EPIC 3: AUTHENTICATION & GDPR COMPLIANCE (Weeks 3-4)
+  Status: 9 tasks, 11 days
+  Owner: Backend/Security Lead
+  
+  3.1 Implement Email/Password Authentication (1 day)
+      - Supabase Auth configured
+      - lib/auth.ts utilities created
+      - JWT token handling, session management
+  
+  3.2 Create Auth UI Pages (Login, Sign Up) (1 day)
+      - /auth/login, /auth/signup pages
+      - Form validation, error handling
+      - Password strength indicator
+  
+  3.3 Implement Parental Consent Flow (2 days) ⚠️ GDPR-CRITICAL
+      - Multi-step signup: Email → Kid Profile → Consent
+      - Explicit consent checkboxes (no pre-checked)
+      - Consent records with timestamp, IP, version
+      - Confirmation emails with audit trail
+  
+  3.4 Create Privacy Policy & Terms of Service (1 day)
+      - Privacy policy (Polish, German, English)
+      - Child-friendly summary (age 7+)
+      - Terms of Service
+      - Accessibility requirements (WCAG AA)
+  
+  3.5 Implement GDPR Consent Withdrawal (1 day) ⚠️ GDPR-CRITICAL
+      - Settings page: Revoke consent per child
+      - 30-day grace period
+      - Automatic deletion after grace period
+      - Audit trail of all changes
+  
+  3.6 Create Data Subject Access Request (DSAR) Form (1 day) ⚠️ GDPR-CRITICAL
+      - /app/settings/privacy page with DSAR request
+      - Data compilation within 10 working days
+      - Secure ZIP file with password
+      - Email delivery with expiring download link
+  
+  3.7 Create 2FA Skeleton (1 day)
+      - Settings UI placeholder
+      - totp_secrets table created
+      - Implementation deferred to Phase 2
+  
+  3.8 Implement Email Verification (Optional) (1 day)
+      - Verification email sent after signup
+      - Token expires after 24 hours
+      - Single-use tokens
+      - Resend option available
+  
+  3.9 Implement Password Reset Workflow (1 day)
+      - /auth/forgot-password page
+      - Reset link sent via email (1 hour expiry)
+      - Password change on validated token
+      - Rate limiting (3 resets per email per hour)
+
+---
+
+EPIC 4: CORE APIs & TICKET ECONOMY (Weeks 4-5)
+  Status: 10 tasks, 10 days
+  Owner: Backend Lead
+  
+  4.1 Create Authentication API Endpoints (1 day)
+      - POST /api/auth/signup, /api/auth/login, /api/auth/logout
+      - POST /api/auth/refresh (token rotation)
+      - POST /api/auth/password-reset
+      - Rate limiting: 5 attempts per 15 min
+  
+  4.2 Create User Profile API Endpoints (1 day)
+      - GET /api/profile (user profile)
+      - PUT /api/profile (update profile)
+      - POST/GET/PUT/DELETE /api/kids (child management)
+      - POST /api/profile/consent/[kid-id]/revoke
+  
+  4.3 Create Toy Listing API Endpoints (1 day)
+      - POST /api/toys (create listing, -1 ticket cost)
+      - GET /api/toys (search with filters, pagination)
+      - GET /api/toys/[id] (detail page)
+      - PUT /api/toys/[id] (update)
+      - DELETE /api/toys/[id] (soft delete)
+      - GET /api/toys/my-listings (user inventory)
+      - Photo upload to Supabase Storage
+  
+  4.4 Implement Ticket Economy Endpoints (1 day)
+      - GET /api/wallet (balance, available, frozen, earned)
+      - GET /api/wallet/history (transaction log)
+      - POST /api/wallet/redeem-fragments (4 fragments = 1 ticket)
+      - GET /api/wallet/starter-allocation
+  
+  4.5 Create Exchange Request/Accept Endpoints (1 day)
+      - POST /api/exchanges (request toy, -1 ticket frozen)
+      - POST /api/exchanges/[id]/accept (lister accepts)
+      - POST /api/exchanges/[id]/decline (lister declines, +1 ticket refund)
+      - GET /api/exchanges (list user's exchanges)
+      - GET /api/exchanges/[id] (detail)
+      - Timeout: 48h auto-cancel if no response
+  
+  4.6 Implement Delivery Confirmation Endpoint (1 day)
+      - POST /api/exchanges/[id]/confirm-delivery
+      - Condition selection: like_listed, minor_wear, damage, missing_parts
+      - Photo upload (optional, up to 2)
+      - Dispute triggering: condition='damage' → status='disputed'
+      - Auto-completion after 7 days
+  
+  4.7 Create Wishlist API Endpoints (1 day)
+      - GET /api/wishlists/[kid-id]
+      - POST /api/wishlists/[kid-id]/items (add toy or custom wish)
+      - PUT /api/wishlists/[kid-id]/items/[item-id] (reorder, update)
+      - DELETE /api/wishlists/[kid-id]/items/[item-id]
+      - GET /api/wishlists/[kid-id]/suggestions
+      - Max 50 items per wishlist
+  
+  4.8 Create Messaging Endpoints (Exchange-scoped) (1 day)
+      - POST /api/exchanges/[id]/messages (send message, max 500 chars)
+      - GET /api/exchanges/[id]/messages (thread history)
+      - DELETE /api/messages/[id] (soft delete)
+      - Auto-moderation: Flag phone #, addresses, payment terms
+      - Message retention: Delete 30 days after exchange completion
+  
+  4.9 Implement API Rate Limiting & CORS (1 day)
+      - Rate limiting: 1,000 reqs/hour per IP, stricter per-endpoint
+      - CORS: Allowed origins (localhost, production domain, Vercel previews)
+      - Security headers (X-Frame-Options, etc.)
+      - Input validation, content-type checks
+      - Error response format standardization
+  
+  4.10 Create API Documentation (OpenAPI/Swagger) (1 day)
+       - OpenAPI 3.0 specification created
+       - Swagger UI at /api/docs
+       - 35+ endpoints documented with examples
+       - Error handling guide
+       - Rate limiting documented
+
+---
+
+EPIC 5: MINI-GAMES & REWARDS SYSTEM (Weeks 5-6)
+  Status: 6 tasks, 7 days
+  
+  Tasks to be detailed:
+  5.1 Design Game Architecture & Components (1 day)
+  5.2 Implement Color Match Puzzle Game (2 days)
+  5.3 Implement Fragment Reward System (1 day)
+  5.4 Create Fragment-to-Ticket Conversion (1 day)
+  5.5 Implement Game Moderation & Child Safety (1 day)
+  5.6 Add Game Analytics & Tracking (1 day)
+
+---
+
+EPIC 6: FRONTEND CORE UI (Weeks 6-8)
+  Status: 12 tasks, 14 days
+  
+  Tasks to be detailed:
+  6.1 Create Dashboard Layout & Navigation (1 day)
+  6.2 Implement Toy Discovery Page (2 days)
+  6.3 Create Toy Detail Page & Request Flow (2 days)
+  6.4 Implement My Listings Page (2 days)
+  6.5 Create Exchange Status Page (1 day)
+  6.6 Implement Wallet/Tickets Page (1 day)
+  6.7 Create Wishlist Management Page (1 day)
+  6.8 Implement Settings Page (1 day)
+  6.9 Create Notification Center Component (1 day)
+  6.10 Implement In-App Messaging UI (1 day)
+  6.11 Build Games Tab & Game Display (1 day)
+  6.12 Create Responsive Mobile UI & Testing (1 day)
+
+---
+
+EPIC 7: NOTIFICATIONS & COMMUNICATION (Weeks 8-9)
+  Status: 7 tasks, 7 days
+  
+  Tasks to be detailed:
+  7.1 Implement Email Notification System (1 day)
+  7.2 Create Notification Preference Endpoints (1 day)
+  7.3 Implement In-App Notification Center (1 day)
+  7.4 Create Notification Digest Logic (1 day)
+  7.5 Implement Realtime Subscriptions (1 day)
+  7.6 Create Message Moderation Logic (1 day)
+  7.7 Set Up Message Retention/Cleanup Jobs (1 day)
+
+---
+
+EPIC 8: MATCHING ENGINE & SMART WISHLIST (Weeks 9-10)
+  Status: 5 tasks, 6 days
+  
+  Tasks to be detailed:
+  8.1 Implement Matching Algorithm (2 days)
+       - Scoring: Tags 40%, Age 30%, Condition 20%, Recency 10%
+       - Threshold: ≥60% to trigger notification
+  8.2 Create Daily Matching Edge Function (1 day)
+  8.3 Implement Match Notification Triggering (1 day)
+  8.4 Create Matching Analytics & Testing (1 day)
+  8.5 Build Manual Toy Discovery/Search Optimization (1 day)
+
+---
+
+EPIC 9: AD INTEGRATION & ANALYTICS (Weeks 10-11)
+  Status: 5 tasks, 5 days
+  
+  Tasks to be detailed:
+  9.1 Integrate Google AdMob (Web) (1 day)
+  9.2 Integrate Google AdSense (Web Fallback) (1 day)
+  9.3 Implement Ad Placement Components (1 day)
+  9.4 Create Analytics & Event Tracking (1 day)
+  9.5 Set Up Revenue Monitoring & Dashboards (1 day)
+
+---
+
+EPIC 10: TESTING, QA & POLISH (Weeks 11-12)
+  Status: 8 tasks, 10 days
+  
+  Tasks to be detailed:
+  10.1 Write Unit Tests (2 days)
+  10.2 Write Integration Tests (2 days)
+  10.3 Write E2E Tests (2 days)
+  10.4 Perform Security Audit (1 day)
+  10.5 Perform Accessibility Audit (1 day)
+  10.6 Performance Testing & Optimization (1 day)
+  10.7 Conduct Soft Launch (2 days)
+  10.8 Fix Bugs & Final Polish (2 days)
+
+================================================================================
+TOP 5 PRIORITY TASKS (START HERE)
+================================================================================
+
+1. TASK 1.1: Initialize Monorepo Structure (Day 1-2)
+   Why: Unblocks all downstream work
+   Owner: DevOps Lead
+   Deliverable: `npm run dev` runs successfully
+
+2. TASK 1.2: Configure Supabase Project (Day 3-4)
+   Why: Database is foundation for everything
+   Owner: DevOps/Backend Lead
+   Deliverable: Supabase running locally, Studio accessible
+
+3. TASK 2.1: Create Core Tables Schema (Day 5)
+   Why: Data model unblocks API development
+   Owner: Database Architect
+   Deliverable: profiles, kids, toys tables created
+
+4. TASK 2.9: Set Up RLS Policies (Day 6-9)
+   Why: Security enforcement cannot be afterthought
+   Owner: Security/Backend Lead
+   Deliverable: RLS policies verified (data isolation)
+
+5. TASK 3.1: Implement Email/Password Authentication (Day 10-11)
+   Why: Auth required for all protected features
+   Owner: Backend Lead
+   Deliverable: Sign-up and login working
+
+================================================================================
+CRITICAL PATH TIMELINE
+================================================================================
+
+Week 1:   Epic 1 (Infrastructure)
+          ↓
+Week 2-3: Epic 2 (Database) → Epic 3 (Auth) → Epic 4 (APIs)
+          ↓
+Week 5-6: Epic 5 (Games) ──→ Epic 6 (Frontend)
+                             ├──→ Epic 7 (Notifications)
+                             ├──→ Epic 8 (Matching)
+                             ├──→ Epic 9 (Ads)
+                             ↓
+Week 11-12: Epic 10 (Testing, QA, Launch)
+
+**Critical Path: 12 weeks (no slack for slippage)**
+
+Parallel Opportunities:
+- Epics 5, 7, 8, 9 can overlap with Epic 6
+- Epic 3 frontend UI work during Epic 2
+- Epic 10 testing can start after Epic 4
+
+================================================================================
+RESOURCE ALLOCATION
+================================================================================
+
+Optimal Team: 3-4 Engineers
+
+Phase 1 (Weeks 1-4):
+  - 1 DevOps/Infra lead (Epic 1)
+  - 2 Backend engineers (Epics 2, 3)
+  - 1 Frontend engineer (Auth UI)
+
+Phase 2 (Weeks 5-8):
+  - 1 Backend lead (Epics 4, 5, 6 support)
+  - 1 Frontend lead (Epics 5, 6)
+  - 1 Game developer (Epic 5)
+  - 1 QA engineer (Testing)
+
+Phase 3 (Weeks 9-12):
+  - 1 Data engineer (Epic 8)
+  - 1 Backend engineer (Epics 7, 9)
+  - 1 Frontend engineer (Epics 6, 9)
+  - 2 QA engineers (Epic 10)
+
+Effort Breakdown by Discipline:
+  - Backend/API Development: 35 days
+  - Frontend Development: 35 days
+  - DevOps/Infrastructure: 10 days
+  - QA/Testing: 15 days
+  - Data/Analytics: 6 days
+  - TOTAL: 95-105 days
+
+================================================================================
+SUCCESS CRITERIA FOR MVP LAUNCH
+================================================================================
+
+Functional Requirements (All Must Pass):
+  ✓ User registration with GDPR consent
+  ✓ Toy listing and discovery
+  ✓ Request/accept/deliver exchange flow
+  ✓ Tickets frozen in escrow, released on completion
+  ✓ Wishlist + daily matching algorithm
+  ✓ In-app messaging (exchange-scoped)
+  ✓ Color Match game
+  ✓ Fragment earning and conversion
+  ✓ Email notifications
+  ✓ User ratings and reviews
+  ✓ DSAR requests (10 day SLA)
+
+Non-Functional Requirements (All Must Pass):
+  ✓ Page load <2s (first paint)
+  ✓ API response <200ms (p95)
+  ✓ 99.5% uptime
+  ✓ Mobile responsive (≥320px)
+  ✓ WCAG AA accessibility
+  ✓ 80%+ test coverage
+  ✓ No critical security vulnerabilities
+
+GDPR Compliance (All Must Pass):
+  ✓ Explicit consent for 100% of accounts
+  ✓ Privacy policy in 3 languages
+  ✓ Deletion requests <30 days SLA
+  ✓ DSAR requests <10 days SLA
+  ✓ No data breaches
+  ✓ RLS policies enforced
+
+Business Metrics:
+  ✓ 100+ beta users enrolled
+  ✓ 90%+ consent completion rate
+  ✓ Ad network live
+  ✓ EUR 200-500/month revenue (initial)
+
+================================================================================
+KEY DOCUMENTS & FILES
+================================================================================
+
+All task documentation is located in: /docs/tasks/
+
+Main Documents:
+  1. README.md (12 KB)
+     - Quick navigation, file references
+     - Task statistics, success metrics
+  
+  2. TASK-BREAKDOWN-SUMMARY.md (19 KB)
+     - Executive overview (comprehensive)
+     - Effort breakdown, resource allocation
+     - Top priorities, risk mitigation
+  
+  3. SPRINT-PROGRESS.md (16 KB)
+     - Weekly progress tracker (LIVE DOCUMENT)
+     - Dependencies, gating criteria
+     - Risk assessment
+  
+  4. EXECUTION-CHECKLIST.md (18 KB)
+     - Week-by-week execution plan
+     - Team composition per week
+     - Deliverables, success criteria
+
+Detailed Epic Task Files:
+  5. 00-PROJECT-SETUP/task.md (6 tasks, fully detailed)
+  6. 01-DATABASE-SCHEMA/task.md (10 tasks, fully detailed)
+  7. 02-AUTHENTICATION-GDPR/task.md (9 tasks, fully detailed)
+  8. 03-CORE-APIs/task.md (10 tasks, fully detailed)
+  
+  Additional epics (Structure ready, tasks to be added):
+  9. 04-GAMES-REWARDS/task.md (6 tasks)
+  10. 05-FRONTEND-UI/task.md (12 tasks)
+  11. 06-NOTIFICATIONS/task.md (7 tasks)
+  12. 07-MATCHING-ENGINE/task.md (5 tasks)
+  13. 08-ADS-ANALYTICS/task.md (5 tasks)
+  14. 09-TESTING-QA/task.md (8 tasks)
+
+================================================================================
+HOW TO USE THIS SYSTEM
+================================================================================
+
+For Project Managers:
+  1. Read TASK-BREAKDOWN-SUMMARY.md (full overview)
+  2. Review SPRINT-PROGRESS.md (weekly tracking)
+  3. Use epic task files for sprint planning
+  4. Update progress weekly
+
+For Engineers:
+  1. Read epic task files for your domain
+  2. Review acceptance criteria before starting
+  3. Follow implementation notes
+  4. Update task status as you progress
+  5. Flag blockers immediately
+
+For Technical Leads:
+  1. Review epic overviews (architecture)
+  2. Check dependencies (critical path)
+  3. Monitor high-risk tasks
+  4. Allocate resources strategically
+
+For Product Owner:
+  1. Review TASK-BREAKDOWN-SUMMARY.md
+  2. Monitor progress in SPRINT-PROGRESS.md
+  3. Approve scope changes
+  4. Validate acceptance criteria
+
+================================================================================
+NEXT STEPS
+================================================================================
+
+1. REVIEW: Share this breakdown with team leads and stakeholders
+2. APPROVE: Confirm scope, timeline, and resource allocation
+3. KICKOFF: Schedule project kickoff meeting for Week 1
+4. ASSIGN: Assign epic owners and task leads
+5. PLAN: Create detailed sprint 1 plan (Tasks 1.1-1.6, 2.1-2.2)
+6. EXECUTE: Begin infrastructure setup (Week 1)
+
+================================================================================
+STATUS
+================================================================================
+
+✓ PRD Analysis: Complete
+✓ Task Decomposition: Complete (75+ tasks across 10 epics)
+✓ Documentation: Complete (4 master documents + 4 detailed epics)
+✓ Timeline: Established (12 weeks, 6 sprints)
+✓ Resource Plan: Developed (3-4 engineers optimal)
+✓ Risk Assessment: Complete (blockers identified, mitigations planned)
+
+READY FOR TEAM REVIEW & EXECUTION
+
+================================================================================
+CONTACT & QUESTIONS
+================================================================================
+
+For task details:
+  - Read specific epic task.md file
+  - Review acceptance criteria and implementation notes
+
+For timeline/resource questions:
+  - See TASK-BREAKDOWN-SUMMARY.md
+  - See EXECUTION-CHECKLIST.md (week-by-week plan)
+
+For progress tracking:
+  - Update SPRINT-PROGRESS.md weekly
+
+For blockers/escalations:
+  - Contact Engineering Lead
+  - Document in SPRINT-PROGRESS.md
+
+================================================================================
+
+Prepared by: Claude Code (AI Product Manager)
+Date: November 13, 2025
+Status: Ready for Implementation
+Version: 1.0 (MVP Phase)
+

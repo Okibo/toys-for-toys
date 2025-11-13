@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+
+<html lang="pl"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Toy-for-Toy - Mini-Gry</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#48C9B0", // Soft Teal / Aqua
+                        "accent": "#F7DC6F", // Warm Yellow
+                        "background-light": "#F8F9F9",
+                        "background-dark": "#102216",
+                        "text-light": "#34495E", // Dark Slate Gray
+                        "text-dark": "#F8F9F9"
+                    },
+                    fontFamily: {
+                        "display": ["Plus Jakarta Sans", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.5rem",
+                        "lg": "0.75rem",
+                        "xl": "1rem",
+                        "full": "9999px",
+                    },
+                },
+            },
+        }
+    </script>
+</head>
+<body class="font-display bg-background-light dark:bg-background-dark text-text-light dark:text-text-dark">
+<div class="relative flex min-h-screen w-full flex-col group/design-root overflow-x-hidden">
+<div class="layout-container flex h-full grow flex-col">
+<div class="px-4 md:px-10 lg:px-20 xl:px-40 flex flex-1 justify-center py-5">
+<div class="layout-content-container flex flex-col max-w-6xl flex-1">
+<!-- TopNavBar -->
+<header class="flex items-center justify-between whitespace-nowrap border-b border-solid border-gray-200/80 dark:border-gray-700/80 px-4 sm:px-6 lg:px-10 py-4">
+<div class="flex items-center gap-4 text-text-light dark:text-text-dark">
+<div class="size-8 text-primary">
+<svg fill="none" viewbox="0 0 48 48" xmlns="http://www.w3.org/2000/svg"><g clip-path="url(#clip0_6_543)"><path d="M42.1739 20.1739L27.8261 5.82609C29.1366 7.13663 28.3989 10.1876 26.2002 13.7654C24.8538 15.9564 22.9595 18.3449 20.6522 20.6522C18.3449 22.9595 15.9564 24.8538 13.7654 26.2002C10.1876 28.3989 7.13663 29.1366 5.82609 27.8261L20.1739 42.1739C21.4845 43.4845 24.5355 42.7467 28.1133 40.548C30.3042 39.2016 32.6927 37.3073 35 35C37.3073 32.6927 39.2016 30.3042 40.548 28.1133C42.7467 24.5355 43.4845 21.4845 42.1739 20.1739Z" fill="currentColor"></path><path clip-rule="evenodd" d="M7.24189 26.4066C7.31369 26.4411 7.64204 26.5637 8.52504 26.3738C9.59462 26.1438 11.0343 25.5311 12.7183 24.4963C14.7583 23.2426 17.0256 21.4503 19.238 19.238C21.4503 17.0256 23.2426 14.7583 24.4963 12.7183C25.5311 11.0343 26.1438 9.59463 26.3738 8.52504C26.5637 7.64204 26.4411 7.31369 26.4066 7.24189C26.345 7.21246 26.143 7.14535 25.6664 7.1918C24.9745 7.25925 23.9954 7.5498 22.7699 8.14278C20.3369 9.32007 17.3369 11.4915 14.4142 14.4142C11.4915 17.3369 9.32007 20.3369 8.14278 22.7699C7.5498 23.9954 7.25925 24.9745 7.1918 25.6664C7.14534 26.143 7.21246 26.345 7.24189 26.4066ZM29.9001 10.7285C29.4519 12.0322 28.7617 13.4172 27.9042 14.8126C26.465 17.1544 24.4686 19.6641 22.0664 22.0664C19.6641 24.4686 17.1544 26.465 14.8126 27.9042C13.4172 28.7617 12.0322 29.4519 10.7285 29.9001L21.5754 40.747C21.6001 40.7606 21.8995 40.931 22.8729 40.7217C23.9424 40.4916 25.3821 39.879 27.0661 38.8441C29.1062 37.5904 31.3734 35.7982 33.5858 33.5858C35.7982 31.3734 37.5904 29.1062 38.8441 27.0661C39.879 25.3821 40.4916 23.9425 40.7216 22.8729C40.931 21.8995 40.7606 21.6001 40.747 21.5754L29.9001 10.7285ZM29.2403 4.41187L43.5881 18.7597C44.9757 20.1473 44.9743 22.1235 44.6322 23.7139C44.2714 25.3919 43.4158 27.2666 42.252 29.1604C40.8128 31.5022 38.8165 34.012 36.4142 36.4142C34.012 38.8165 31.5022 40.8128 29.1604 42.252C27.2666 43.4158 25.3919 44.2714 23.7139 44.6322C22.1235 44.9743 20.1473 44.9757 18.7597 43.5881L4.41187 29.2403C3.29027 28.1187 3.08209 26.5973 3.21067 25.2783C3.34099 23.9415 3.8369 22.4852 4.54214 21.0277C5.96129 18.0948 8.43335 14.7382 11.5858 11.5858C14.7382 8.43335 18.0948 5.9613 21.0277 4.54214C22.4852 3.8369 23.9415 3.34099 25.2783 3.21067C26.5973 3.08209 28.1187 3.29028 29.2403 4.41187Z" fill="currentColor" fill-rule="evenodd"></path></g><defs><clippath id="clip0_6_543"><rect fill="white" height="48" width="48"></rect></clippath></defs></svg>
+</div>
+<h2 class="text-xl font-bold leading-tight tracking-[-0.015em]">Toy-for-Toy</h2>
+</div>
+<div class="hidden md:flex flex-1 justify-end gap-8 items-center">
+<nav class="flex items-center gap-9">
+<a class="text-sm font-medium hover:text-primary dark:hover:text-primary transition-colors" href="#">Mini-Gry</a>
+<a class="text-sm font-medium hover:text-primary dark:hover:text-primary transition-colors" href="#">Wymiana Zabawek</a>
+<a class="text-sm font-medium hover:text-primary dark:hover:text-primary transition-colors" href="#">Moja Lista Życzeń</a>
+<a class="text-sm font-medium hover:text-primary dark:hover:text-primary transition-colors" href="#">Mój Profil</a>
+</nav>
+<button class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 px-4 bg-accent/80 text-text-light text-sm font-bold leading-normal tracking-[0.015em]">
+<span class="truncate">Bilety: 15 🎟️</span>
+</button>
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-10" data-alt="User profile avatar" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCeeBsAlApihFvoQucuQc-zYkqfMHgWcgF154U_r6dyQVUT2Px_tYJtVcNHe0qJi7ElqSC1SihbrLYdryHmpTEPGwRfMjwdFII71awGGQuD5lGvFQwzmHF2fOlvfupPgPzP4sg2NhgiBwgpLtvUPuTBSH6IXbK-rqmBAUjKtQGwzd8pFmP4FCv588cWLQQmraZC4lsObp-PqIV09UXMMXbDxVceNwy6dRAlHzqf_GP2wpBcMDxNxOG3du9J0aEpuLvWXEY9j8Teuhiy");'></div>
+</div>
+<div class="md:hidden">
+<button class="p-2">
+<span class="material-symbols-outlined">menu</span>
+</button>
+</div>
+</header>
+<main class="flex-1">
+<!-- HeroSection -->
+<div class="w-full @container py-12 px-4 sm:px-0">
+<div class="@[480px]:p-4">
+<div class="flex min-h-[480px] flex-col gap-6 bg-cover bg-center bg-no-repeat @[480px]:gap-8 @[480px]:rounded-xl items-center justify-center p-6 text-center" data-alt="Happy child playing with colorful building blocks" style='background-image: linear-gradient(rgba(52, 73, 94, 0.4) 0%, rgba(52, 73, 94, 0.7) 100%), url("https://lh3.googleusercontent.com/aida-public/AB6AXuCqGVGMxR9LCNJuvb-2Bh-EGJV8UmNuO2y1Xn0mLlBi3lX_5zxBjppwrOfNse7_DQOlLkzMQmlSEj956cKCkuK7T1h7aWvl76wvR5nrAhZ1kwcfN8hAv5rfT6MwaKBFxeAgn0Ffbezj2KqZcYjTbHRXCbSY3bUvi2eLHrdq7udfzb_KbPCs2QcTsgby8TJcNOeY0vw41QmeWfiakHts0LRqpPBeDjg8_bmySs1aY-YzGoTgW6OMxrL7ODhJXUlUe2P4cOFatS_Pjmyh");'>
+<div class="flex flex-col gap-4 max-w-3xl">
+<h1 class="text-white text-4xl font-black leading-tight tracking-[-0.033em] @[480px]:text-5xl @[480px]:font-black @[480px]:leading-tight @[480px]:tracking-[-0.033em]">
+                                            Graj w gry, zdobywaj bilety i wymieniaj je na nowe zabawki!
+                                        </h1>
+<h2 class="text-white/90 text-base font-normal leading-normal @[480px]:text-lg @[480px]:font-normal @[480px]:leading-normal">
+                                            Odkryj naszą kolekcję mini-gier rozwojowych. Każda ukończona gra to bilety, które możesz wymienić na wymarzone zabawki dla Twojego dziecka.
+                                        </h2>
+</div>
+<button class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-12 px-6 @[480px]:h-14 @[480px]:px-8 bg-primary text-text-light text-base font-bold leading-normal tracking-[0.015em] @[480px]:text-lg transition-transform hover:scale-105">
+<span class="truncate">Przeglądaj gry</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Game Gallery Section -->
+<div class="px-4 sm:px-6 lg:px-10 py-10">
+<!-- SectionHeader -->
+<h2 class="text-text-light dark:text-text-dark text-3xl font-bold leading-tight tracking-[-0.015em] pb-3">Nasze Mini-Gry</h2>
+<!-- Chips / Filters -->
+<div class="flex gap-3 pt-4 pb-8 flex-wrap">
+<button class="flex h-10 shrink-0 items-center justify-center gap-x-2 rounded-lg bg-primary/20 dark:bg-primary/30 pl-4 pr-3 text-primary dark:text-text-dark">
+<p class="text-sm font-medium leading-normal">Wszystkie gry</p>
+</button>
+<button class="flex h-10 shrink-0 items-center justify-center gap-x-2 rounded-lg bg-gray-200/60 dark:bg-white/10 pl-4 pr-3 hover:bg-gray-300/60 dark:hover:bg-white/20 transition-colors">
+<p class="text-sm font-medium leading-normal">Wiek 2-3</p>
+</button>
+<button class="flex h-10 shrink-0 items-center justify-center gap-x-2 rounded-lg bg-gray-200/60 dark:bg-white/10 pl-4 pr-3 hover:bg-gray-300/60 dark:hover:bg-white/20 transition-colors">
+<p class="text-sm font-medium leading-normal">Logika</p>
+</button>
+<button class="flex h-10 shrink-0 items-center justify-center gap-x-2 rounded-lg bg-gray-200/60 dark:bg-white/10 pl-4 pr-3 hover:bg-gray-300/60 dark:hover:bg-white/20 transition-colors">
+<p class="text-sm font-medium leading-normal">Pamięć</p>
+</button>
+<button class="flex h-10 shrink-0 items-center justify-center gap-x-2 rounded-lg bg-gray-200/60 dark:bg-white/10 pl-4 pr-3 hover:bg-gray-300/60 dark:hover:bg-white/20 transition-colors">
+<p class="text-sm font-medium leading-normal">Motoryka</p>
+</button>
+</div>
+<!-- ImageGrid -->
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-8">
+<div class="flex flex-col gap-4 group cursor-pointer">
+<div class="w-full bg-center bg-no-repeat aspect-video bg-cover rounded-lg overflow-hidden transition-transform group-hover:scale-105" data-alt="Colorful geometric shapes fitting into a sorter board" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuC5QnxDgX4l0B8AHCmfi6U_FFmeWH2zk460HHTvLOjYMlq702p2XM2pMoHSBaSMNYHlHKSb9-0lg0tEx6OLWOy6Df-7oH51Zt-fbpK0JeZ47u8GU2EGAu8Xwk0l42-4N33NDmvVgLrSNTeqWsO8Cqc6XN-JjTzHX7znlIc--lQovbxHMUtS4itEAC4ucgDLc__1uoSVwVgmYuJxTt35gjpr8SrDDyRdR3RTn2XA8AMAjTZS_t1iz79acuoahLeiRSzZKbTC8iP-MB3p");'></div>
+<div class="flex flex-col gap-2">
+<p class="text-text-light dark:text-text-dark text-lg font-bold leading-normal">Sortowanie Kształtów</p>
+<p class="text-text-light/80 dark:text-text-dark/80 text-sm font-normal leading-normal">Pomaga rozwijać rozpoznawanie kształtów.</p>
+<button class="mt-2 flex w-full min-w-[84px] items-center justify-center rounded-lg h-11 px-5 bg-primary text-text-light text-sm font-bold leading-normal tracking-[0.015em] transition-transform group-hover:scale-105">
+<span class="truncate">Graj</span>
+</button>
+</div>
+</div>
+<div class="flex flex-col gap-4 group cursor-pointer">
+<div class="w-full bg-center bg-no-repeat aspect-video bg-cover rounded-lg overflow-hidden transition-transform group-hover:scale-105" data-alt="Matching pairs of animal illustration cards on a table" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuC3wS4xODzm2JHb7DogM9zrdsu-Ck8jMJ06JyU7QbmNSfsGwkQXAciNEbNvrve2meVb6bW3_-hh9rEwSS95S8mzl9CWLM1yvb6bXv7regSgam8ElTfiMfxsj7jLsOiZ5RfB-SjvZVNV1-LClP8SUPQxR86sm4nOLBBoORhaEELFKpEQ_CiB7tGMcu1fBFKjiXty7vO4jDpZqCsDC9pmMmJUmknWXOaGEeIujGehgKq29gBtkSxRnbtOmLw09VwuObB4WHwfUURCuz1x");'></div>
+<div class="flex flex-col gap-2">
+<p class="text-text-light dark:text-text-dark text-lg font-bold leading-normal">Karty Pamięci</p>
+<p class="text-text-light/80 dark:text-text-dark/80 text-sm font-normal leading-normal">Poprawia pamięć i koncentrację.</p>
+<button class="mt-2 flex w-full min-w-[84px] items-center justify-center rounded-lg h-11 px-5 bg-primary text-text-light text-sm font-bold leading-normal tracking-[0.015em] transition-transform group-hover:scale-105">
+<span class="truncate">Graj</span>
+</button>
+</div>
+</div>
+<div class="flex flex-col gap-4 group cursor-pointer">
+<div class="w-full bg-center bg-no-repeat aspect-video bg-cover rounded-lg overflow-hidden transition-transform group-hover:scale-105" data-alt="A color wheel with different paint splatters" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAX8Z8EgqQ6ZIX3Qm02xy-x0wOp_7LsoKI15Xq7PHCJ67yljoOfT1OWvzTOmdRxj9AdtH0mALVNUGYhfQxBeIoXnadr690H4P57BLyQ8B3cqOf7WZIpYtkvV3EcpgpssKWEwM4epEiFNNLzOFd6rHpuaBidMyR8btutlpcywYrrQ50KV2b97EME_zd_829YWFP4VTQKTIdWN9zRjCLORhra6YWSM-qYlKzIK1IBGAtLPmT8xoTb7Q4igUgbuHJPCRBiFPYWKaDKQOyY");'></div>
+<div class="flex flex-col gap-2">
+<p class="text-text-light dark:text-text-dark text-lg font-bold leading-normal">Dopasuj Kolor</p>
+<p class="text-text-light/80 dark:text-text-dark/80 text-sm font-normal leading-normal">Uczy identyfikacji kolorów.</p>
+<button class="mt-2 flex w-full min-w-[84px] items-center justify-center rounded-lg h-11 px-5 bg-primary text-text-light text-sm font-bold leading-normal tracking-[0.015em] transition-transform group-hover:scale-105">
+<span class="truncate">Graj</span>
+</button>
+</div>
+</div>
+<div class="flex flex-col gap-4 group cursor-pointer">
+<div class="w-full bg-center bg-no-repeat aspect-video bg-cover rounded-lg overflow-hidden transition-transform group-hover:scale-105" data-alt="Illustration of various farm animals in a field" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuD5YMqn2hphdqGibRZJxx1EdXATdqzz_POE6EP0NnEaU4CAEXORIkUw-Z4zqxVHMC5EQeNVCAchDIEAMAakGu9JWnhKHBn3k6iWdtVPXraZH2yO9wgWOymTXW6av0m672AeGJjl28P3xyPbrIRWAtoClccsqzQU52YNbk3zJal3hfPrzFnEfQuYF732g_d65YFNDhVyjcKGfss4aIXtLU7-wIN3i3qqPIYV6jPU6jCFD3GIIv0M9DLWEaSPz1jRltgre136nXl1Ydcw");'></div>
+<div class="flex flex-col gap-2">
+<p class="text-text-light dark:text-text-dark text-lg font-bold leading-normal">Odgłosy Zwierząt</p>
+<p class="text-text-light/80 dark:text-text-dark/80 text-sm font-normal leading-normal">Wprowadza w świat zabawnych dźwięków zwierząt.</p>
+<button class="mt-2 flex w-full min-w-[84px] items-center justify-center rounded-lg h-11 px-5 bg-primary text-text-light text-sm font-bold leading-normal tracking-[0.015em] transition-transform group-hover:scale-105">
+<span class="truncate">Graj</span>
+</button>
+</div>
+</div>
+<div class="flex flex-col gap-4 group cursor-pointer">
+<div class="w-full bg-center bg-no-repeat aspect-video bg-cover rounded-lg overflow-hidden transition-transform group-hover:scale-105" data-alt="Wooden blocks with numbers from 1 to 5" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuB0wJTyy0ATtAPnRKak5yB48S4Nfvy6hI0sy8W1432wp-3fZAeLHG9ys9NIiN4Xkg0Bq52oMfQNE5urm6ffSdU3A1YdzCVCxJkX9XsZlTr5gYegZ0VU4-PEhHOfrr-P9NrjKfsF-zswNfjZhMtAzMebC3pVgbh0md8iX6gpCIlVcQYfrf4U_g9iaN53E5HK-jIWJc-_yVOo0THJOiw4X1dh3v6GFBdf53aTmrUFAHpOr7g0aiUXW1tvMKElFCIgtF51yCieNMcGVEcU");'></div>
+<div class="flex flex-col gap-2">
+<p class="text-text-light dark:text-text-dark text-lg font-bold leading-normal">Zabawa w Liczenie</p>
+<p class="text-text-light/80 dark:text-text-dark/80 text-sm font-normal leading-normal">Zabawny sposób na naukę liczb.</p>
+<button class="mt-2 flex w-full min-w-[84px] items-center justify-center rounded-lg h-11 px-5 bg-primary text-text-light text-sm font-bold leading-normal tracking-[0.015em] transition-transform group-hover:scale-105">
+<span class="truncate">Graj</span>
+</button>
+</div>
+</div>
+<div class="flex flex-col gap-4 group cursor-pointer">
+<div class="w-full bg-center bg-no-repeat aspect-video bg-cover rounded-lg overflow-hidden transition-transform group-hover:scale-105" data-alt="A completed jigsaw puzzle showing a fantasy landscape" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAo9ZatY2tRzF3lyRmIZ69jKzwxKPsVr4E2OjMpuewI5RHQvZG9DSLo5ZLLgf_3eCddZ5af6AyFfS5K1KbJEUApn5SPXVUPR4tHQqTlqBEmUfFegwXvRm_iSTNIYAOL0I78vCAik7dOToWIaO16WaY8NjiTKUJWqWGk0YRkKlJNfP9swxnhAYQQhwaWqIWnkUQdiyMI0u7WF4KU4om_y94bgTh0X-ERYEYj0R5zGiezhHE74fAWxaQBWk1a0N4foh5Vkjr8jrnTW8Z-");'></div>
+<div class="flex flex-col gap-2">
+<p class="text-text-light dark:text-text-dark text-lg font-bold leading-normal">Czas na Puzzle</p>
+<p class="text-text-light/80 dark:text-text-dark/80 text-sm font-normal leading-normal">Rozwija umiejętności rozwiązywania problemów.</p>
+<button class="mt-2 flex w-full min-w-[84px] items-center justify-center rounded-lg h-11 px-5 bg-primary text-text-light text-sm font-bold leading-normal tracking-[0.015em] transition-transform group-hover:scale-105">
+<span class="truncate">Graj</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Footer -->
+<footer class="mt-16 border-t border-solid border-gray-200/80 dark:border-gray-700/80 px-4 sm:px-6 lg:px-10 py-8">
+<div class="flex flex-col sm:flex-row items-center justify-between gap-6">
+<p class="text-sm text-text-light/70 dark:text-text-dark/70">© 2024 Toy-for-Toy. Wszelkie prawa zastrzeżone.</p>
+<div class="flex items-center gap-6">
+<a class="text-sm font-medium hover:text-primary dark:hover:text-primary transition-colors" href="#">O nas</a>
+<a class="text-sm font-medium hover:text-primary dark:hover:text-primary transition-colors" href="#">Jak to działa</a>
+<a class="text-sm font-medium hover:text-primary dark:hover:text-primary transition-colors" href="#">FAQ</a>
+<a class="text-sm font-medium hover:text-primary dark:hover:text-primary transition-colors" href="#">Kontakt</a>
+</div>
+</div>
+</footer>
+</div>
+</div>
+</div>
+</div>
+</body></html>
