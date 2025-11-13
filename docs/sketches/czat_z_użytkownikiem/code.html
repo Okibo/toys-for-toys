@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+
+<html class="light" lang="pl"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Toy-for-Toy - Wiadomości</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
+<script>
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            "primary": "#2bee6c",
+            "background-light": "#f6f8f6",
+            "background-dark": "#102216",
+          },
+          fontFamily: {
+            "display": ["Plus Jakarta Sans", "Noto Sans", "sans-serif"]
+          },
+          borderRadius: {
+            "DEFAULT": "0.25rem",
+            "lg": "0.5rem",
+            "xl": "0.75rem",
+            "full": "9999px"
+          },
+        },
+      },
+    }
+  </script>
+<style>
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+    }
+  </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display">
+<div class="relative flex h-screen w-full flex-col group/design-root overflow-hidden">
+<header class="flex-shrink-0 bg-white dark:bg-background-dark border-b border-gray-200 dark:border-gray-800 px-4 sm:px-6 lg:px-10">
+<div class="flex items-center justify-between h-16">
+<div class="flex items-center gap-8">
+<div class="flex items-center gap-4 text-gray-800 dark:text-white">
+<div class="size-8 text-primary">
+<svg fill="none" viewbox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+<g clip-path="url(#clip0_6_543)">
+<path d="M42.1739 20.1739L27.8261 5.82609C29.1366 7.13663 28.3989 10.1876 26.2002 13.7654C24.8538 15.9564 22.9595 18.3449 20.6522 20.6522C18.3449 22.9595 15.9564 24.8538 13.7654 26.2002C10.1876 28.3989 7.13663 29.1366 5.82609 27.8261L20.1739 42.1739C21.4845 43.4845 24.5355 42.7467 28.1133 40.548C30.3042 39.2016 32.6927 37.3073 35 35C37.3073 32.6927 39.2016 30.3042 40.548 28.1133C42.7467 24.5355 43.4845 21.4845 42.1739 20.1739Z" fill="currentColor"></path>
+<path clip-rule="evenodd" d="M7.24189 26.4066C7.31369 26.4411 7.64204 26.5637 8.52504 26.3738C9.59462 26.1438 11.0343 25.5311 12.7183 24.4963C14.7583 23.2426 17.0256 21.4503 19.238 19.238C21.4503 17.0256 23.2426 14.7583 24.4963 12.7183C25.5311 11.0343 26.1438 9.59463 26.3738 8.52504C26.5637 7.64204 26.4411 7.31369 26.4066 7.24189C26.345 7.21246 26.143 7.14535 25.6664 7.1918C24.9745 7.25925 23.9954 7.5498 22.7699 8.14278C20.3369 9.32007 17.3369 11.4915 14.4142 14.4142C11.4915 17.3369 9.32007 20.3369 8.14278 22.7699C7.5498 23.9954 7.25925 24.9745 7.1918 25.6664C7.14534 26.143 7.21246 26.345 7.24189 26.4066ZM29.9001 10.7285C29.4519 12.0322 28.7617 13.4172 27.9042 14.8126C26.465 17.1544 24.4686 19.6641 22.0664 22.0664C19.6641 24.4686 17.1544 26.465 14.8126 27.9042C13.4172 28.7617 12.0322 29.4519 10.7285 29.9001L21.5754 40.747C21.6001 40.7606 21.8995 40.931 22.8729 40.7217C23.9424 40.4916 25.3821 39.879 27.0661 38.8441C29.1062 37.5904 31.3734 35.7982 33.5858 33.5858C35.7982 31.3734 37.5904 29.1062 38.8441 27.0661C39.879 25.3821 40.4916 23.9425 40.7216 22.8729C40.931 21.8995 40.7606 21.6001 40.747 21.5754L29.9001 10.7285ZM29.2403 4.41187L43.5881 18.7597C44.9757 20.1473 44.9743 22.1235 44.6322 23.7139C44.2714 25.3919 43.4158 27.2666 42.252 29.1604C40.8128 31.5022 38.8165 34.012 36.4142 36.4142C34.012 38.8165 31.5022 40.8128 29.1604 42.252C27.2666 43.4158 25.3919 44.2714 23.7139 44.6322C22.1235 44.9743 20.1473 44.9757 18.7597 43.5881L4.41187 29.2403C3.29027 28.1187 3.08209 26.5973 3.21067 25.2783C3.34099 23.9415 3.8369 22.4852 4.54214 21.0277C5.96129 18.0948 8.43335 14.7382 11.5858 11.5858C14.7382 8.43335 18.0948 5.9613 21.0277 4.54214C22.4852 3.8369 23.9415 3.34099 25.2783 3.21067C26.5973 3.08209 28.1187 3.29028 29.2403 4.41187Z" fill="currentColor" fill-rule="evenodd"></path>
+</g>
+<defs>
+<clippath id="clip0_6_543"><rect fill="white" height="48" width="48"></rect></clippath>
+</defs>
+</svg>
+</div>
+<h2 class="text-gray-800 dark:text-white text-lg font-bold leading-tight tracking-[-0.015em]">Toy-for-Toy</h2>
+</div>
+<nav class="hidden md:flex items-center gap-9">
+<a class="text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white text-sm font-medium leading-normal" href="#">Home</a>
+<a class="text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white text-sm font-medium leading-normal" href="#">My Toys</a>
+<a class="text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white text-sm font-medium leading-normal" href="#">Wishlist</a>
+<a class="text-primary text-sm font-bold leading-normal" href="#">Messages</a>
+</nav>
+</div>
+<div class="flex items-center gap-4">
+<label class="hidden lg:flex flex-col min-w-40 !h-10 max-w-64">
+<div class="flex w-full flex-1 items-stretch rounded-lg h-full">
+<div class="text-gray-500 dark:text-gray-400 flex border-none bg-gray-100 dark:bg-gray-800 items-center justify-center pl-4 rounded-l-lg border-r-0">
+<span class="material-symbols-outlined text-xl">search</span>
+</div>
+<input class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-lg text-gray-800 dark:text-gray-200 focus:outline-0 focus:ring-0 border-none bg-gray-100 dark:bg-gray-800 focus:border-none h-full placeholder:text-gray-500 dark:placeholder:text-gray-400 px-4 rounded-l-none border-l-0 pl-2 text-base font-normal leading-normal" placeholder="Search" value=""/>
+</div>
+</label>
+<div class="flex gap-2">
+<button class="flex max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 bg-gray-100 dark:bg-gray-800 text-gray-800 dark:text-gray-200 gap-2 text-sm font-bold leading-normal tracking-[0.015em] min-w-0 px-2.5">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<button class="flex max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 bg-gray-100 dark:bg-gray-800 text-gray-800 dark:text-gray-200 gap-2 text-sm font-bold leading-normal tracking-[0.015em] min-w-0 px-2.5">
+<span class="material-symbols-outlined">dark_mode</span>
+</button>
+</div>
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-10" data-alt="User avatar" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCQbqtzEYKXlLGRVsZiDiOlTasL_wpPd_F-jZP0YE8KWqMZ7UfQG5UBji3c9lzIm4qAe6-XNDMujgQRn_TAGQW1eWq0myU0wW6K8vwp4RyFTMKqSlV26h10F04yzxYd7Xy5ipEJuRqBw9TA32IsxdFyhacZ6SHwKyjNOU9F1gzWqCW62qi4-ScPIZ4k6Gi7cZO0O9wLGibxn8ByzKcDc6s2PI1A5zQ_mHvZ404vuvR1HoaE8yJDfGoN0OFEORtShFxN8Vkxx2BgBJS3");'></div>
+</div>
+</div>
+</header>
+<main class="flex-1 flex overflow-hidden">
+<!-- Left Column: Conversations List -->
+<aside class="w-full md:w-1/3 lg:w-1/4 flex-shrink-0 bg-white dark:bg-background-dark border-r border-gray-200 dark:border-gray-800 flex flex-col">
+<div class="p-4 border-b border-gray-200 dark:border-gray-800">
+<h2 class="text-xl font-bold text-gray-800 dark:text-white">Conversations</h2>
+</div>
+<div class="flex-1 overflow-y-auto">
+<!-- Active conversation item -->
+<div class="flex items-center gap-4 bg-primary/20 dark:bg-primary/30 px-4 py-3 cursor-pointer">
+<div class="relative">
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full h-14 w-14" data-alt="User avatar" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCakywj82GcqOUKKOxDS5f0I5GRyDmtXMfA0JGx8spadHfS-SfKTlvrEFqkxYDl1IE4SKQpctKIJ5R8PNNr1eJYQc8ouDfbRGfZu9TkRBS9N-xv92Bs0F3fnE7z6EKca68qWp0Mxyofao_fbF2b1NigonTwv5PoRDladrtWc_YOwwSN2bIz2C6qxp0bMD8i-9hrsDhEqK6Fic1f0OBpT-37WuEyENQTeg3MTNuy2sSABgcCjvB6NDpzslxyA0NEjaXe4EDbdbfYiOFL");'></div>
+<div class="absolute bottom-0 right-0 size-4 rounded-full bg-green-500 border-2 border-white dark:border-background-dark"></div>
+</div>
+<div class="flex-1">
+<p class="text-gray-800 dark:text-white text-base font-bold leading-normal line-clamp-1">Anna Kowalska</p>
+<p class="text-gray-600 dark:text-gray-300 text-sm font-normal leading-normal line-clamp-1">Sure, let's meet tomorrow...</p>
+</div>
+<div class="shrink-0">
+<div class="flex size-7 items-center justify-center">
+<div class="size-3 rounded-full bg-primary"></div>
+</div>
+</div>
+</div>
+<!-- Other conversation items -->
+<div class="flex items-center gap-4 hover:bg-gray-50 dark:hover:bg-gray-800/50 px-4 py-3 cursor-pointer border-t border-gray-100 dark:border-gray-800">
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full h-14 w-14" data-alt="User avatar" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDDDvj2DH7SWswc20XvIKddOvlWENni9d6rii6lA_cskYwAmYRswIpTtXvkH2xhYLV2fAid39eGfVA78xmOwjTWKfyZndKUdBYL7-qIRgW3Yw2WuTXngfrlQ4uIn4NaB7APGKypJujGLKSqp7xRPoNsZ4H6OvtrZBnfZ1_l-7X6bWcloa_X_nh5lmIb3hsuJPCwHKY2LM038UXJl7k8iaAKFv7paIVBq0MyvrwtyqgMBXt63wUwls9RgTTOzOlgKsffYuDSndHXjMBI");'></div>
+<div class="flex-1">
+<p class="text-gray-800 dark:text-white text-base font-medium leading-normal line-clamp-1">Piotr Nowak</p>
+<p class="text-gray-500 dark:text-gray-400 text-sm font-normal leading-normal line-clamp-1">Is the toy still available?</p>
+</div>
+<div class="shrink-0">
+<p class="text-gray-500 dark:text-gray-400 text-sm font-normal leading-normal">10:42</p>
+</div>
+</div>
+<div class="flex items-center gap-4 hover:bg-gray-50 dark:hover:bg-gray-800/50 px-4 py-3 cursor-pointer border-t border-gray-100 dark:border-gray-800">
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full h-14 w-14" data-alt="User avatar" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAUktIMmYr5mtjBSnmV9KHGaGC5ogWB4gOaReKEb1LibhEUAPd6f-yYKCfs5xorIVBeClIv1BFkPThzd6lgaBsZrn-4EPExmsCFFLYBdEWgdDYwT2aU6R16-UDGQlo7qckX2OzeUaLjkPb2U0djp3mmMRTav8aYqLBzVEd2z9-NWp5U4np8nVTuUL-vclJJ8nMIenR5yarfgOCE9pflK4deAr8vp1Pz6JOCYT0vHYniI6JOn1bavr93guNf9LDBTJ7ePpZmGlKUX6ae");'></div>
+<div class="flex-1">
+<p class="text-gray-800 dark:text-white text-base font-medium leading-normal line-clamp-1">Ewa Zielińska</p>
+<p class="text-gray-500 dark:text-gray-400 text-sm font-normal leading-normal line-clamp-1">Thank you!</p>
+</div>
+<div class="shrink-0">
+<p class="text-gray-500 dark:text-gray-400 text-sm font-normal leading-normal">Yesterday</p>
+</div>
+</div>
+</div>
+</aside>
+<!-- Right Column: Chat Window -->
+<section class="flex-1 flex flex-col bg-background-light dark:bg-background-dark">
+<!-- Chat Header -->
+<div class="flex items-center p-4 border-b border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-900/50 flex-shrink-0">
+<div class="flex items-center gap-4">
+<div class="relative">
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-12" data-alt="Anna Kowalska's avatar" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBA8jLDQwyqv_f9rdNqjLutByXzH6xKIu1WdVqusY35UeIw5RVR4YLhmqio7DjBZU96Cs_fwnEqAqHW2W9Yd1fuIxD5ucg3cQ-uAlIOxKpT4J3IXkFhNlCAyq9qAMQj-KfqfXwdCIWGrhCDepKGYgMeU5BtTIsap4YqJzy1l940Zuw6iZysb6JHv8BgIDYaur0XvHjBAXvFxoyi_zqaXrP8C-NSWOprIPmBRJAnZ0e3q45Hvmb2WWX7QUhow5nTC3Eat4NacETYcGap");'></div>
+<div class="absolute bottom-0 right-0 size-3 rounded-full bg-green-500 border-2 border-white dark:border-background-dark"></div>
+</div>
+<div class="flex flex-col justify-center">
+<p class="text-gray-800 dark:text-white text-lg font-bold leading-tight tracking-[-0.015em]">Anna Kowalska</p>
+<p class="text-green-500 dark:text-green-400 text-sm font-normal leading-normal">Online</p>
+</div>
+</div>
+<div class="ml-auto flex items-center gap-2">
+<button class="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-800 text-gray-500 dark:text-gray-400">
+<span class="material-symbols-outlined">call</span>
+</button>
+<button class="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-800 text-gray-500 dark:text-gray-400">
+<span class="material-symbols-outlined">videocam</span>
+</button>
+<button class="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-800 text-gray-500 dark:text-gray-400">
+<span class="material-symbols-outlined">more_vert</span>
+</button>
+</div>
+</div>
+<!-- Messages History -->
+<div class="flex-1 overflow-y-auto p-6 space-y-6">
+<!-- Recipient's Message -->
+<div class="flex items-start gap-3">
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-8 flex-shrink-0" data-alt="Anna Kowalska's avatar" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBsbCBef5Ymw3ByDK_Uq1OUJuyWvaPIQGuNwYi9O8u6ndWdlXq2oTwRJePMZkM094QEVaMDCVVDvA9cfhUK-jCzmQWcKAs_wHcy1PyaPsKWNlrOuIp9BijAOQd8ULWQRcpy_dlwfeSZ2KrEH6gBjfKtMkF84EzheUbaRwY8-hr63xkkGAkaDzL7JmY85KfVH3xETARJOhWtqgRH7YdjNN8WciOvz6Hy5gsUsawsT7JvtF1RXs3WasUF0K7zLIwh50CCZtDsENsj348M");'></div>
+<div>
+<div class="bg-gray-200 dark:bg-gray-800 text-gray-800 dark:text-gray-200 p-3 rounded-xl rounded-tl-none">
+<p>Hey! I saw your ad for the teddy bear. Is it still available?</p>
+</div>
+<p class="text-xs text-gray-400 dark:text-gray-500 mt-1">10:55 AM</p>
+</div>
+</div>
+<!-- User's Message -->
+<div class="flex items-start gap-3 justify-end">
+<div>
+<div class="bg-primary text-gray-900 p-3 rounded-xl rounded-tr-none">
+<p>Hi Anna! Yes, it is. It's in great condition.</p>
+</div>
+<p class="text-xs text-gray-400 dark:text-gray-500 mt-1 text-right">10:56 AM</p>
+</div>
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-8 flex-shrink-0" data-alt="User avatar" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuB6stgiARCTyN7m6rUx3l1FxcW3v3AdRLnM14uOHwkJOJ7RKSmojgqVWyw8rTpvPL6WfOxNRsNLDwQioLzjqRGnp77gnK9SXFebv_P-j4fa516TluCMdcppQDLqFcBMXAznLLXkIvFU4LnWYmfGwKfjJF6oBHoOR-0XQqwB_mI6qzA4WgPC6dHTrBxhbB8xrqYWILlatDZmotMX5cqR0SgEEjT50DE4fzHDZsHmhenoIAQKKcdusAkaVvHNznIOXokJ8jFLOa2YqPD2");'></div>
+</div>
+<!-- Recipient's Message with image -->
+<div class="flex items-start gap-3">
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-8 flex-shrink-0" data-alt="Anna Kowalska's avatar" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDG8SG8oJpREb95rsHwietMFInWrPE3aPz92yriMmmjz6M5-u9q79X-ph0jL_eUgHCixUuTHEkTxv69z8h0RfeCeww3vqE5znsXzqz5dGyUY1m_5m_drkYDYn7LlYGR_3T_UAGPSzzgwsD5xdmeyM2X5K7CvyrIiWE_Wzm66B_Dx-4_RNj8l_iIBoPGpI_BeptvgTj84DxqDSKLjmdOkYEo6PEHPpuk7Hp8tfluKzQXVB6PvwWvPnr_7AmGi5Pikbs7JAXlDVKPZwFU");'></div>
+<div>
+<div class="bg-gray-200 dark:bg-gray-800 p-3 rounded-xl rounded-tl-none">
+<p>That's great! My daughter would love it. Can you share a photo of its current state?</p>
+</div>
+<p class="text-xs text-gray-400 dark:text-gray-500 mt-1">10:57 AM</p>
+</div>
+</div>
+<!-- User's Message with image -->
+<div class="flex items-start gap-3 justify-end">
+<div>
+<div class="bg-primary text-gray-900 p-3 rounded-xl rounded-tr-none">
+<p>Sure, let's meet tomorrow. Here is a picture.</p>
+<img alt="Photo of a teddy bear" class="mt-2 rounded-lg max-w-xs cursor-pointer" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDxX9Q3obYAAN0HBlrtWXcQ0Aj3ZoGomf9R-fm3aibYSsRr_9HKUlqPwUUTfp_n0UcW3XXNndGseWBFw-MKnKJz-GonyCk-CTL83d6YM3fOqSTqql0q-QJXI97EeWwdHa5VJYKJUpeofJxEaja5GzlmLVRP10Oo8KxIpIG_Wl25GT4chFOvB0Tu9CDfV4Qr6VKBK4oojLlA1HFpet96LZusJ56YCW-HP0O9HjYIUwu43GNlKXxaR1ZypWYHcL3gJnSYfjE8JhIRTMCn"/>
+</div>
+<p class="text-xs text-gray-400 dark:text-gray-500 mt-1 text-right">10:58 AM</p>
+</div>
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-8 flex-shrink-0" data-alt="User avatar" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDPttdLL0OOGk7s9ynNpigT5iiSyH5U6wlN9zL1TzxsoS5CE2gcMsl2OdQoeRfFSuBk46OcjxTfpKmjZUZdf3b1oD_LxXeLizKPSrtHqzz8GUz-VuUQA2zAIH7jXqA8dGQXhJ8KoaDYNnGMTndkz-XKyrgip7dJ-vcPtty4XJ0gjj0Ga6iSjl20GtX0_0GCh1NT9rxgQVG-z-SZqbHhwyk_UWx9dYICF-dJcKsG_kZfW-Ba3WaOmPd8eCJZFDCqScqgUAN2oDGD2PyQ");'></div>
+</div>
+</div>
+<!-- Message Input -->
+<div class="p-4 bg-white dark:bg-gray-900/50 border-t border-gray-200 dark:border-gray-800 flex-shrink-0">
+<div class="flex items-center gap-2">
+<button class="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-800 text-gray-500 dark:text-gray-400">
+<span class="material-symbols-outlined">add_reaction</span>
+</button>
+<button class="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-800 text-gray-500 dark:text-gray-400">
+<span class="material-symbols-outlined">attach_file</span>
+</button>
+<input class="flex-1 w-full px-4 py-2 bg-gray-100 dark:bg-gray-800 border-transparent rounded-full focus:outline-none focus:ring-2 focus:ring-primary/50 text-gray-800 dark:text-gray-200 placeholder-gray-500 dark:placeholder-gray-400" placeholder="Napisz wiadomość..." type="text"/>
+<button class="flex items-center justify-center size-10 rounded-full bg-primary text-gray-900 hover:bg-opacity-90">
+<span class="material-symbols-outlined">send</span>
+</button>
+</div>
+</div>
+</section>
+</main>
+</div>
+</body></html>
