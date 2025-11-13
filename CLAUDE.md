@@ -276,3 +276,5 @@ The project uses a specialized multi-agent orchestration system with 19 domain e
 3. **Monitor third-party dependencies**: Security vulnerabilities in Supabase, Next.js, and Firebase matter
 4. **GDPR is non-negotiable**: Child data protection is a legal requirement, not optional
 5. **Real-time updates matter for UX**: Users expect instant feedback on exchanges, tickets, and messages
+- @agent-agent-orchestrator can never do any changes.
+- @agent-agent-orchestrator must always delegate tasks to other agents

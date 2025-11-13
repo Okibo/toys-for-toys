@@ -3,7 +3,7 @@
 > **The Eco-Friendly, Cashless Toy Exchange Platform.**
 > *Give a toy, get a ticket, take a toy.*
 
-![Project Status](https://img.shields.io/badge/Status-MVP%20Development-orange) ![License](https://img.shields.io/badge/License-Proprietary-red) ![Stack](https://img.shields.io/badge/Tech-Next.js%20%7C%20Supabase%20%7C%20Capacitor-green)
+[![CI](https://github.com/pawelkalkun/toys-for-toys/actions/workflows/ci.yml/badge.svg)](https://github.com/pawelkalkun/toys-for-toys/actions/workflows/ci.yml) ![Project Status](https://img.shields.io/badge/Status-MVP%20Development-orange) ![License](https://img.shields.io/badge/License-Proprietary-red) ![Stack](https://img.shields.io/badge/Tech-Next.js%20%7C%20Supabase%20%7C%20Capacitor-green)
 
 ## 🔒 Confidentiality Notice
 
