@@ -1,0 +1,62 @@
+{
+  "name": "toys-for-toys",
+  "version": "1.0.0",
+  "description": "The Eco-Friendly, Cashless Toy Exchange Platform. Give a toy, get a ticket, take a toy.",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "eslint . --fix",
+    "test": "jest"
+  },
+  "dependencies": {
+    "@supabase/auth-helpers-nextjs": "^0.8.0",
+    "@supabase/supabase-js": "^2.38.0",
+    "clsx": "^2.1.1",
+    "firebase": "^12.5.0",
+    "firebase-admin": "^13.6.0",
+    "next": "^14.0.0",
+    "next-i18next": "^14.0.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-hook-form": "^7.48.0",
+    "zod": "^3.22.4",
+    "zustand": "^4.4.1"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.40.0",
+    "@types/jest": "^29.5.8",
+    "@types/node": "^20.9.0",
+    "@types/react": "^18.2.37",
+    "autoprefixer": "^10.4.22",
+    "eslint": "^8.53.0",
+    "eslint-config-next": "^14.0.0",
+    "husky": "^9.1.7",
+    "jest": "^29.7.0",
+    "postcss": "^8.5.6",
+    "prettier": "^3.1.0",
+    "tailwindcss": "^3.3.5",
+    "ts-jest": "^29.4.5",
+    "typescript": "^5.2.2"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Okibo/toys-for-toys.git"
+  },
+  "keywords": [
+    "toy-exchange",
+    "cashless",
+    "eco-friendly",
+    "marketplace"
+  ],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Okibo/toys-for-toys/issues"
+  },
+  "homepage": "https://github.com/Okibo/toys-for-toys#readme"
+}

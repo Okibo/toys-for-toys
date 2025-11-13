@@ -29,14 +29,14 @@ Create a Firebase project, configure Cloud Messaging (FCM) for push notification
 - [x] Firebase Cloud Messaging (FCM) enabled
 - [x] Web app registered in Firebase:
   - [x] App name: `Toy-for-Toy Web`
-  - [x] Hosting: Yes (configure domain in Phase 2)
-  - [x] Firebase Hosting configuration: Skip for MVP (Vercel hosting used)
-- [x] Web configuration credentials obtained:
+  - [x] Hosting: No (Vercel hosting used)
+  - [x] Firebase Hosting configuration: Not needed (using Vercel)
+- [x] Web configuration credentials obtained (Cloud Messaging only):
   - [x] Project ID
   - [x] API Key
   - [x] App ID
   - [x] Messaging Sender ID
-  - [x] Auth Domain
+  - [x] NOTE: authDomain, databaseURL, storageBucket NOT configured (use Supabase)
 
 ### Service Account & Admin SDK
 - [x] Service account created with name: `firebase-admin-sdk`
@@ -51,15 +51,16 @@ Create a Firebase project, configure Cloud Messaging (FCM) for push notification
 - [x] Service account permissions set to FCM scope
 - [x] Key rotation schedule documented
 
-### Environment Variables
-- [x] `.env.local` updated with Firebase credentials:
+### Environment Variables (Cloud Messaging Only)
+- [x] `.env.local` updated with Firebase credentials (Cloud Messaging):
   ```
   NEXT_PUBLIC_FIREBASE_PROJECT_ID=<project-id>
   NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID=<sender-id>
   NEXT_PUBLIC_FIREBASE_APP_ID=<app-id>
-  NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN=<auth-domain>
+  NEXT_PUBLIC_FIREBASE_API_KEY=<api-key>
   FIREBASE_ADMIN_SDK_KEY=<json-private-key>
   ```
+  Note: authDomain, databaseURL, storageBucket NOT configured (use Supabase)
 - [x] `.env.example` updated with variable descriptions
 - [x] `firebase-adminsdk-key.json` added to `.gitignore`
 

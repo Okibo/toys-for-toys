@@ -1,0 +1,30 @@
+[api]
+port = 54321
+schemas = ["public", "graphql_public"]
+max_rows = 1000
+
+[db]
+port = 5432
+major_version = 15
+schemas = ["public", "extensions"]
+seed_file = "supabase/seed.sql"
+
+[studio]
+port = 54323
+
+[inbucket]
+port = 54324
+
+[auth]
+enabled = true
+port = 54321
+
+[vector]
+enabled = false
+
+[realtime]
+enabled = true
+max_bytes_per_second = 1000000
+
+[storage]
+file_size_limit = 52428800
