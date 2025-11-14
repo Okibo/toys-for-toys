@@ -59,9 +59,7 @@ test.describe('Supabase Connectivity', () => {
     expect(combinedData).not.toContain('SUPABASE_SERVICE_ROLE_KEY');
   });
 
-  test('should have Supabase environment variables configured', async ({
-    page,
-  }) => {
+  test('should have Supabase environment variables configured', async ({ page }) => {
     await page.goto('http://localhost:3000');
     await page.waitForLoadState('networkidle');
 

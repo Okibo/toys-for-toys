@@ -7,6 +7,7 @@ This guide covers common development issues and their solutions for the Toy-for-
 ### "Cannot find module X" Error
 
 **Symptoms:**
+
 - Import statements show red underlines in IDE
 - Error: `Cannot find module 'X'` or `Module not found: Can't resolve 'X'`
 - Application fails to start or compile
@@ -14,17 +15,20 @@ This guide covers common development issues and their solutions for the Toy-for-
 **Solutions:**
 
 1. **Reinstall dependencies:**
+
    ```bash
    npm install
    ```
 
 2. **Clear node_modules and reinstall:**
+
    ```bash
    rm -rf node_modules package-lock.json
    npm install
    ```
 
 3. **Clear Next.js cache:**
+
    ```bash
    rm -rf .next
    npm run dev
@@ -42,17 +46,20 @@ This guide covers common development issues and their solutions for the Toy-for-
 ### Dependency Version Conflicts
 
 **Symptoms:**
+
 - `npm install` shows peer dependency warnings
 - Application has unexpected behavior after updates
 
 **Solutions:**
 
 1. **Check for conflicting versions:**
+
    ```bash
    npm ls <package-name>
    ```
 
 2. **Update to compatible versions:**
+
    ```bash
    npm update
    ```
@@ -70,6 +77,7 @@ This guide covers common development issues and their solutions for the Toy-for-
 ### Connection Fails Error
 
 **Symptoms:**
+
 - Blank page on load
 - Console error: `Failed to connect to Supabase`
 - Auth failures or database queries return errors
@@ -77,6 +85,7 @@ This guide covers common development issues and their solutions for the Toy-for-
 **Solutions:**
 
 1. **Verify environment variables in `.env.local`:**
+
    ```bash
    # Check these exist and are correct
    NEXT_PUBLIC_SUPABASE_URL=https://your-project.supabase.co
@@ -85,6 +94,7 @@ This guide covers common development issues and their solutions for the Toy-for-
    ```
 
 2. **Restart development server after changing .env:**
+
    ```bash
    # Stop server (Ctrl+C) then:
    npm run dev
@@ -108,6 +118,7 @@ This guide covers common development issues and their solutions for the Toy-for-
 ### RLS Policy Blocking Data Access
 
 **Symptoms:**
+
 - Queries return empty arrays unexpectedly
 - Console shows: `new row violates row-level security policy`
 
@@ -119,8 +130,11 @@ This guide covers common development issues and their solutions for the Toy-for-
    - Test policies with SQL Editor
 
 2. **Verify user is authenticated:**
+
    ```typescript
-   const { data: { user } } = await supabase.auth.getUser();
+   const {
+     data: { user },
+   } = await supabase.auth.getUser();
    console.log('Current user:', user);
    ```
 
@@ -136,26 +150,31 @@ This guide covers common development issues and their solutions for the Toy-for-
 ### Dev Server Won't Start
 
 **Symptoms:**
+
 - `npm run dev` fails immediately
 - Error during server initialization
 
 **Solutions:**
 
 1. **Check for syntax errors:**
+
    ```bash
    npm run lint
    ```
 
 2. **Clear Next.js cache:**
+
    ```bash
    rm -rf .next
    npm run dev
    ```
 
 3. **Check Node.js version:**
+
    ```bash
    node -v  # Should be >= 18.17.0
    ```
+
    - Update Node.js if needed: https://nodejs.org/
 
 4. **Check for missing dependencies:**
@@ -166,12 +185,14 @@ This guide covers common development issues and their solutions for the Toy-for-
 ### Port Already in Use
 
 **Symptoms:**
+
 - Error: `Port 3000 is already in use`
 - Server fails to start
 
 **Solutions:**
 
 1. **Kill process on port 3000:**
+
    ```bash
    # macOS/Linux
    lsof -ti:3000 | xargs kill -9
@@ -182,6 +203,7 @@ This guide covers common development issues and their solutions for the Toy-for-
    ```
 
 2. **Use a different port:**
+
    ```bash
    PORT=3001 npm run dev
    ```
@@ -195,18 +217,21 @@ This guide covers common development issues and their solutions for the Toy-for-
 ### Hot Reload Not Working
 
 **Symptoms:**
+
 - Changes to code don't reflect in browser
 - Must manually refresh to see updates
 
 **Solutions:**
 
 1. **Check file watching limits (Linux):**
+
    ```bash
    echo fs.inotify.max_user_watches=524288 | sudo tee -a /etc/sysctl.conf
    sudo sysctl -p
    ```
 
 2. **Restart development server:**
+
    ```bash
    # Ctrl+C to stop, then:
    npm run dev
@@ -220,24 +245,30 @@ This guide covers common development issues and their solutions for the Toy-for-
 ### npm run build Fails
 
 **Symptoms:**
+
 - Build process exits with errors
 - Deployment fails
 
 **Solutions:**
 
 1. **Check for TypeScript errors:**
+
    ```bash
    npx tsc --noEmit
    ```
+
    - Fix all type errors shown
 
 2. **Check for ESLint errors:**
+
    ```bash
    npm run lint
    ```
+
    - Fix errors or warnings marked as errors
 
 3. **Clear build cache and retry:**
+
    ```bash
    rm -rf .next
    npm run build
@@ -255,17 +286,20 @@ This guide covers common development issues and their solutions for the Toy-for-
 ### TypeScript Errors During Build
 
 **Symptoms:**
+
 - Type errors appear during `npm run build`
 - Errors like: `Property 'X' does not exist on type 'Y'`
 
 **Solutions:**
 
 1. **Update TypeScript types:**
+
    ```bash
    npm install --save-dev @types/node @types/react @types/react-dom
    ```
 
 2. **Check tsconfig.json is correct:**
+
    ```json
    {
      "compilerOptions": {
@@ -276,6 +310,7 @@ This guide covers common development issues and their solutions for the Toy-for-
    ```
 
 3. **Generate Prisma types:**
+
    ```bash
    npx prisma generate
    ```
@@ -289,11 +324,13 @@ This guide covers common development issues and their solutions for the Toy-for-
 ### Out of Memory During Build
 
 **Symptoms:**
+
 - Build fails with: `JavaScript heap out of memory`
 
 **Solutions:**
 
 1. **Increase Node.js memory limit:**
+
    ```bash
    NODE_OPTIONS="--max-old-space-size=4096" npm run build
    ```
@@ -312,6 +349,7 @@ This guide covers common development issues and their solutions for the Toy-for-
 ### Mobile Build Fails
 
 **Symptoms:**
+
 - `npx cap sync` fails
 - Native project won't open
 - Build errors in Android Studio/Xcode
@@ -319,12 +357,14 @@ This guide covers common development issues and their solutions for the Toy-for-
 **Solutions:**
 
 1. **Build Next.js first (REQUIRED):**
+
    ```bash
    npm run build
    npx cap sync
    ```
 
 2. **Clean sync with fresh copy:**
+
    ```bash
    npm run build
    npx cap sync --force
@@ -342,6 +382,7 @@ This guide covers common development issues and their solutions for the Toy-for-
 ### Android Studio/Xcode Won't Open
 
 **Symptoms:**
+
 - `npx cap open android` or `npx cap open ios` fails
 - IDE not found error
 
@@ -352,6 +393,7 @@ This guide covers common development issues and their solutions for the Toy-for-
    - **iOS**: Install Xcode from App Store (macOS only)
 
 2. **Set environment variables (Android):**
+
    ```bash
    export ANDROID_HOME=$HOME/Library/Android/sdk
    export PATH=$PATH:$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools
@@ -364,18 +406,21 @@ This guide covers common development issues and their solutions for the Toy-for-
 ### Plugin Errors
 
 **Symptoms:**
+
 - Native plugin not found
 - Plugin method fails at runtime
 
 **Solutions:**
 
 1. **Sync plugins:**
+
    ```bash
    npm install
    npx cap sync
    ```
 
 2. **Reinstall plugin:**
+
    ```bash
    npm uninstall @capacitor/plugin-name
    npm install @capacitor/plugin-name
@@ -391,22 +436,26 @@ This guide covers common development issues and their solutions for the Toy-for-
 ### Jest Tests Failing
 
 **Symptoms:**
+
 - `npm test` shows failed tests
 - Configuration errors
 
 **Solutions:**
 
 1. **Run tests with full output:**
+
    ```bash
    npm test -- --no-coverage --verbose
    ```
 
 2. **Update snapshots if UI changed:**
+
    ```bash
    npm test -- -u
    ```
 
 3. **Clear Jest cache:**
+
    ```bash
    npx jest --clearCache
    npm test
@@ -424,22 +473,26 @@ This guide covers common development issues and their solutions for the Toy-for-
 ### Playwright E2E Tests Failing
 
 **Symptoms:**
+
 - E2E tests timeout or fail
 - Browser won't launch
 
 **Solutions:**
 
 1. **Install Playwright browsers:**
+
    ```bash
    npx playwright install
    ```
 
 2. **Run in headed mode for debugging:**
+
    ```bash
    npx playwright test --headed
    ```
 
 3. **Increase timeout for slow operations:**
+
    ```typescript
    test.setTimeout(60000); // 60 seconds
    ```
@@ -451,12 +504,14 @@ This guide covers common development issues and their solutions for the Toy-for-
 ### Module Mock Issues
 
 **Symptoms:**
+
 - Tests fail with: `Cannot find module from 'X'`
 - Mocks not working
 
 **Solutions:**
 
 1. **Configure module paths in jest.config.js:**
+
    ```javascript
    moduleNameMapper: {
      '^@/(.*)$': '<rootDir>/$1',
@@ -464,9 +519,10 @@ This guide covers common development issues and their solutions for the Toy-for-
    ```
 
 2. **Mock external dependencies:**
+
    ```javascript
    jest.mock('@supabase/supabase-js', () => ({
-     createClient: jest.fn()
+     createClient: jest.fn(),
    }));
    ```
 
@@ -480,6 +536,7 @@ This guide covers common development issues and their solutions for the Toy-for-
 ### Supabase Realtime Not Updating
 
 **Symptoms:**
+
 - Live updates don't appear
 - Subscriptions not triggering callbacks
 
@@ -490,6 +547,7 @@ This guide covers common development issues and their solutions for the Toy-for-
    - Enable Realtime for relevant tables
 
 2. **Verify subscription code:**
+
    ```typescript
    const subscription = supabase
      .from('table_name')
@@ -522,12 +580,14 @@ This guide covers common development issues and their solutions for the Toy-for-
 ### Push Notifications Not Working
 
 **Symptoms:**
+
 - FCM tokens not generated
 - Notifications not received
 
 **Solutions:**
 
 1. **Verify Firebase config in `.env.local`:**
+
    ```bash
    NEXT_PUBLIC_FIREBASE_PROJECT_ID=<your-project-id>
    NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID=<sender-id>
@@ -539,6 +599,7 @@ This guide covers common development issues and their solutions for the Toy-for-
    - Check browser DevTools → Application → Service Workers
 
 3. **Request notification permissions:**
+
    ```typescript
    const permission = await Notification.requestPermission();
    console.log('Permission:', permission);
@@ -559,6 +620,7 @@ This guide covers common development issues and their solutions for the Toy-for-
    - Compress images before upload
 
 2. **Analyze bundle size:**
+
    ```bash
    npm run build
    npx @next/bundle-analyzer
@@ -574,6 +636,7 @@ This guide covers common development issues and their solutions for the Toy-for-
 **Solutions:**
 
 1. **Add indexes to frequently queried columns:**
+
    ```sql
    CREATE INDEX idx_toys_user_id ON toys(user_id);
    ```

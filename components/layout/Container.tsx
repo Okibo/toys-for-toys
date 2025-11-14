@@ -10,11 +10,7 @@ interface ContainerProps {
   size?: 'sm' | 'md' | 'lg' | 'xl';
 }
 
-export const Container: React.FC<ContainerProps> = ({
-  className = '',
-  children,
-  size = 'lg',
-}) => {
+export const Container: React.FC<ContainerProps> = ({ className = '', children, size = 'lg' }) => {
   const sizeClasses = {
     sm: 'max-w-sm',
     md: 'max-w-2xl',

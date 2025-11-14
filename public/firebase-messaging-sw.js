@@ -61,8 +61,10 @@ function initializeFirebaseConfig(config) {
  */
 function getFirebaseConfig() {
   if (!firebaseConfig) {
-    console.warn('[Firebase SW] Firebase configuration not yet initialized. ' +
-      'Ensure client initializes Firebase before service worker is activated.');
+    console.warn(
+      '[Firebase SW] Firebase configuration not yet initialized. ' +
+        'Ensure client initializes Firebase before service worker is activated.'
+    );
   }
   return firebaseConfig;
 }

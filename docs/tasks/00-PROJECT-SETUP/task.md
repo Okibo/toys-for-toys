@@ -1,6 +1,7 @@
 # Epic: Project Setup & Infrastructure (Week 1)
 
 ## Overview
+
 Initialize the development environment, create CI/CD pipeline, configure core infrastructure, and establish development standards.
 
 ---
@@ -12,9 +13,11 @@ Initialize the development environment, create CI/CD pipeline, configure core in
 **Dependencies:** None
 
 ### Description
+
 Set up the monorepo structure with Next.js, establish core npm dependencies, configure TypeScript, and create the directory skeleton.
 
 ### Acceptance Criteria
+
 - [ ] Next.js 14+ project initialized with App Router
 - [ ] TypeScript configured with strict mode enabled
 - [ ] Essential npm packages installed:
@@ -31,12 +34,14 @@ Set up the monorepo structure with Next.js, establish core npm dependencies, con
 - [ ] Git hooks configured (pre-commit linting)
 
 ### Implementation Notes
+
 - Use `create-next-app` with TypeScript template as base
 - Configure `jsconfig.json` with path aliases (@/components, @/lib, etc.)
 - Set up ESLint and Prettier rules to match project style
 - Create a development checklist for contributors
 
 ### Testing
+
 - npm run dev starts without errors
 - npm run build completes successfully
 - npm run lint returns 0 errors
@@ -50,9 +55,11 @@ Set up the monorepo structure with Next.js, establish core npm dependencies, con
 **Dependencies:** Task 1.1
 
 ### Description
+
 Create and configure Supabase project, set up local development environment, and establish database connection.
 
 ### Acceptance Criteria
+
 - [ ] Supabase project created (EU region: Ireland or Germany)
 - [ ] Local Supabase instance running via Docker (supabase/cli)
 - [ ] `.env.local` configured with:
@@ -66,12 +73,14 @@ Create and configure Supabase project, set up local development environment, and
 - [ ] Backup strategy documented (daily snapshots)
 
 ### Implementation Notes
+
 - Follow Supabase EU compliance setup (GDPR-friendly region)
 - Enable Row-Level Security (RLS) at project level
 - Configure realtime for core tables
 - Document database URL and API key rotation schedule
 
 ### Testing
+
 - `npx supabase start` launches successfully
 - Supabase Studio accessible at http://localhost:54323
 - Next.js can query `auth.users` table (after RLS setup in next tasks)
@@ -85,9 +94,11 @@ Create and configure Supabase project, set up local development environment, and
 **Dependencies:** Task 1.1
 
 ### Description
+
 Create Firebase project, configure Cloud Messaging, and prepare Firebase Admin SDK integration.
 
 ### Acceptance Criteria
+
 - [ ] Firebase project created (same region as Supabase)
 - [ ] Cloud Messaging enabled
 - [ ] Web app registration completed
@@ -102,12 +113,14 @@ Create Firebase project, configure Cloud Messaging, and prepare Firebase Admin S
 - [ ] Documentation: How to obtain device tokens for push notifications
 
 ### Implementation Notes
+
 - Create separate projects for development and production (if budget allows)
 - Disable analytics for development environment
 - Document sensitive key rotation procedures
 - Note: Actual push sending to be implemented in Phase 2
 
 ### Testing
+
 - Firebase connection test passes
 - Environment variables load correctly
 - No keys exposed in browser console
@@ -121,9 +134,11 @@ Create Firebase project, configure Cloud Messaging, and prepare Firebase Admin S
 **Dependencies:** Task 1.1, 1.2
 
 ### Description
+
 Set up GitHub Actions CI/CD pipeline for automated testing, linting, and deployment preparation.
 
 ### Acceptance Criteria
+
 - [ ] `.github/workflows/ci.yml` created with:
   - Node.js setup (v18+)
   - npm install
@@ -142,12 +157,14 @@ Set up GitHub Actions CI/CD pipeline for automated testing, linting, and deploym
 - [ ] Documentation: CI/CD workflow and deployment procedure
 
 ### Implementation Notes
+
 - Use starter-provided Node.js action
 - Keep workflows simple for MVP (no matrix testing for now)
 - Cache dependencies to speed up builds
 - Consider: Matrix testing for multiple Node versions (Phase 2)
 
 ### Testing
+
 - Push to feature branch triggers CI
 - CI completes in <5 minutes
 - Merge blocked if CI fails
@@ -161,9 +178,11 @@ Set up GitHub Actions CI/CD pipeline for automated testing, linting, and deploym
 **Dependencies:** Task 1.1, 1.4
 
 ### Description
+
 Configure Vercel for web deployment, set up staging environment, and establish deployment workflow.
 
 ### Acceptance Criteria
+
 - [ ] Vercel project created and linked to GitHub repo
 - [ ] Production environment configured (auto-deploy on push to main)
 - [ ] Staging environment created (preview deployments on PRs)
@@ -177,12 +196,14 @@ Configure Vercel for web deployment, set up staging environment, and establish d
 - [ ] Documentation: Deployment checklist and rollback procedure
 
 ### Implementation Notes
+
 - Keep Vercel env vars synchronized with local .env.local
 - Set production region to EU for data residency
 - Enable automatic deployments only for main branch
 - Note: Manual deployment option for non-main branches during testing
 
 ### Testing
+
 - Merge to main triggers auto-deployment
 - Staging preview generated for PR
 - Live site loads and connects to Supabase
@@ -196,9 +217,11 @@ Configure Vercel for web deployment, set up staging environment, and establish d
 **Dependencies:** Task 1.1-1.5
 
 ### Description
+
 Document development setup, testing strategies, and contributing guidelines.
 
 ### Acceptance Criteria
+
 - [ ] CONTRIBUTING.md created with:
   - Setup instructions (npm install, env vars)
   - Code style guidelines (ESLint/Prettier)
@@ -218,11 +241,12 @@ Document development setup, testing strategies, and contributing guidelines.
 - [ ] Troubleshooting guide (docs/TROUBLESHOOTING.md) for common dev issues
 
 ### Implementation Notes
+
 - Make documentation accessible to new contributors
 - Keep docs in sync with actual dev processes
 - Use examples and screenshots where helpful
 
 ### Testing
+
 - A new developer can follow CONTRIBUTING.md to set up locally
 - All documentation builds without errors (if using docusaurus later)
-

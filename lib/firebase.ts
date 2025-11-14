@@ -17,11 +17,7 @@
  * - NEXT_PUBLIC_FIREBASE_APP_ID
  */
 
-import {
-  initializeApp,
-  getApps,
-  type FirebaseApp,
-} from 'firebase/app';
+import { initializeApp, getApps, type FirebaseApp } from 'firebase/app';
 import {
   getMessaging,
   onMessage,
@@ -60,17 +56,12 @@ export function initializeFirebase(): FirebaseApp {
   const config = getFirebaseConfig();
 
   // Validate that all required config fields for FCM are present
-  const requiredFields = [
-    'apiKey',
-    'projectId',
-    'messagingSenderId',
-    'appId',
-  ];
+  const requiredFields = ['apiKey', 'projectId', 'messagingSenderId', 'appId'];
 
   for (const field of requiredFields) {
     if (!config[field as keyof typeof config]) {
       throw new Error(
-        `Firebase Cloud Messaging config missing required field: NEXT_PUBLIC_FIREBASE_${field.toUpperCase()}`,
+        `Firebase Cloud Messaging config missing required field: NEXT_PUBLIC_FIREBASE_${field.toUpperCase()}`
       );
     }
   }
@@ -115,9 +106,7 @@ export function getFirebaseMessaging(): Messaging {
  * @throws {Error} If called outside of browser context
  * @throws {Error} If subscription fails
  */
-export function subscribeToMessages(
-  callback: (payload: MessagePayload) => void,
-): () => void {
+export function subscribeToMessages(callback: (payload: MessagePayload) => void): () => void {
   // Runtime check to prevent server-side execution
   if (typeof window === 'undefined') {
     throw new Error('Message subscription is only available in browser context');

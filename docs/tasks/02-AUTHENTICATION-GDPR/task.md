@@ -1,6 +1,7 @@
 # Epic: Authentication & GDPR Compliance (Week 3-4)
 
 ## Overview
+
 Implement secure user authentication, parental consent flows, and GDPR compliance infrastructure.
 
 ---
@@ -12,9 +13,11 @@ Implement secure user authentication, parental consent flows, and GDPR complianc
 **Dependencies:** Task 1.2, 2.1
 
 ### Description
+
 Set up Supabase Auth email/password provider with sign-up, login, password recovery flows.
 
 ### Acceptance Criteria
+
 - [ ] Supabase Auth email provider configured
 - [ ] lib/auth.ts created with auth utility functions:
   - `signUp(email, password, full_name)` - creates auth.user and profiles.row
@@ -39,6 +42,7 @@ Set up Supabase Auth email/password provider with sign-up, login, password recov
 - [ ] Documentation: Auth flow diagram, security notes
 
 ### Implementation Notes
+
 - Use Supabase Auth helpers (@supabase/auth-helpers-nextjs)
 - httpOnly cookies for JWT (prevent XSS access)
 - Store refresh token securely (Supabase handles)
@@ -46,6 +50,7 @@ Set up Supabase Auth email/password provider with sign-up, login, password recov
 - Rate limiting at API layer (not auth library)
 
 ### Testing
+
 - Sign up with valid email/password succeeds
 - Sign up with existing email fails
 - Login succeeds with correct credentials
@@ -63,9 +68,11 @@ Set up Supabase Auth email/password provider with sign-up, login, password recov
 **Dependencies:** Task 3.1
 
 ### Description
+
 Build login and sign-up pages with form validation and error messaging.
 
 ### Acceptance Criteria
+
 - [ ] /auth/login page created:
   - Email input (with validation)
   - Password input
@@ -103,6 +110,7 @@ Build login and sign-up pages with form validation and error messaging.
   - Keyboard navigation
 
 ### Implementation Notes
+
 - Use React Hook Form + Zod for validation
 - shadcn/ui components for consistent design
 - Real-time debounced email existence check (prevent timing attacks)
@@ -110,6 +118,7 @@ Build login and sign-up pages with form validation and error messaging.
 - Smooth transitions between steps
 
 ### Testing
+
 - Form validation works (client-side)
 - Error messages clear and actionable
 - Responsive on mobile/tablet/desktop
@@ -125,9 +134,11 @@ Build login and sign-up pages with form validation and error messaging.
 **Dependencies:** Task 3.2, 2.1
 
 ### Description
+
 Create multi-step consent flow for child data collection, meeting GDPR Article 8 requirements.
 
 ### Acceptance Criteria
+
 - [ ] /auth/signup/[step] pages created:
   - Step 1: Email/Password (Task 3.2)
   - Step 2: Child Profile Creation
@@ -165,6 +176,7 @@ Create multi-step consent flow for child data collection, meeting GDPR Article 8
 - [ ] Progress: 66% (2/3 steps complete)
 
 ### Implementation Notes
+
 - Explicit consent required (no pre-checked boxes)
 - Consent timestamp + IP for audit trail
 - Consent text versioning (track changes to privacy terms)
@@ -173,6 +185,7 @@ Create multi-step consent flow for child data collection, meeting GDPR Article 8
 - Consent can be withdrawn in settings (Task 3.6)
 
 ### Testing
+
 - Cannot submit without checking consent checkbox
 - Consent recorded with timestamp and IP
 - Confirmation email sent immediately
@@ -189,9 +202,11 @@ Create multi-step consent flow for child data collection, meeting GDPR Article 8
 **Dependencies:** Task 1.2
 
 ### Description
+
 Draft GDPR-compliant privacy policy and terms of service.
 
 ### Acceptance Criteria
+
 - [ ] `/privacy-policy` page created with:
   - Data Controller info (company name, contact, DPO email)
   - What data is collected (list with purpose)
@@ -230,6 +245,7 @@ Draft GDPR-compliant privacy policy and terms of service.
 - [ ] Legal review: Flag for legal team (Phase 2 formal review)
 
 ### Implementation Notes
+
 - Use templates from GDPR-compliant platforms as reference
 - Keep language plain (avoid legal jargon where possible)
 - Disclose all data processing (no surprises)
@@ -238,6 +254,7 @@ Draft GDPR-compliant privacy policy and terms of service.
 - Multi-language: Polish first, German/English in Phase 2
 
 ### Testing
+
 - All pages load without errors
 - Links to external policies work
 - PDFs downloadable
@@ -253,9 +270,11 @@ Draft GDPR-compliant privacy policy and terms of service.
 **Dependencies:** Task 3.3
 
 ### Description
+
 Allow parents to revoke consent and trigger data deletion workflow.
 
 ### Acceptance Criteria
+
 - [ ] Settings page (Account → Privacy & Data):
   - "Your Consents" section showing:
     - Child name + Consent date + "Revoke" button per child
@@ -289,6 +308,7 @@ Allow parents to revoke consent and trigger data deletion workflow.
     - Deletion proceeds only after all exchanges completed
 
 ### Implementation Notes
+
 - 30-day grace period is non-negotiable (GDPR requirement)
 - Manual name entry prevents accidental deletion
 - Background job (Edge Function) handles deletion at scale
@@ -296,6 +316,7 @@ Allow parents to revoke consent and trigger data deletion workflow.
 - Test: Verify data actually deleted from DB (not just soft-deleted)
 
 ### Testing
+
 - Revoke consent flow works
 - Confirmation email sent
 - 30-day countdown visible
@@ -312,9 +333,11 @@ Allow parents to revoke consent and trigger data deletion workflow.
 **Dependencies:** Task 3.2
 
 ### Description
+
 Implement user-initiated data export (DSAR) request handling.
 
 ### Acceptance Criteria
+
 - [ ] /app/settings/privacy page includes:
   - "Download Your Data" section
   - DSAR request button: "Request a copy of all my data"
@@ -358,6 +381,7 @@ Implement user-initiated data export (DSAR) request handling.
   - No PII logged in application logs
 
 ### Implementation Notes
+
 - DSAR is a legal right (10 working day SLA)
 - Data export should be comprehensive (over-inclusive rather than under-inclusive)
 - Separate password from download link (layered security)
@@ -366,6 +390,7 @@ Implement user-initiated data export (DSAR) request handling.
 - Note: Skeleton implementation, full async job in Phase 2
 
 ### Testing
+
 - DSAR request created successfully
 - Email sent with download link
 - Password required to download (validate)
@@ -382,9 +407,11 @@ Implement user-initiated data export (DSAR) request handling.
 **Dependencies:** Task 3.1
 
 ### Description
+
 Skeleton implementation for optional 2FA (TOTP), detailed in Phase 2.
 
 ### Acceptance Criteria
+
 - [ ] Settings page → Security:
   - "Two-Factor Authentication" section
   - Status: "Not set up" or "Enabled"
@@ -403,11 +430,13 @@ Skeleton implementation for optional 2FA (TOTP), detailed in Phase 2.
   - RLS: Only user can see own 2FA status
 
 ### Implementation Notes
+
 - 2FA implementation deferred to Phase 2 (lower priority than core features)
 - Keep UI placeholder for smooth Phase 2 rollout
 - Backend ready for TOTP library integration
 
 ### Testing
+
 - Settings page loads without errors
 - 2FA button visible but disabled ("Coming soon" message)
 - No 2FA flow can be initiated
@@ -421,9 +450,11 @@ Skeleton implementation for optional 2FA (TOTP), detailed in Phase 2.
 **Dependencies:** Task 3.1
 
 ### Description
+
 Optional: Send verification email after sign-up (deferred if time-constrained).
 
 ### Acceptance Criteria
+
 - [ ] Sign-up flow:
   - After step 3 (consent), user account created
   - Verification email sent to user's email
@@ -444,12 +475,14 @@ Optional: Send verification email after sign-up (deferred if time-constrained).
   - Rate limit: 1 resend per 5 minutes
 
 ### Implementation Notes
+
 - Email verification increases trust but slows sign-up friction
 - Consider: Skip for MVP if time-constrained, implement in Phase 2
 - Supabase Auth has built-in email verification; use it
 - Token stored securely (not in DB, managed by Supabase)
 
 ### Testing
+
 - Verification email sent correctly
 - Link works and marks email as verified
 - Expired token shows error message
@@ -464,9 +497,11 @@ Optional: Send verification email after sign-up (deferred if time-constrained).
 **Dependencies:** Task 3.2
 
 ### Description
+
 Complete password reset flow from request to confirmation.
 
 ### Acceptance Criteria
+
 - [ ] /auth/forgot-password page:
   - Email input
   - "Send Reset Link" button
@@ -489,15 +524,16 @@ Complete password reset flow from request to confirmation.
   - No logging of reset tokens in app logs
 
 ### Implementation Notes
+
 - Supabase Auth handles password reset token generation
 - SendGrid integration for email delivery (Phase 2)
 - Tokens one-time-use and short-lived (1 hour)
 - Security: No email enumeration (all inputs treated same way)
 
 ### Testing
+
 - Reset email sent (check email logs)
 - Link valid for 1 hour
 - Link invalid after use (cannot reuse)
 - New password works for login
 - Old password no longer works
-

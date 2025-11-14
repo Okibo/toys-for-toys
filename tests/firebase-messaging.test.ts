@@ -233,7 +233,8 @@ describe('Firebase Cloud Messaging', () => {
     test('should request device token with getToken', async () => {
       const { getToken } = require('firebase/messaging');
 
-      const mockToken = 'eGm5d0p5aBcD1eFgH2iJkL3mNoP4qRsT5uVwXyZ0aB1cDe2fGhIjKlMnOpQrStUvWxYzAbCdEfGhIjKlMnOpQrSt';
+      const mockToken =
+        'eGm5d0p5aBcD1eFgH2iJkL3mNoP4qRsT5uVwXyZ0aB1cDe2fGhIjKlMnOpQrStUvWxYzAbCdEfGhIjKlMnOpQrSt';
 
       getToken.mockResolvedValue(mockToken);
 
@@ -271,7 +272,7 @@ describe('Firebase Cloud Messaging', () => {
       expect(token).toBe(mockToken);
       expect(getToken).toHaveBeenCalledWith(
         expect.anything(),
-        expect.objectContaining({ vapidKey }),
+        expect.objectContaining({ vapidKey })
       );
     });
 
@@ -305,9 +306,7 @@ describe('Firebase Cloud Messaging', () => {
       const error = new Error('Permission denied');
       getToken.mockRejectedValue(error);
 
-      await expect(
-        getToken(() => {}, { vapidKey: 'key' }),
-      ).rejects.toThrow('Permission denied');
+      await expect(getToken(() => {}, { vapidKey: 'key' })).rejects.toThrow('Permission denied');
     });
 
     test('should store obtained token for later use', async () => {
@@ -332,9 +331,7 @@ describe('Firebase Cloud Messaging', () => {
       const error = new Error('Messaging not supported');
       getToken.mockRejectedValue(error);
 
-      await expect(
-        getToken(() => {}, { vapidKey: 'key' }),
-      ).rejects.toThrow();
+      await expect(getToken(() => {}, { vapidKey: 'key' })).rejects.toThrow();
     });
 
     test('should handle invalid VAPID key', async () => {
@@ -343,9 +340,7 @@ describe('Firebase Cloud Messaging', () => {
       const error = new Error('Invalid VAPID key');
       getToken.mockRejectedValue(error);
 
-      await expect(
-        getToken(() => {}, { vapidKey: '' }),
-      ).rejects.toThrow('Invalid VAPID key');
+      await expect(getToken(() => {}, { vapidKey: '' })).rejects.toThrow('Invalid VAPID key');
     });
 
     test('should handle service worker not registered', async () => {
@@ -354,9 +349,7 @@ describe('Firebase Cloud Messaging', () => {
       const error = new Error('Service Worker not available');
       getToken.mockRejectedValue(error);
 
-      await expect(
-        getToken(() => {}, { vapidKey: 'key' }),
-      ).rejects.toThrow();
+      await expect(getToken(() => {}, { vapidKey: 'key' })).rejects.toThrow();
     });
 
     test('should handle token refresh expiry', async () => {

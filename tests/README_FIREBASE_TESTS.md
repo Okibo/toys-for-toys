@@ -1,6 +1,7 @@
 # Firebase Test Suite - Task 1.3 Implementation
 
 ## Project Context
+
 **Toys-for-Toys** - Cross-platform toy exchange platform with Firebase Cloud Messaging for push notifications.
 
 ## Test Suite Overview
@@ -8,6 +9,7 @@
 This comprehensive test suite follows **Test-Driven Development (TDD)** methodology. All tests are currently in the **RED PHASE** (failing) and are designed to guide the Firebase implementation.
 
 ### File Structure
+
 ```
 tests/
 ├── firebase.test.ts                   # Client-side initialization
@@ -22,22 +24,24 @@ tests/
 
 ## Test Statistics
 
-| Test File | Size | Tests | Focus Area |
-|-----------|------|-------|-----------|
-| `firebase.test.ts` | 7.3 KB | 11 | Client Firebase initialization |
-| `firebase-admin.test.ts` | 9.4 KB | 19 | Server-side Admin SDK |
-| `firebase-messaging.test.ts` | 13.5 KB | 25 | FCM message handling |
-| `firebase-env.test.ts` | 14.7 KB | 42 | Environment variables |
-| `firebase-security.test.ts` | 18.1 KB | 39 | Security & compliance |
-| **TOTAL** | **63.0 KB** | **136 tests** | **Complete Firebase setup** |
+| Test File                    | Size        | Tests         | Focus Area                     |
+| ---------------------------- | ----------- | ------------- | ------------------------------ |
+| `firebase.test.ts`           | 7.3 KB      | 11            | Client Firebase initialization |
+| `firebase-admin.test.ts`     | 9.4 KB      | 19            | Server-side Admin SDK          |
+| `firebase-messaging.test.ts` | 13.5 KB     | 25            | FCM message handling           |
+| `firebase-env.test.ts`       | 14.7 KB     | 42            | Environment variables          |
+| `firebase-security.test.ts`  | 18.1 KB     | 39            | Security & compliance          |
+| **TOTAL**                    | **63.0 KB** | **136 tests** | **Complete Firebase setup**    |
 
 ## Test Coverage by Component
 
 ### 1. Client Initialization (`firebase.test.ts`)
+
 **11 tests** ensuring proper browser-side Firebase setup.
 
 **Validates**:
-- Firebase app initialization with NEXT_PUBLIC_* environment variables
+
+- Firebase app initialization with NEXT*PUBLIC*\* environment variables
 - Config object has all required fields
 - Messaging instance creation and method availability
 - Environment variable types and values
@@ -47,9 +51,11 @@ tests/
 **Implementation target**: `lib/firebase.ts`
 
 ### 2. Admin SDK (`firebase-admin.test.ts`)
+
 **19 tests** ensuring secure server-side Firebase Admin setup.
 
 **Validates**:
+
 - Admin SDK initialization with service account credentials
 - Service account JSON parsing and validation
 - Presence of all required credential fields
@@ -61,18 +67,21 @@ tests/
 **Implementation target**: `lib/firebase-admin.ts`
 
 **Expected function signature**:
+
 ```typescript
 export async function sendPushNotification(message: {
   token: string;
   notification: { title: string; body: string };
   data?: Record<string, string>;
-}): Promise<string>
+}): Promise<string>;
 ```
 
 ### 3. Message Handling (`firebase-messaging.test.ts`)
+
 **25 tests** ensuring reliable message delivery and token management.
 
 **Validates**:
+
 - Foreground message subscription and callbacks
 - Message payload structure and content extraction
 - Device token request, validation, and storage
@@ -82,6 +91,7 @@ export async function sendPushNotification(message: {
 - Service worker integration
 
 **Key features tested**:
+
 - `onMessage()` subscription
 - `getToken()` device token retrieval
 - `deleteToken()` cleanup
@@ -89,10 +99,12 @@ export async function sendPushNotification(message: {
 - Token format verification
 
 ### 4. Environment Variables (`firebase-env.test.ts`)
+
 **42 tests** ensuring complete and valid configuration.
 
 **Validates**:
-- All NEXT_PUBLIC_FIREBASE_* variables defined
+
+- All NEXT*PUBLIC_FIREBASE*\* variables defined
 - All FIREBASE_ADMIN_SDK_KEY is server-side only
 - Correct variable types (strings, not empty)
 - Proper formatting (API key starts with "AIzaSy", etc.)
@@ -101,6 +113,7 @@ export async function sendPushNotification(message: {
 - Development vs production configurations
 
 **Required variables**:
+
 ```bash
 # Client-side (browser-accessible)
 NEXT_PUBLIC_FIREBASE_API_KEY=AIzaSy...
@@ -113,12 +126,14 @@ FIREBASE_ADMIN_SDK_KEY={"type":"service_account",...}
 ```
 
 ### 5. Security (`firebase-security.test.ts`)
+
 **39 tests** enforcing security best practices and compliance.
 
 **Validates**:
+
 - Service account key structure completeness
 - Private key RSA format with newlines
-- Prevention of public exposure (NEXT_PUBLIC_ rule)
+- Prevention of public exposure (NEXT*PUBLIC* rule)
 - No hardcoded credentials in source
 - Public config contains only safe values
 - No credential leakage in logs/errors
@@ -127,7 +142,8 @@ FIREBASE_ADMIN_SDK_KEY={"type":"service_account",...}
 - Compliance and audit requirements
 
 **Critical security checks**:
-1. Admin SDK key NEVER has NEXT_PUBLIC_ prefix
+
+1. Admin SDK key NEVER has NEXT*PUBLIC* prefix
 2. Private key format includes RSA delimiters and newlines
 3. No placeholder credentials in environment
 4. Admin SDK only imported in server code
@@ -135,6 +151,7 @@ FIREBASE_ADMIN_SDK_KEY={"type":"service_account",...}
 ## Running the Tests
 
 ### Full Test Suite
+
 ```bash
 # Run all Firebase tests
 npm test -- tests/firebase --no-coverage
@@ -147,6 +164,7 @@ npm test -- tests/firebase --watch
 ```
 
 ### Individual Test Files
+
 ```bash
 npm test -- tests/firebase.test.ts --no-coverage
 npm test -- tests/firebase-admin.test.ts --no-coverage
@@ -156,6 +174,7 @@ npm test -- tests/firebase-security.test.ts --no-coverage
 ```
 
 ### Debugging
+
 ```bash
 # Show detailed output
 npm test -- tests/firebase --verbose
@@ -185,6 +204,7 @@ All 136 tests are **FAILING** because:
    - Environment variables not set
 
 ### Typical Error Output
+
 ```
 Cannot find module 'firebase/app'
 Cannot find module '@/lib/firebase'
@@ -194,37 +214,47 @@ Cannot find module '@/lib/firebase-admin'
 ## Implementation Roadmap (To GREEN Phase)
 
 ### Phase 1: Setup (1-2 hours)
+
 ```bash
 npm install firebase firebase-admin
 ```
 
 ### Phase 2: Create Client Library (2-3 hours)
+
 Create `lib/firebase.ts`:
-- Initialize Firebase app with NEXT_PUBLIC_* config
+
+- Initialize Firebase app with NEXT*PUBLIC*\* config
 - Export messaging instance
 - Implement singleton pattern
 - Handle initialization errors
 
 ### Phase 3: Create Admin Library (2-3 hours)
+
 Create `lib/firebase-admin.ts`:
+
 - Initialize Admin SDK with service account
 - Export `sendPushNotification()` function
 - Provide messaging client
 - Validate credentials
 
 ### Phase 4: Create Utilities (2-3 hours)
+
 Create `lib/firebase-messaging.ts`:
+
 - Message subscription wrapper
 - Token management helpers
 - Error handling
 - Service worker registration
 
 ### Phase 5: Configuration (30 minutes)
+
 Update `.env.local`:
-- Add NEXT_PUBLIC_FIREBASE_* variables
+
+- Add NEXT*PUBLIC_FIREBASE*\* variables
 - Add FIREBASE_ADMIN_SDK_KEY
 
 ### Phase 6: Verification (30 minutes)
+
 ```bash
 npm test -- tests/firebase --coverage
 # All 136 tests should PASS
@@ -235,6 +265,7 @@ npm test -- tests/firebase --coverage
 ## Test Quality Attributes
 
 ### Design Patterns Used
+
 - **Arrange-Act-Assert** (AAA) pattern in each test
 - **Given-When-Then** semantics in test names
 - **Single responsibility** per test
@@ -242,6 +273,7 @@ npm test -- tests/firebase --coverage
 - **Meaningful assertions** with clear error messages
 
 ### Code Organization
+
 - **Logical grouping** with `describe()` blocks
 - **Related tests** grouped by feature
 - **Comments** explaining non-obvious test logic
@@ -249,6 +281,7 @@ npm test -- tests/firebase --coverage
 - **Environmental isolation** - tests don't affect each other
 
 ### Maintainability
+
 - **Descriptive test names** - instantly understand what's tested
 - **DRY principle** - helper functions for repeated setup
 - **No hardcoded magic values** - use constants
@@ -258,6 +291,7 @@ npm test -- tests/firebase --coverage
 ## Dependencies
 
 ### Required (New)
+
 ```json
 {
   "dependencies": {
@@ -268,6 +302,7 @@ npm test -- tests/firebase --coverage
 ```
 
 ### Already Installed
+
 - Jest 29.7.0
 - ts-jest 29.4.5
 - TypeScript 5.2.2
@@ -311,6 +346,7 @@ Tests ensure compliance with:
 ## Documentation
 
 Additional documentation:
+
 - `FIREBASE_TESTS_SUMMARY.md` - Comprehensive test documentation
 - `FIREBASE_TEST_GUIDE.md` - Quick reference and troubleshooting
 - `.env.example` - Environment variable templates

@@ -1,6 +1,7 @@
 # Epic: Database Schema & Core Models (Week 2-3)
 
 ## Overview
+
 Design and implement PostgreSQL schema using Supabase, establish Row-Level Security (RLS) policies, and create database migrations.
 
 ---
@@ -12,9 +13,11 @@ Design and implement PostgreSQL schema using Supabase, establish Row-Level Secur
 **Dependencies:** Task 1.2
 
 ### Description
+
 Create initial database tables for user authentication, parent profiles, and child profiles with proper constraints.
 
 ### Acceptance Criteria
+
 - [ ] `auth.users` table: Already provided by Supabase Auth (no action needed)
 - [ ] `profiles` table created with:
   - `id` (UUID, PK, references auth.users.id)
@@ -37,12 +40,14 @@ Create initial database tables for user authentication, parent profiles, and chi
 - [ ] Constraints: Check age_group is valid enum
 
 ### Implementation Notes
+
 - Use `uuid_generate_v4()` for UUIDs
 - Enable RLS (but don't create policies yet; done in Task 2.4)
 - Use migrations file naming: `202411130001_create_core_tables.sql`
 - Create view: `user_age_groups` to categorize kids into age groups
 
 ### Testing
+
 - `npx supabase db push` applies schema without errors
 - Tables visible in Supabase Studio
 - UUID generation works
@@ -56,9 +61,11 @@ Create initial database tables for user authentication, parent profiles, and chi
 **Dependencies:** Task 2.1
 
 ### Description
+
 Implement the ticket economy tables: tickets wallet, fragments, and transaction history.
 
 ### Acceptance Criteria
+
 - [ ] `tickets` table created with:
   - `id` (UUID, PK)
   - `user_id` (UUID, unique, FK → profiles.id)
@@ -86,12 +93,14 @@ Implement the ticket economy tables: tickets wallet, fragments, and transaction 
 - [ ] Indexes on: user_id, created_at (for transaction history)
 
 ### Implementation Notes
+
 - Trigger: Update `available = balance - frozen` whenever balance or frozen changes
 - Fragment column uses NUMERIC(2, 2) to store values like 0.5, 0.25
 - Transaction log is append-only (audit trail)
 - No delete operations on transaction_log; use soft deletes for corrections
 
 ### Testing
+
 - New user created → tickets table row inserted automatically (via trigger in next task)
 - Fragment stored with correct precision (0.5 displays as 0.5, not 0.50000)
 - Transaction logged when balance changes
@@ -105,9 +114,11 @@ Implement the ticket economy tables: tickets wallet, fragments, and transaction 
 **Dependencies:** Task 2.1
 
 ### Description
+
 Create tables for toy listings, inventory management, and metadata.
 
 ### Acceptance Criteria
+
 - [ ] `toys` table created with:
   - `id` (UUID, PK)
   - `user_id` (UUID, FK → profiles.id)
@@ -136,12 +147,14 @@ Create tables for toy listings, inventory management, and metadata.
 - [ ] Soft delete: Use status='delisted' instead of hard delete
 
 ### Implementation Notes
+
 - Photos stored in Supabase Storage, not as BLOBs
 - `photos_count` is denormalized for query performance
 - Toy views tracked for analytics (matching algorithm needs popularity signal)
 - Tags stored as PostgreSQL array for flexibility
 
 ### Testing
+
 - Toy creation fails if user_id doesn't exist (FK constraint)
 - Toy status can only be one of allowed enums
 - Indexes created and visible in Supabase
@@ -155,9 +168,11 @@ Create tables for toy listings, inventory management, and metadata.
 **Dependencies:** Task 2.1, 2.3
 
 ### Description
+
 Implement exchange transactions with escrow mechanism, status tracking, and dispute handling.
 
 ### Acceptance Criteria
+
 - [ ] `exchanges` table created with:
   - `id` (UUID, PK)
   - `requester_id` (UUID, FK → profiles.id)
@@ -191,12 +206,14 @@ Implement exchange transactions with escrow mechanism, status tracking, and disp
 - [ ] Indexes: On requester_id, lister_id, toy_id, status, created_at
 
 ### Implementation Notes
+
 - Status enum defines valid transitions (pending_request → accepted → in_transit → etc.)
 - No hard deletes on exchanges (audit trail for fraud investigation)
 - Disputes created only after delivery confirmation
 - Soft delete: Use status='canceled' instead of deleting
 
 ### Testing
+
 - Exchange created with valid status
 - Cannot update toy_id after exchange created
 - Status transitions validate (e.g., cannot go from 'completed' to 'pending_request')
@@ -210,9 +227,11 @@ Implement exchange transactions with escrow mechanism, status tracking, and disp
 **Dependencies:** Task 2.4
 
 ### Description
+
 Implement in-app messaging system scoped to exchanges only.
 
 ### Acceptance Criteria
+
 - [ ] `exchange_messages` table created with:
   - `id` (UUID, PK)
   - `exchange_id` (UUID, FK)
@@ -235,12 +254,14 @@ Implement in-app messaging system scoped to exchanges only.
 - [ ] Indexes: On exchange_id, sender_id, created_at
 
 ### Implementation Notes
+
 - Messages are soft-deleted (deleted_at set, not removed)
 - Moderation flag stored in separate column for admins
 - Blocklist is one-directional (A blocks B doesn't auto-block A)
 - Retention: Delete messages 30 days after exchange completion (see Task 7.x for background job)
 
 ### Testing
+
 - Messages sorted chronologically in exchange
 - Soft delete works (message still exists in DB, marked deleted)
 - Cannot create message if sender blocked by recipient
@@ -254,9 +275,11 @@ Implement in-app messaging system scoped to exchanges only.
 **Dependencies:** Task 2.1, 2.3
 
 ### Description
+
 Implement wishlist management and matching algorithm data structures.
 
 ### Acceptance Criteria
+
 - [ ] `wishlists` table created with:
   - `id` (UUID, PK)
   - `kid_id` (UUID, FK → kids.id, unique per kid)
@@ -282,6 +305,7 @@ Implement wishlist management and matching algorithm data structures.
 - [ ] Indexes: On kid_id, wishlist_id, priority_order
 
 ### Implementation Notes
+
 - Wishlists are private (not public to other users)
 - Max 50 items per wishlist (enforced in API layer)
 - Wishlist items are ordered by priority (drag-to-reorder on UI)
@@ -289,6 +313,7 @@ Implement wishlist management and matching algorithm data structures.
 - Matching log tracks algorithm effectiveness
 
 ### Testing
+
 - Create wishlist for kid
 - Add up to 50 items
 - Order items by priority
@@ -304,9 +329,11 @@ Implement wishlist management and matching algorithm data structures.
 **Dependencies:** Task 2.1
 
 ### Description
+
 Implement notification center, delivery tracking, and user preferences.
 
 ### Acceptance Criteria
+
 - [ ] `notifications` table created with:
   - `id` (UUID, PK)
   - `user_id` (UUID, FK)
@@ -331,12 +358,14 @@ Implement notification center, delivery tracking, and user preferences.
 - [ ] Indexes: On user_id, created_at
 
 ### Implementation Notes
+
 - JSONB structure: `{channel: 'email'|'push'|'in_app', frequency: 'instant'|'daily_digest'|'weekly'|'never'}`
 - Quiet hours respect timezone (stored per user in profile)
 - Retention: 30 days, auto-delete old notifications
 - Soft delete prevents accidental permanent loss
 
 ### Testing
+
 - Notification created and visible in user's inbox
 - Preferences load with defaults if first time
 - Read/unread toggle works
@@ -351,9 +380,11 @@ Implement notification center, delivery tracking, and user preferences.
 **Dependencies:** Task 2.4
 
 ### Description
+
 Implement user ratings system after successful exchanges.
 
 ### Acceptance Criteria
+
 - [ ] `ratings` table created with:
   - `id` (UUID, PK)
   - `exchange_id` (UUID, FK, unique) - one rating pair per exchange
@@ -379,12 +410,14 @@ Implement user ratings system after successful exchanges.
 - [ ] Indexes: On exchange_id, rater_id, rated_user_id, created_at
 
 ### Implementation Notes
+
 - Ratings are mutual (both parties rate each other independently)
 - Visibility rule: Both parties must rate before mutual visibility (enforced in API)
 - `user_stats` denormalized for query performance (updated by trigger on INSERT into ratings)
 - Badge status computed on-the-fly, not stored (can change as ratings accumulate)
 
 ### Testing
+
 - Rating created after exchange completed
 - Cannot rate before completion
 - User stats calculated correctly
@@ -399,9 +432,11 @@ Implement user ratings system after successful exchanges.
 **Dependencies:** Task 2.1-2.8
 
 ### Description
+
 Implement Row-Level Security policies to enforce data isolation at the database level.
 
 ### Acceptance Criteria
+
 - [ ] Enable RLS on all tables
 - [ ] `profiles` RLS:
   - Users can SELECT own profile
@@ -441,12 +476,14 @@ Implement Row-Level Security policies to enforce data isolation at the database 
   - Users can UPDATE own ratings (within time window)
 
 ### Implementation Notes
+
 - Use `auth.uid()` to identify current user
 - Create helper function `is_admin()` for admin checks
 - Test policies with multiple user sessions
 - Document policy decisions in comments
 
 ### Testing
+
 - User A cannot see User B's tickets
 - User A cannot create toy in User B's account
 - Rating only possible for participated exchanges
@@ -462,12 +499,14 @@ Implement Row-Level Security policies to enforce data isolation at the database 
 **Dependencies:** Task 2.1-2.9
 
 ### Description
+
 Create views to optimize common queries and simplify API layer.
 
 ### Acceptance Criteria
+
 - [ ] `toy_detail_view` created:
   - Joins toys, toy_photos, user profile, user_stats, wish count
-  - Columns: toy.*, photos_array, lister_name, lister_rating, times_wishlisted
+  - Columns: toy.\*, photos_array, lister_name, lister_rating, times_wishlisted
 - [ ] `exchange_detail_view` created:
   - Joins exchanges, toys, profiles, ratings (if completed)
   - Returns full exchange context for detail page
@@ -482,12 +521,13 @@ Create views to optimize common queries and simplify API layer.
   - Ordered by recency
 
 ### Implementation Notes
+
 - Views are read-only (cannot UPDATE via views; enforce in API)
 - Use views to abstract complex joins from API code
 - Views obey RLS policies (test thoroughly)
 
 ### Testing
+
 - Query each view and verify results
 - Verify RLS policies applied through views
 - Performance check (no N+1 queries)
-

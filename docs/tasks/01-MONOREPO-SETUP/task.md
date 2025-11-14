@@ -18,42 +18,51 @@ Set up the monorepo structure with Next.js, establish core npm dependencies, con
 ## Acceptance Criteria
 
 ### Setup & Configuration
+
 - [x] Next.js 14+ project initialized with App Router (`npx create-next-app@latest`)
 - [x] TypeScript configured with strict mode enabled (`tsconfig.json`)
 - [x] Tailwind CSS configured and working
 - [x] Path aliases configured in `tsconfig.json` (@/components, @/lib, @/public)
 
 ### Dependencies Installed
+
 #### Form & Validation
+
 - [x] `react-hook-form` (v7+)
 - [x] `zod` (v3+)
 
 #### State Management
+
 - [x] `zustand` (v4+)
 
 #### Internationalization
+
 - [x] `next-i18next` (v14+)
 - [x] `i18next` (v23+)
 
 #### UI & Styling
+
 - [x] `tailwindcss` (configured)
 - [x] `shadcn/ui` (component library)
 - [x] `class-variance-authority` (for component variants)
 - [x] `clsx` or `classnames` (conditional className utility)
 
 #### Backend & APIs
+
 - [x] `@supabase/supabase-js` (v2+)
 - [x] `@supabase/auth-helpers-nextjs` (v0.8+)
 - [x] `@supabase/realtime-js` (v2+ - for live updates)
 - [x] `axios` (HTTP client for external APIs)
 
 #### Testing
+
 - [x] `jest` (v29+)
 - [x] `@testing-library/react` (v14+)
 - [x] `@testing-library/jest-dom` (v6+)
 - [x] `playwright` (v1.40+)
 
 #### Development Tools
+
 - [x] `prettier` (code formatter)
 - [x] `eslint` (linter)
 - [x] `eslint-config-next` (Next.js specific rules)
@@ -62,6 +71,7 @@ Set up the monorepo structure with Next.js, establish core npm dependencies, con
 - [x] `lint-staged` (pre-commit linting)
 
 ### Directory Structure
+
 - [x] `/app` - Next.js App Router pages and layouts
   - [ ] `/app/(auth)` - Auth-related pages
   - [ ] `/app/(app)` - Protected app pages
@@ -99,6 +109,7 @@ Set up the monorepo structure with Next.js, establish core npm dependencies, con
   - [ ] `/docs/database` - Database schema docs
 
 ### Configuration Files
+
 - [x] `tsconfig.json` - TypeScript strict mode enabled
 - [x] `jest.config.js` - Jest configuration
 - [x] `.eslintrc.json` - ESLint rules
@@ -111,6 +122,7 @@ Set up the monorepo structure with Next.js, establish core npm dependencies, con
 - [x] `.github/pull_request_template.md` - PR template
 
 ### NPM Scripts
+
 - [x] `npm run dev` - Start development server
 - [x] `npm run build` - Build for production
 - [x] `npm run start` - Run production build
@@ -122,6 +134,7 @@ Set up the monorepo structure with Next.js, establish core npm dependencies, con
 - [x] `npm run e2e` - Run Playwright tests
 
 ### Documentation
+
 - [x] `README.md` updated with project overview and setup instructions
 - [x] `CONTRIBUTING.md` created (reference from separate task)
 - [x] `.env.example` includes all required variables with descriptions
@@ -133,12 +146,14 @@ Set up the monorepo structure with Next.js, establish core npm dependencies, con
 ### Step-by-Step Setup
 
 #### 1. Initialize Next.js Project
+
 ```bash
 npx create-next-app@latest toys-for-toys --typescript --tailwind --app
 cd toys-for-toys
 ```
 
 #### 2. Install Additional Dependencies
+
 ```bash
 # Forms & Validation
 npm install react-hook-form zod @hookform/resolvers
@@ -166,7 +181,9 @@ npx husky install
 ```
 
 #### 3. Configure TypeScript
+
 Update `tsconfig.json`:
+
 ```json
 {
   "compilerOptions": {
@@ -186,7 +203,9 @@ Update `tsconfig.json`:
 ```
 
 #### 4. Setup ESLint & Prettier
+
 Create `.eslintrc.json`:
+
 ```json
 {
   "extends": ["next/core-web-vitals", "next"],
@@ -198,6 +217,7 @@ Create `.eslintrc.json`:
 ```
 
 Create `.prettierrc`:
+
 ```json
 {
   "semi": true,
@@ -209,11 +229,13 @@ Create `.prettierrc`:
 ```
 
 #### 5. Setup Husky Pre-Commit Hooks
+
 ```bash
 npx husky add .husky/pre-commit "npx lint-staged"
 ```
 
 Create `.lintstagedrc.json`:
+
 ```json
 {
   "*.{ts,tsx,js,jsx}": ["eslint --fix", "prettier --write"],
@@ -222,6 +244,7 @@ Create `.lintstagedrc.json`:
 ```
 
 #### 6. Create Directory Structure
+
 ```bash
 mkdir -p app/{auth,app,api}
 mkdir -p components/{ui,toys,exchanges,games,ads}
@@ -233,7 +256,9 @@ mkdir -p docs/{architecture,api,database}
 ```
 
 #### 7. Create Environment Template
+
 Create `.env.example`:
+
 ```
 # Supabase
 NEXT_PUBLIC_SUPABASE_URL=https://your-project.supabase.co
@@ -258,6 +283,7 @@ NODE_ENV=development
 ```
 
 #### 8. Update package.json Scripts
+
 ```json
 {
   "scripts": {
@@ -277,13 +303,15 @@ NODE_ENV=development
 ```
 
 #### 9. Create Jest Configuration
+
 Create `jest.config.js`:
+
 ```javascript
-const nextJest = require('next/jest')
+const nextJest = require('next/jest');
 
 const createJestConfig = nextJest({
   dir: './',
-})
+});
 
 const customJestConfig = {
   setupFilesAfterEnv: ['<rootDir>/jest.setup.js'],
@@ -291,17 +319,19 @@ const customJestConfig = {
   moduleNameMapper: {
     '^@/(.*)$': '<rootDir>/$1',
   },
-}
+};
 
-module.exports = createJestConfig(customJestConfig)
+module.exports = createJestConfig(customJestConfig);
 ```
 
 Create `jest.setup.js`:
+
 ```javascript
-import '@testing-library/jest-dom'
+import '@testing-library/jest-dom';
 ```
 
 #### 10. Initialize Git & Create Initial Commit
+
 ```bash
 git init
 git add .
@@ -313,33 +343,39 @@ git commit -m "chore: Initialize monorepo with Next.js, TypeScript, and core dep
 ## Testing Checklist
 
 ### Build & Development
+
 - [ ] `npm install` completes without errors
 - [ ] `npm run dev` starts successfully and displays "Ready in X seconds"
 - [ ] http://localhost:3000 loads the default Next.js page
 - [ ] No console errors or warnings during startup
 
 ### Linting & Formatting
+
 - [ ] `npm run lint` returns 0 errors
 - [ ] `npm run format` formats all files without errors
 - [ ] ESLint catches unused imports and warns appropriately
 - [ ] Prettier reformats code on file save (if IDE configured)
 
 ### TypeScript
+
 - [ ] `npm run type-check` returns 0 errors
 - [ ] IDE shows TypeScript errors for type mismatches
 - [ ] Import paths using `@/` aliases work correctly
 
 ### Testing Infrastructure
+
 - [ ] `npm test` runs Jest with no tests (should pass)
 - [ ] `npm run test:coverage` generates coverage report
 - [ ] `npm run e2e` runs Playwright (should have 0 tests initially)
 
 ### Git Integration
+
 - [ ] Pre-commit hook runs ESLint on staged files
 - [ ] Cannot commit if linting fails
 - [ ] Can bypass hooks with `git commit --no-verify` (for emergency only)
 
 ### IDE Configuration (VS Code)
+
 - [ ] Prettier plugin installed and auto-formats on save
 - [ ] ESLint plugin installed and shows diagnostics
 - [ ] TypeScript IntelliSense working (Ctrl+Space autocomplete)
@@ -349,6 +385,7 @@ git commit -m "chore: Initialize monorepo with Next.js, TypeScript, and core dep
 ## Implementation Notes
 
 ### Key Decisions
+
 1. **App Router vs Pages Router:** Using Next.js 14+ App Router for modern patterns and file-based routing
 2. **State Management:** Zustand chosen for lightweight, performant state (avoid Redux complexity for MVP)
 3. **UI Library:** shadcn/ui provides customizable Tailwind components with accessibility built-in
@@ -356,12 +393,14 @@ git commit -m "chore: Initialize monorepo with Next.js, TypeScript, and core dep
 5. **Code Quality:** ESLint + Prettier enforce consistent style; Husky prevents bad commits
 
 ### Configuration Rationale
+
 - **TypeScript Strict Mode:** Catches errors early; essential for production code
 - **Path Aliases:** Cleaner imports (`@/lib/utils` vs `../../../lib/utils`)
 - **Pre-commit Hooks:** Prevents committing unformatted or linted code
 - **Monorepo Structure:** Organized by feature area (toys, exchanges, games) for scalability
 
 ### Common Pitfalls to Avoid
+
 - Don't commit `.env.local` (configure `.gitignore` correctly)
 - Don't modify `node_modules` directly (use npm to install/update)
 - Don't skip the Supabase client initialization (needed in Task 1.2)
@@ -372,12 +411,14 @@ git commit -m "chore: Initialize monorepo with Next.js, TypeScript, and core dep
 ## Success Criteria
 
 ### Objective Metrics
+
 - ✅ Build time: <60 seconds for initial build
 - ✅ Dev server startup: <10 seconds
 - ✅ Linting: 0 errors, 0 warnings
 - ✅ Test suite: Runs in <5 seconds (empty suite initially)
 
 ### Subjective Metrics
+
 - ✅ New contributor can run `npm install && npm run dev` and see the app
 - ✅ IDE provides full TypeScript/ESLint support
 - ✅ Code is properly formatted after `npm run format`
@@ -387,12 +428,14 @@ git commit -m "chore: Initialize monorepo with Next.js, TypeScript, and core dep
 ## Dependencies & Blockers
 
 ### Unblocks
+
 - All subsequent frontend development
 - Task 1.2 (Supabase configuration)
 - Task 1.3 (Firebase configuration)
 - Task 1.4 (CI/CD setup)
 
 ### Blocked By
+
 - None (this is the first task)
 
 ---
@@ -459,13 +502,13 @@ toys-for-toys/
 
 ## Timeline
 
-| Phase | Duration | Activities |
-|-------|----------|------------|
-| **Phase 1: Setup** | 1-2 hours | Run Next.js setup, install dependencies |
+| Phase                  | Duration  | Activities                               |
+| ---------------------- | --------- | ---------------------------------------- |
+| **Phase 1: Setup**     | 1-2 hours | Run Next.js setup, install dependencies  |
 | **Phase 2: Configure** | 2-3 hours | Setup TypeScript, ESLint, Prettier, Jest |
-| **Phase 3: Verify** | 1 hour | Test dev server, linting, builds |
-| **Phase 4: Document** | 1 hour | Create .env.example, update README |
-| **Total** | ~8 hours | 1 developer day |
+| **Phase 3: Verify**    | 1 hour    | Test dev server, linting, builds         |
+| **Phase 4: Document**  | 1 hour    | Create .env.example, update README       |
+| **Total**              | ~8 hours  | 1 developer day                          |
 
 ---
 

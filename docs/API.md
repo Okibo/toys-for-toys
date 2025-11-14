@@ -5,6 +5,7 @@
 The Toy-for-Toy API is built on **Next.js API Routes** (`/pages/api`), providing a RESTful interface for the web and mobile frontends. All requests require HTTPS and use JSON for request/response payloads.
 
 **Key Principles:**
+
 - Stateless authentication via Supabase JWT tokens
 - Row-Level Security (RLS) enforced at the database layer
 - Request validation on the server before database operations
@@ -24,12 +25,14 @@ Authorization: Bearer <supabase_jwt_token>
 ```
 
 **Token Acquisition:**
+
 - Obtained during user login via Supabase Auth
 - Token includes `sub` (user_id) and `email` claims
 - Tokens expire after 1 hour; refresh tokens used for renewal
 - Frontend automatically appends token to all API requests via middleware
 
 **Verification:**
+
 - Server-side verification using `supabase.auth.getUser()` or JWT decoding
 - Token claims validated before processing requests
 - Expired tokens return 401 Unauthorized
@@ -57,17 +60,17 @@ All error responses follow this structure:
 
 ### Common HTTP Status Codes
 
-| Code | Meaning | Example |
-|------|---------|---------|
-| 200 | Success | Request completed successfully |
-| 201 | Created | Resource successfully created |
-| 400 | Bad Request | Invalid input, validation failure |
-| 401 | Unauthorized | Missing/invalid JWT token |
-| 403 | Forbidden | User lacks permissions (RLS policy denied) |
-| 404 | Not Found | Resource does not exist |
-| 409 | Conflict | Resource already exists or state conflict |
-| 429 | Too Many Requests | Rate limit exceeded |
-| 500 | Server Error | Unexpected server error |
+| Code | Meaning           | Example                                    |
+| ---- | ----------------- | ------------------------------------------ |
+| 200  | Success           | Request completed successfully             |
+| 201  | Created           | Resource successfully created              |
+| 400  | Bad Request       | Invalid input, validation failure          |
+| 401  | Unauthorized      | Missing/invalid JWT token                  |
+| 403  | Forbidden         | User lacks permissions (RLS policy denied) |
+| 404  | Not Found         | Resource does not exist                    |
+| 409  | Conflict          | Resource already exists or state conflict  |
+| 429  | Too Many Requests | Rate limit exceeded                        |
+| 500  | Server Error      | Unexpected server error                    |
 
 ---
 
@@ -79,12 +82,13 @@ All error responses follow this structure:
 
 **POST** `/api/auth/login`
 
-| Field | Value |
-|-------|-------|
-| **Authentication Required** | No |
-| **Rate Limit** | 5 requests/minute per IP |
+| Field                       | Value                    |
+| --------------------------- | ------------------------ |
+| **Authentication Required** | No                       |
+| **Rate Limit**              | 5 requests/minute per IP |
 
 **Request Body:**
+
 ```json
 {
   "email": "user@example.com",
@@ -93,6 +97,7 @@ All error responses follow this structure:
 ```
 
 **Response (200 OK):**
+
 ```json
 {
   "user": {
@@ -111,6 +116,7 @@ All error responses follow this structure:
 ```
 
 **Error Response (401 Unauthorized):**
+
 ```json
 {
   "error": {
@@ -121,6 +127,7 @@ All error responses follow this structure:
 ```
 
 **Error Codes:**
+
 - `INVALID_EMAIL_FORMAT` (400): Email format is invalid
 - `INVALID_CREDENTIALS` (401): Email/password mismatch
 - `USER_NOT_FOUND` (404): User account does not exist
@@ -133,12 +140,13 @@ All error responses follow this structure:
 
 **POST** `/api/auth/register`
 
-| Field | Value |
-|-------|-------|
-| **Authentication Required** | No |
-| **Rate Limit** | 3 requests/minute per IP |
+| Field                       | Value                    |
+| --------------------------- | ------------------------ |
+| **Authentication Required** | No                       |
+| **Rate Limit**              | 3 requests/minute per IP |
 
 **Request Body:**
+
 ```json
 {
   "email": "newuser@example.com",
@@ -151,6 +159,7 @@ All error responses follow this structure:
 ```
 
 **Response (201 Created):**
+
 ```json
 {
   "user": {
@@ -170,6 +179,7 @@ All error responses follow this structure:
 ```
 
 **Error Response (409 Conflict):**
+
 ```json
 {
   "error": {
@@ -180,6 +190,7 @@ All error responses follow this structure:
 ```
 
 **Error Codes:**
+
 - `INVALID_EMAIL_FORMAT` (400): Email format is invalid
 - `WEAK_PASSWORD` (400): Password does not meet security requirements
 - `EMAIL_ALREADY_EXISTS` (409): Email is already registered
@@ -192,17 +203,19 @@ All error responses follow this structure:
 
 **POST** `/api/auth/logout`
 
-| Field | Value |
-|-------|-------|
-| **Authentication Required** | Yes |
-| **Rate Limit** | No limit |
+| Field                       | Value    |
+| --------------------------- | -------- |
+| **Authentication Required** | Yes      |
+| **Rate Limit**              | No limit |
 
 **Request Body:**
+
 ```json
 {}
 ```
 
 **Response (200 OK):**
+
 ```json
 {
   "message": "Logged out successfully"
@@ -210,6 +223,7 @@ All error responses follow this structure:
 ```
 
 **Error Codes:**
+
 - `INVALID_TOKEN` (401): JWT token is invalid or expired
 
 ---
@@ -220,10 +234,10 @@ All error responses follow this structure:
 
 **GET** `/api/toys?category=action&limit=20&offset=0`
 
-| Field | Value |
-|-------|-------|
-| **Authentication Required** | No (public listing) |
-| **Rate Limit** | 30 requests/minute per IP |
+| Field                       | Value                     |
+| --------------------------- | ------------------------- |
+| **Authentication Required** | No (public listing)       |
+| **Rate Limit**              | 30 requests/minute per IP |
 
 **Query Parameters:**
 | Parameter | Type | Required | Description |
@@ -235,6 +249,7 @@ All error responses follow this structure:
 | `sort_by` | string | No | Sort field: 'created_at', 'distance' (default: 'created_at') |
 
 **Response (200 OK):**
+
 ```json
 {
   "toys": [
@@ -246,9 +261,7 @@ All error responses follow this structure:
       "condition": "excellent",
       "owner_id": "user_550e8400-e29b-41d4-a716",
       "owner_name": "John Doe",
-      "image_urls": [
-        "https://storage.supabase.co/toys/toy_550e8400/image1.jpg"
-      ],
+      "image_urls": ["https://storage.supabase.co/toys/toy_550e8400/image1.jpg"],
       "tags": ["lego", "educational"],
       "created_at": "2025-11-10T14:00:00Z",
       "available": true
@@ -261,6 +274,7 @@ All error responses follow this structure:
 ```
 
 **Error Codes:**
+
 - `INVALID_CATEGORY` (400): Category does not exist
 - `INVALID_CONDITION` (400): Condition value is invalid
 - `INVALID_PAGINATION` (400): limit or offset is invalid
@@ -271,10 +285,10 @@ All error responses follow this structure:
 
 **GET** `/api/toys/:toy_id`
 
-| Field | Value |
-|-------|-------|
-| **Authentication Required** | No |
-| **Rate Limit** | 30 requests/minute per IP |
+| Field                       | Value                     |
+| --------------------------- | ------------------------- |
+| **Authentication Required** | No                        |
+| **Rate Limit**              | 30 requests/minute per IP |
 
 **Path Parameters:**
 | Parameter | Type | Description |
@@ -282,6 +296,7 @@ All error responses follow this structure:
 | `toy_id` | string | Unique toy identifier |
 
 **Response (200 OK):**
+
 ```json
 {
   "toy": {
@@ -297,9 +312,7 @@ All error responses follow this structure:
       "rating": 4.8,
       "response_time_hours": 2
     },
-    "image_urls": [
-      "https://storage.supabase.co/toys/toy_550e8400/image1.jpg"
-    ],
+    "image_urls": ["https://storage.supabase.co/toys/toy_550e8400/image1.jpg"],
     "tags": ["lego", "educational"],
     "created_at": "2025-11-10T14:00:00Z",
     "available": true,
@@ -309,6 +322,7 @@ All error responses follow this structure:
 ```
 
 **Error Codes:**
+
 - `TOY_NOT_FOUND` (404): Toy does not exist or has been deleted
 
 ---
@@ -317,12 +331,13 @@ All error responses follow this structure:
 
 **POST** `/api/toys`
 
-| Field | Value |
-|-------|-------|
-| **Authentication Required** | Yes |
-| **Rate Limit** | 10 requests/minute per user |
+| Field                       | Value                       |
+| --------------------------- | --------------------------- |
+| **Authentication Required** | Yes                         |
+| **Rate Limit**              | 10 requests/minute per user |
 
 **Request Body:**
+
 ```json
 {
   "title": "LEGO City Set",
@@ -330,13 +345,12 @@ All error responses follow this structure:
   "category": "building_blocks",
   "condition": "excellent",
   "tags": ["lego", "educational", "building"],
-  "image_urls": [
-    "https://storage.supabase.co/toys/uploads/image_abc123.jpg"
-  ]
+  "image_urls": ["https://storage.supabase.co/toys/uploads/image_abc123.jpg"]
 }
 ```
 
 **Response (201 Created):**
+
 ```json
 {
   "toy": {
@@ -346,9 +360,7 @@ All error responses follow this structure:
     "category": "building_blocks",
     "condition": "excellent",
     "owner_id": "user_550e8400-e29b-41d4-a716",
-    "image_urls": [
-      "https://storage.supabase.co/toys/uploads/image_abc123.jpg"
-    ],
+    "image_urls": ["https://storage.supabase.co/toys/uploads/image_abc123.jpg"],
     "tags": ["lego", "educational", "building"],
     "created_at": "2025-11-13T10:30:00Z",
     "available": true
@@ -357,6 +369,7 @@ All error responses follow this structure:
 ```
 
 **Error Codes:**
+
 - `INVALID_TOKEN` (401): JWT token is missing or invalid
 - `INVALID_TITLE` (400): Title is empty or exceeds 255 characters
 - `INVALID_CATEGORY` (400): Category does not exist
@@ -373,12 +386,13 @@ All error responses follow this structure:
 
 **POST** `/api/exchanges`
 
-| Field | Value |
-|-------|-------|
-| **Authentication Required** | Yes |
-| **Rate Limit** | 20 requests/minute per user |
+| Field                       | Value                       |
+| --------------------------- | --------------------------- |
+| **Authentication Required** | Yes                         |
+| **Rate Limit**              | 20 requests/minute per user |
 
 **Request Body:**
+
 ```json
 {
   "toy_id": "toy_550e8400-e29b-41d4-a716",
@@ -387,6 +401,7 @@ All error responses follow this structure:
 ```
 
 **Response (201 Created):**
+
 ```json
 {
   "exchange": {
@@ -403,6 +418,7 @@ All error responses follow this structure:
 ```
 
 **Error Codes:**
+
 - `INVALID_TOKEN` (401): JWT token is missing or invalid
 - `TOY_NOT_FOUND` (404): Toy does not exist
 - `TOY_NOT_AVAILABLE` (409): Toy is already in an active exchange or delisted
@@ -416,10 +432,10 @@ All error responses follow this structure:
 
 **GET** `/api/exchanges/:exchange_id`
 
-| Field | Value |
-|-------|-------|
-| **Authentication Required** | Yes |
-| **Rate Limit** | 30 requests/minute per user |
+| Field                       | Value                       |
+| --------------------------- | --------------------------- |
+| **Authentication Required** | Yes                         |
+| **Rate Limit**              | 30 requests/minute per user |
 
 **Path Parameters:**
 | Parameter | Type | Description |
@@ -427,6 +443,7 @@ All error responses follow this structure:
 | `exchange_id` | string | Unique exchange identifier |
 
 **Response (200 OK):**
+
 ```json
 {
   "exchange": {
@@ -457,6 +474,7 @@ All error responses follow this structure:
 ```
 
 **Error Codes:**
+
 - `INVALID_TOKEN` (401): JWT token is missing or invalid
 - `EXCHANGE_NOT_FOUND` (404): Exchange does not exist
 - `ACCESS_DENIED` (403): User is not a participant in this exchange
@@ -467,10 +485,10 @@ All error responses follow this structure:
 
 **PATCH** `/api/exchanges/:exchange_id`
 
-| Field | Value |
-|-------|-------|
-| **Authentication Required** | Yes |
-| **Rate Limit** | 10 requests/minute per user |
+| Field                       | Value                       |
+| --------------------------- | --------------------------- |
+| **Authentication Required** | Yes                         |
+| **Rate Limit**              | 10 requests/minute per user |
 
 **Path Parameters:**
 | Parameter | Type | Description |
@@ -478,6 +496,7 @@ All error responses follow this structure:
 | `exchange_id` | string | Unique exchange identifier |
 
 **Request Body:**
+
 ```json
 {
   "action": "confirm",
@@ -492,6 +511,7 @@ All error responses follow this structure:
 ```
 
 **Response (200 OK):**
+
 ```json
 {
   "exchange": {
@@ -505,6 +525,7 @@ All error responses follow this structure:
 ```
 
 **Error Codes:**
+
 - `INVALID_TOKEN` (401): JWT token is missing or invalid
 - `EXCHANGE_NOT_FOUND` (404): Exchange does not exist
 - `INVALID_ACTION` (400): Action must be 'confirm' or 'reject'
@@ -519,6 +540,7 @@ All error responses follow this structure:
 ### Request Validation
 
 All endpoints perform the following validations:
+
 1. **Schema validation**: Request body matches expected structure
 2. **Type validation**: Fields have correct data types
 3. **Business logic validation**: User has permissions and resources available
@@ -527,6 +549,7 @@ All endpoints perform the following validations:
 ### Rate Limiting
 
 Rate limits are enforced per IP (anonymous) or per user (authenticated):
+
 - Limits reset on a rolling 60-second window
 - Responses include `X-RateLimit-*` headers for client awareness
 - Exceeding limits returns 429 with retry-after header
@@ -534,6 +557,7 @@ Rate limits are enforced per IP (anonymous) or per user (authenticated):
 ### Response Headers
 
 All responses include:
+
 ```
 Content-Type: application/json
 Cache-Control: no-cache, no-store, must-revalidate
@@ -542,6 +566,7 @@ X-Content-Type-Options: nosniff
 ```
 
 Authenticated responses include:
+
 ```
 X-RateLimit-Limit: 30
 X-RateLimit-Remaining: 29
@@ -551,6 +576,7 @@ X-RateLimit-Reset: 1699864260
 ### Pagination
 
 List endpoints support cursor-based or offset-based pagination:
+
 - **limit**: Number of results per page (default: 20, max: 100)
 - **offset**: Number of results to skip (default: 0)
 - **total_count**: Total number of available results
@@ -586,6 +612,7 @@ curl http://localhost:3000/api/toys/toy_550e8400-e29b-41d4-a716
 ### Integration Tests
 
 See `/tests` directory for Jest test suites:
+
 - `tests/api/auth.test.ts`: Authentication endpoint tests
 - `tests/api/toys.test.ts`: Toy listing and creation tests
 - `tests/api/exchanges.test.ts`: Exchange workflow tests
@@ -595,12 +622,14 @@ See `/tests` directory for Jest test suites:
 ## Future Phases
 
 ### Phase 2 Endpoints (TBD)
+
 - User profile management (`/api/users/:user_id`)
 - Messaging/chat (`/api/messages`)
 - Notification preferences (`/api/notifications`)
 - Toy image upload (`/api/upload`)
 
 ### Phase 3 Endpoints (TBD)
+
 - Reviews and ratings (`/api/reviews`)
 - User blocking/reporting (`/api/reports`)
 - Analytics and statistics (`/api/analytics`)

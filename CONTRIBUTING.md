@@ -3,12 +3,15 @@
 ## Setup Instructions
 
 ### Install Dependencies
+
 ```bash
 npm install
 ```
 
 ### Environment Variables
+
 Create `.env.local` in the project root with the following variables:
+
 ```
 NEXT_PUBLIC_SUPABASE_URL=https://your-project.supabase.co
 NEXT_PUBLIC_SUPABASE_ANON_KEY=<anon-key>
@@ -20,6 +23,7 @@ SENDGRID_API_KEY=<sendgrid-key>
 ```
 
 ### Start Development Server
+
 ```bash
 npm run dev
 ```
@@ -29,20 +33,25 @@ The application will be available at `http://localhost:3000`.
 ## Code Style Guidelines
 
 ### ESLint Rules
+
 The project enforces ESLint rules defined in `.eslintrc.json`. Run the linter before committing:
+
 ```bash
 npm run lint
 ```
 
 Fix linting errors automatically:
+
 ```bash
 npm run lint -- --fix
 ```
 
 ### Prettier Formatting
+
 Code is formatted using Prettier. Configuration is in `.prettierrc.json`.
 
 Format code before committing:
+
 ```bash
 npm run format
 ```
@@ -81,6 +90,7 @@ Follow the [Conventional Commits](https://www.conventionalcommits.org/) standard
 **Footer**: Optional. Reference issues with `Fixes #123`.
 
 ### Examples
+
 ```
 feat(tickets): add ticket balance real-time updates
 

@@ -8,6 +8,7 @@
 ## Pre-Development Checklist
 
 ### Team Setup
+
 - [ ] Product Owner assigned and available
 - [ ] 3-4 engineers allocated (see TASK-BREAKDOWN-SUMMARY.md)
 - [ ] Engineering Lead designated for architecture decisions
@@ -17,6 +18,7 @@
 - [ ] Slack/communication channels created
 
 ### Infrastructure Setup
+
 - [ ] GitHub repository created and configured
 - [ ] GitHub branch protection rules set (require CI, 1 review)
 - [ ] CI/CD workflow files ready for Task 1.4
@@ -26,6 +28,7 @@
 - [ ] All API keys and credentials secured (not in repo)
 
 ### Documentation & Knowledge
+
 - [ ] Team reviews CLAUDE.md (development guidelines)
 - [ ] Team reviews PRD.md (full requirements)
 - [ ] TASK-BREAKDOWN-SUMMARY.md reviewed and approved
@@ -34,6 +37,7 @@
 - [ ] Definition of "done" agreed upon (see below)
 
 ### Project Agreements
+
 - [ ] Commit message format agreed (Conventional Commits)
 - [ ] Branch naming convention agreed (feat/, fix/, refactor/)
 - [ ] PR template created and shared
@@ -58,6 +62,7 @@ A task is complete when:
 8. **Acceptance Verified:** Product owner verifies acceptance criteria
 
 **Quality Gates:**
+
 - No console errors (warnings ok if documented)
 - All tests passing
 - No security vulnerabilities (high/critical)
@@ -73,6 +78,7 @@ A task is complete when:
 **Sprint 1 Start**
 
 **Tasks to Complete:**
+
 1. Task 1.1: Initialize Monorepo
 2. Task 1.2: Configure Supabase
 3. Task 1.3: Set Up Firebase
@@ -81,15 +87,18 @@ A task is complete when:
 6. Task 1.6: Create Documentation
 
 **Team Composition:**
+
 - 1 DevOps/Infra Engineer (Lead: All 6 tasks)
 - 1 Backend Engineer (Assist with Task 1.2, 1.3)
 
 **Daily Standup Topics:**
+
 - Environment setup progress
 - Blockers from external services (Firebase approval, etc.)
 - CI/CD test results
 
 **End-of-Week Deliverables:**
+
 - [ ] Local dev environment working (`npm run dev` runs)
 - [ ] Supabase local instance running
 - [ ] Firebase project created
@@ -98,6 +107,7 @@ A task is complete when:
 - [ ] Team can push and deploy successfully
 
 **Success Criteria:**
+
 - All 6 tasks completed
 - No dev environment setup blockers
 - Ready to begin Epic 2
@@ -109,6 +119,7 @@ A task is complete when:
 **Sprint 1 Continues → Sprint 2 Starts**
 
 **Tasks to Complete:**
+
 1. Task 2.1: Core Tables (profiles, kids)
 2. Task 2.2: Tickets & Wallet
 3. Task 2.3: Toy Listings
@@ -121,20 +132,24 @@ A task is complete when:
 10. Task 2.10: Database Views
 
 **Team Composition:**
+
 - 1 Database Architect (Lead: Tasks 2.1-2.10)
 - 1 Backend Engineer (Co-implement: Tasks 2.2-2.8)
 - Async Review: Backend/Security Lead (Task 2.9 RLS)
 
 **Parallel Work:**
+
 - Frontend engineer can prepare for Task 3.2 (auth UI)
 - Review API endpoint design (prep for Epic 4)
 
 **Daily Standup Topics:**
+
 - Migration status
 - RLS policy progress (Task 2.9 critical)
 - Performance concerns (indexing, constraints)
 
 **End-of-Weeks Deliverables:**
+
 - [ ] All tables created and migrated
 - [ ] All constraints and checks in place
 - [ ] RLS policies enforced
@@ -143,6 +158,7 @@ A task is complete when:
 - [ ] Ready to begin Epic 3 (Auth)
 
 **Success Criteria:**
+
 - All 10 tasks completed
 - RLS policy security audit passed
 - No N+1 query patterns in views
@@ -155,6 +171,7 @@ A task is complete when:
 **Sprint 2 Continues**
 
 **Tasks to Complete:**
+
 1. Task 3.1: Email/Password Auth (Backend)
 2. Task 3.2: Auth UI Pages (Frontend) - Can start during Week 2
 3. Task 3.3: Parental Consent Flow (Both)
@@ -166,27 +183,32 @@ A task is complete when:
 9. Task 3.9: Password Reset (Backend)
 
 **Team Composition:**
+
 - 1 Backend Engineer (Lead: Tasks 3.1, 3.5-3.9)
 - 1 Frontend Engineer (Lead: Task 3.2)
 - Both: Task 3.3 (consent flow requires coordination)
 - Product Owner: Task 3.4 (legal docs)
 
 **Critical Path Items:**
+
 - Task 3.1 (auth) unblocks Epic 4 (APIs)
 - Task 3.3 (consent) is GDPR-critical
 - Task 3.5 (consent withdrawal) is GDPR-critical
 
 **Parallel Work:**
+
 - Begin Epic 4 planning while finishing Epic 3
 - Backend engineers can start Task 4.1 (auth endpoints) after Task 3.1
 
 **Daily Standup Topics:**
+
 - Auth flow completion status
 - GDPR compliance checklist
 - Consent flow testing
 - Legal document review progress
 
 **End-of-Weeks Deliverables:**
+
 - [ ] Sign-up flow working (email confirmation optional)
 - [ ] Login flow working (JWT tokens)
 - [ ] Password reset working
@@ -198,6 +220,7 @@ A task is complete when:
 - [ ] Ready to begin Epic 4 (APIs)
 
 **Success Criteria:**
+
 - All 9 tasks completed
 - 100% of signups include consent recording
 - GDPR compliance checklist signed off
@@ -210,6 +233,7 @@ A task is complete when:
 **Sprint 2 Ends → Sprint 3 Starts**
 
 **Tasks to Complete:**
+
 1. Task 4.1: Auth Endpoints
 2. Task 4.2: User Profile Endpoints
 3. Task 4.3: Toy Listing Endpoints
@@ -222,15 +246,18 @@ A task is complete when:
 10. Task 4.10: API Documentation
 
 **Team Composition:**
+
 - 2 Backend Engineers (Tasks 4.1-4.8, split by domain)
 - 1 Backend Engineer (Lead: Tasks 4.9-4.10)
 
 **Parallel Work:**
+
 - Epic 5 (games) can begin after Task 4.1 (auth endpoints)
 - Epic 6 (frontend) can begin after Task 4.1-4.2 (auth + profile endpoints)
 - Epic 7 (notifications) preparation can start
 
 **Daily Standup Topics:**
+
 - API endpoint completion status
 - Integration testing progress
 - Rate limiting implementation
@@ -238,6 +265,7 @@ A task is complete when:
 - Performance benchmarks
 
 **End-of-Weeks Deliverables:**
+
 - [ ] 35+ endpoints implemented
 - [ ] All endpoints authenticated and authorized
 - [ ] Rate limiting enforced
@@ -248,6 +276,7 @@ A task is complete when:
 - [ ] Ready for frontend integration (Epic 6)
 
 **Success Criteria:**
+
 - All 10 tasks completed
 - 35+ endpoints functional and documented
 - Integration tests passing
@@ -261,6 +290,7 @@ A task is complete when:
 **Sprint 3 Continues (Parallel with APIs finishing)**
 
 **Tasks to Complete:**
+
 1. Task 5.1: Game Architecture
 2. Task 5.2: Color Match Game (2 days)
 3. Task 5.3: Fragment Reward System
@@ -269,21 +299,25 @@ A task is complete when:
 6. Task 5.6: Game Analytics
 
 **Team Composition:**
+
 - 1 Frontend Engineer (Lead: Tasks 5.1-5.2)
 - 1 Backend Engineer (Lead: Tasks 5.3-5.6)
 - Both: Integration testing
 
 **Parallel Work:**
+
 - Frontend begins Epic 6 (pages) after Task 5.1
 - Backend continues support for Epic 6
 
 **Daily Standup Topics:**
+
 - Game implementation progress
 - Fragment system accuracy
 - Child safety measures
 - Analytics tracking setup
 
 **End-of-Weeks Deliverables:**
+
 - [ ] Color Match game fully playable
 - [ ] Fragment earning working correctly
 - [ ] Fragment-to-ticket conversion implemented
@@ -293,6 +327,7 @@ A task is complete when:
 - [ ] Ready for integration into main dashboard
 
 **Success Criteria:**
+
 - Game functional and fun
 - Fragments awarded correctly
 - Conversion accurate (4 fragments = 1 ticket)
@@ -305,6 +340,7 @@ A task is complete when:
 **Sprint 3 Continues → Sprint 4 Starts**
 
 **Tasks to Complete:**
+
 1. Task 6.1: Dashboard Layout & Navigation
 2. Task 6.2: Toy Discovery (2 days)
 3. Task 6.3: Toy Detail Page (2 days)
@@ -319,16 +355,19 @@ A task is complete when:
 12. Task 6.12: Mobile Responsiveness
 
 **Team Composition:**
+
 - 2 Frontend Engineers (Tasks 6.1-6.12)
 - 1 UI/UX Designer (Optional, for design review)
 - QA engineer begins testing
 
 **Parallel Work:**
+
 - Epic 7 (notifications) in progress
 - Epic 8 (matching) can start after Task 6.7
 - Epic 9 (ads) can start after Task 6.1-6.3
 
 **Daily Standup Topics:**
+
 - Page completion status
 - Design consistency
 - Mobile responsiveness
@@ -336,6 +375,7 @@ A task is complete when:
 - Performance metrics
 
 **End-of-Weeks Deliverables:**
+
 - [ ] All 10 main pages functional
 - [ ] Navigation working smoothly
 - [ ] Mobile responsive (≥320px)
@@ -346,6 +386,7 @@ A task is complete when:
 - [ ] Ready for end-to-end testing
 
 **Success Criteria:**
+
 - All 12 tasks completed
 - Page load <2s (first paint)
 - Mobile responsive across devices
@@ -359,6 +400,7 @@ A task is complete when:
 **Sprint 4 Continues**
 
 **Tasks to Complete:**
+
 1. Task 7.1: Email Notification System
 2. Task 7.2: Notification Preference Endpoints
 3. Task 7.3: In-App Notification Center
@@ -368,16 +410,19 @@ A task is complete when:
 7. Task 7.7: Message Retention Jobs
 
 **Team Composition:**
+
 - 1 Backend Engineer (Lead: Tasks 7.1-7.7)
 - 1 Frontend Engineer (Lead: UI for Task 7.3)
 - Email service configuration (Task 7.1)
 
 **Parallel Work:**
+
 - Epic 8 (matching) in progress
 - Epic 9 (ads) in progress
 - Epic 10 (testing) can start after Task 4.9
 
 **Daily Standup Topics:**
+
 - Email delivery testing
 - Realtime subscription performance
 - Message moderation accuracy
@@ -385,6 +430,7 @@ A task is complete when:
 - Retention job scheduling
 
 **End-of-Weeks Deliverables:**
+
 - [ ] Email notifications sending correctly
 - [ ] In-app notification center working
 - [ ] Notification preferences respected
@@ -395,6 +441,7 @@ A task is complete when:
 - [ ] Ready for end-to-end workflows
 
 **Success Criteria:**
+
 - All 7 tasks completed
 - Email delivery >95% success rate
 - Realtime updates <1s latency
@@ -408,6 +455,7 @@ A task is complete when:
 **Sprint 4 Continues → Sprint 5 Starts**
 
 **Tasks to Complete:**
+
 1. Task 8.1: Matching Algorithm (2 days)
 2. Task 8.2: Daily Matching Edge Function
 3. Task 8.3: Match Notification Triggering
@@ -415,15 +463,18 @@ A task is complete when:
 5. Task 8.5: Search Optimization
 
 **Team Composition:**
+
 - 1 Data Engineer (Lead: Tasks 8.1-8.4)
 - 1 Backend Engineer (Support: Task 8.1, 8.5)
 
 **Parallel Work:**
+
 - Epic 9 (ads) in progress
 - Epic 10 (testing) heavily in progress
 - Begin final integration testing
 
 **Daily Standup Topics:**
+
 - Algorithm accuracy testing
 - Edge Function scheduling
 - Performance optimization
@@ -431,6 +482,7 @@ A task is complete when:
 - Search result relevance
 
 **End-of-Weeks Deliverables:**
+
 - [ ] Matching algorithm scoring correctly
 - [ ] Daily job runs at 02:00 UTC
 - [ ] Top 3 matches per child delivered
@@ -440,6 +492,7 @@ A task is complete when:
 - [ ] Ready for production matching
 
 **Success Criteria:**
+
 - Algorithm tested with 10K+ wishlists
 - Daily job completes within 1 hour
 - Match accuracy verified by QA
@@ -452,6 +505,7 @@ A task is complete when:
 **Sprint 5 Continues**
 
 **Tasks to Complete:**
+
 1. Task 9.1: Google AdMob Integration
 2. Task 9.2: Google AdSense Integration
 3. Task 9.3: Ad Placement Components
@@ -459,15 +513,18 @@ A task is complete when:
 5. Task 9.5: Revenue Monitoring
 
 **Team Composition:**
+
 - 1 Frontend Engineer (Lead: Tasks 9.1-9.3)
 - 1 Growth/Analytics Engineer (Lead: Tasks 9.4-9.5)
 
 **Parallel Work:**
+
 - Epic 10 (testing) heavily in progress
 - Final bug fixes and polish
 - Begin soft launch preparation
 
 **Daily Standup Topics:**
+
 - Ad placement performance
 - AdMob/AdSense setup status
 - Event tracking accuracy
@@ -475,6 +532,7 @@ A task is complete when:
 - GDPR compliance verification
 
 **End-of-Weeks Deliverables:**
+
 - [ ] AdMob working on mobile views
 - [ ] AdSense working on desktop views
 - [ ] Ad placement components integrated
@@ -485,6 +543,7 @@ A task is complete when:
 - [ ] Ready for beta launch
 
 **Success Criteria:**
+
 - Ads displaying on 3+ placements
 - Events tracked accurately
 - Revenue visible in dashboard
@@ -498,6 +557,7 @@ A task is complete when:
 **Sprint 5 Continues → Sprint 6 (Final Sprint)**
 
 **Tasks to Complete:**
+
 1. Task 10.1: Unit Tests (2 days)
 2. Task 10.2: Integration Tests (2 days)
 3. Task 10.3: E2E Tests (2 days)
@@ -508,16 +568,19 @@ A task is complete when:
 8. Task 10.8: Bug Fixes & Polish (2 days)
 
 **Team Composition:**
+
 - 2 QA Engineers (Lead: All testing tasks)
 - All developers (Fix reported bugs)
 - Security consultant (Task 10.4, if available)
 
 **Parallel Work:**
+
 - No new feature work; focus on quality
 - Marketing team prepares launch materials
 - Support team trained on product
 
 **Daily Standup Topics:**
+
 - Test coverage status
 - Bug priority and fixes
 - Security audit findings
@@ -525,6 +588,7 @@ A task is complete when:
 - Launch readiness
 
 **End-of-Weeks Deliverables:**
+
 - [ ] 80%+ test coverage achieved
 - [ ] All security vulnerabilities fixed
 - [ ] WCAG AA accessibility verified
@@ -535,6 +599,7 @@ A task is complete when:
 - [ ] Ready for public launch
 
 **Success Criteria (Must-Haves):**
+
 - [ ] All critical bugs fixed
 - [ ] Security audit passed
 - [ ] WCAG AA compliance verified
@@ -551,33 +616,39 @@ A task is complete when:
 ## Key Checkpoints (Gating Criteria)
 
 ### Week 2 End (Go/No-Go for Week 3)
+
 - [ ] All Epic 1 tasks complete
 - [ ] No blocking infrastructure issues
 - [ ] Team trained on development process
 
 ### Week 4 End (Go/No-Go for Week 5)
+
 - [ ] Epic 2 (Database) complete
 - [ ] Epic 3 (Auth) complete
 - [ ] Auth endpoints implemented
 - [ ] RLS policies verified secure
 
 ### Week 6 End (Go/No-Go for Week 7)
+
 - [ ] Epic 4 (APIs) 80% complete
 - [ ] Core features integrated
 - [ ] No critical blockers
 
 ### Week 8 End (Go/No-Go for Week 9)
+
 - [ ] Epic 6 (Frontend) 80% complete
 - [ ] 2+ user flows end-to-end testable
 - [ ] No critical usability issues
 
 ### Week 10 End (Go/No-Go for Week 11)
+
 - [ ] All 9 feature epics 90%+ complete
 - [ ] Beta test group enrolled
 - [ ] Performance targets met
 - [ ] No GDPR gaps identified
 
 ### Week 12 (Launch Readiness)
+
 - [ ] All bugs fixed
 - [ ] Security audit passed
 - [ ] WCAG AA compliance verified
@@ -593,11 +664,13 @@ A task is complete when:
 **Attendees:** All developers + product owner + lead engineer
 
 **Each person answers:**
+
 1. What did I complete yesterday?
 2. What am I working on today?
 3. What's blocking me?
 
 **Escalation:**
+
 - Blocking items discussed after standup
 - Urgent issues escalated immediately
 - Update SPRINT-PROGRESS.md daily
@@ -609,6 +682,7 @@ A task is complete when:
 **Every 2 weeks (Sunday evening, 1 hour)**
 
 **Agenda:**
+
 1. Review previous sprint results
 2. Update SPRINT-PROGRESS.md
 3. Identify next sprint's tasks
@@ -617,6 +691,7 @@ A task is complete when:
 6. Identify risks and blockers
 
 **Output:**
+
 - Sprint backlog (8-10 tasks)
 - Task assignments
 - Sprint goal statement
@@ -627,6 +702,7 @@ A task is complete when:
 ## Risk Management During Execution
 
 ### If Task Runs Over
+
 1. Notify team immediately (same day)
 2. Assess blockers: Technical issue? Underestimated scope?
 3. Options:
@@ -637,12 +713,14 @@ A task is complete when:
 4. Document lesson learned
 
 ### If Blocker Appears
+
 1. Report in standup
 2. Owner works to unblock within 4 hours
 3. Escalate if not resolved
 4. Consider workaround or task swap
 
 ### If Critical Bug Found
+
 1. Stop current work
 2. Swarm the bug (all relevant engineers)
 3. Fix before continuing
@@ -664,6 +742,7 @@ A task is complete when:
 ## Success Measures
 
 ### By End of Week 12
+
 - **Project:** MVP launched publicly
 - **Users:** 100+ beta testers (aiming for 1,000+ by M6)
 - **Features:** All Phase 1 features working
@@ -675,4 +754,3 @@ A task is complete when:
 ---
 
 **Next Action:** Schedule kick-off meeting for Week 1 tasks
-

@@ -292,12 +292,7 @@ describe('Firebase Security Best Practices', () => {
       const serviceAccount = JSON.parse(process.env.FIREBASE_ADMIN_SDK_KEY!);
 
       // All fields required for full authentication
-      const requiredForAuth = [
-        'private_key',
-        'client_email',
-        'project_id',
-        'token_uri',
-      ];
+      const requiredForAuth = ['private_key', 'client_email', 'project_id', 'token_uri'];
 
       requiredForAuth.forEach((field) => {
         expect(serviceAccount[field]).toBeTruthy();

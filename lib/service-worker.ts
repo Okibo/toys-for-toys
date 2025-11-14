@@ -104,7 +104,9 @@ export async function unregisterServiceWorker(): Promise<boolean> {
  *
  * @returns {Promise<ServiceWorkerRegistration | undefined>} The active registration, or undefined if none
  */
-export async function getServiceWorkerRegistration(): Promise<ServiceWorkerRegistration | undefined> {
+export async function getServiceWorkerRegistration(): Promise<
+  ServiceWorkerRegistration | undefined
+> {
   if (typeof window === 'undefined' || typeof navigator === 'undefined') {
     throw new Error('Service worker check is only available in browser context');
   }
@@ -188,7 +190,12 @@ export function onServiceWorkerUpdate(
 /**
  * Type definitions for convenience
  */
-export type ServiceWorkerStatus = 'installing' | 'installed' | 'activating' | 'activated' | 'redundant';
+export type ServiceWorkerStatus =
+  | 'installing'
+  | 'installed'
+  | 'activating'
+  | 'activated'
+  | 'redundant';
 
 /**
  * Get the current status of the service worker
