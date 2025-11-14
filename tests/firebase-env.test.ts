@@ -51,9 +51,7 @@ describe('Firebase Environment Variables', () => {
       process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID = 'test-project-id';
 
       expect(process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID).not.toBe('');
-      expect(process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID).toHaveLength(
-        expect.any(Number),
-      );
+      expect(process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID).toHaveLength(expect.any(Number));
     });
 
     test('NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID should be defined', () => {
@@ -167,9 +165,7 @@ describe('Firebase Environment Variables', () => {
       process.env.FIREBASE_ADMIN_SDK_KEY = serviceAccount;
 
       expect(process.env.FIREBASE_ADMIN_SDK_KEY).not.toBe('');
-      expect(process.env.FIREBASE_ADMIN_SDK_KEY).toHaveLength(
-        expect.any(Number),
-      );
+      expect(process.env.FIREBASE_ADMIN_SDK_KEY).toHaveLength(expect.any(Number));
     });
 
     test('FIREBASE_ADMIN_SDK_KEY should be valid JSON', () => {
@@ -230,9 +226,7 @@ describe('Firebase Environment Variables', () => {
       process.env.NEXT_PUBLIC_FIREBASE_APP_ID = '1:123:web:abc';
       // Missing NEXT_PUBLIC_FIREBASE_API_KEY
 
-      const missingVar = requiredClientEnvVars.find(
-        (key) => !process.env[key],
-      );
+      const missingVar = requiredClientEnvVars.find((key) => !process.env[key]);
 
       expect(missingVar).toBeDefined();
     });
@@ -358,9 +352,7 @@ describe('Firebase Environment Variables', () => {
       ];
 
       allVars.forEach((value) => {
-        expect(
-          value === undefined || typeof value === 'string',
-        ).toBe(true);
+        expect(value === undefined || typeof value === 'string').toBe(true);
       });
     });
 

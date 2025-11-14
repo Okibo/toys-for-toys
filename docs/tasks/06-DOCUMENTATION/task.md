@@ -18,6 +18,7 @@ Create comprehensive documentation for developers and contributors covering proj
 ## Acceptance Criteria
 
 ### CONTRIBUTING.md Documentation
+
 - [x] File created: `CONTRIBUTING.md` with:
   - [x] Project overview & mission statement
   - [x] Getting started (setup instructions)
@@ -31,6 +32,7 @@ Create comprehensive documentation for developers and contributors covering proj
   - [x] Troubleshooting section
 
 ### Testing Documentation
+
 - [x] File created: `tests/README.md` with:
   - [x] Overview of testing strategy
   - [x] Jest configuration explanation
@@ -44,6 +46,7 @@ Create comprehensive documentation for developers and contributors covering proj
   - [x] Debugging failing tests
 
 ### Database Documentation
+
 - [x] File created: `docs/DATABASE.md` with:
   - [x] Database overview (Supabase, PostgreSQL)
   - [x] Local development setup
@@ -56,6 +59,7 @@ Create comprehensive documentation for developers and contributors covering proj
   - [x] Troubleshooting common DB issues
 
 ### API Documentation
+
 - [x] File created: `docs/API.md` - skeleton with:
   - [x] API overview and base URL
   - [x] Authentication & authorization
@@ -67,6 +71,7 @@ Create comprehensive documentation for developers and contributors covering proj
   - [x] Webhooks (for Phase 2)
 
 ### Troubleshooting Guide
+
 - [x] File created: `docs/TROUBLESHOOTING.md` with:
   - [x] Common setup issues
   - [x] Development issues (env vars, ports, etc.)
@@ -79,6 +84,7 @@ Create comprehensive documentation for developers and contributors covering proj
   - [x] How to ask for help / get support
 
 ### Architecture Documentation
+
 - [x] File created: `docs/ARCHITECTURE.md` with:
   - [x] System architecture overview
   - [x] Component structure (frontend)
@@ -91,6 +97,7 @@ Create comprehensive documentation for developers and contributors covering proj
   - [x] Performance considerations
 
 ### PR Template
+
 - [x] File created: `.github/pull_request_template.md` with:
   - [x] PR description section
   - [x] Type of change checkboxes
@@ -100,6 +107,7 @@ Create comprehensive documentation for developers and contributors covering proj
   - [x] Breaking changes notice
 
 ### Development Workflow Documentation
+
 - [x] File created: `docs/WORKFLOW.md` with:
   - [x] Feature development lifecycle
   - [x] Branch strategy and naming
@@ -109,6 +117,7 @@ Create comprehensive documentation for developers and contributors covering proj
   - [x] Release process (for future versions)
 
 ### Setup & Onboarding
+
 - [x] File created: `docs/SETUP.md` with:
   - [x] System requirements (Node.js version, etc.)
   - [x] Installation steps (clone, npm install, etc.)
@@ -120,6 +129,7 @@ Create comprehensive documentation for developers and contributors covering proj
   - [x] IDE setup (VS Code recommendations)
 
 ### Code Examples & Patterns
+
 - [x] File created: `docs/CODE_PATTERNS.md` with:
   - [x] Supabase client usage
   - [x] React hooks patterns
@@ -131,6 +141,7 @@ Create comprehensive documentation for developers and contributors covering proj
   - [x] File organization
 
 ### README.md Updates
+
 - [x] Updated `README.md` with:
   - [x] Project description
   - [x] Key features
@@ -142,6 +153,7 @@ Create comprehensive documentation for developers and contributors covering proj
   - [x] CI/CD status badge
 
 ### Documentation Navigation
+
 - [x] File created: `docs/INDEX.md` or update `README.md` with:
   - [x] Index of all documentation files
   - [x] Quick links to common tasks
@@ -156,6 +168,7 @@ Create comprehensive documentation for developers and contributors covering proj
 ### Step 1: Create CONTRIBUTING.md
 
 #### 1.1 Create `CONTRIBUTING.md`
+
 ```markdown
 # Contributing to Toy-for-Toy
 
@@ -168,6 +181,7 @@ Be respectful, inclusive, and professional. We don't tolerate harassment or disc
 ## Getting Started
 
 ### Prerequisites
+
 - Node.js 18+ (download from https://nodejs.org/)
 - npm 9+ (comes with Node.js)
 - Git (download from https://git-scm.com/)
@@ -202,10 +216,10 @@ Be respectful, inclusive, and professional. We don't tolerate harassment or disc
 
 5. **Verify Setup**
    \`\`\`bash
-   npm run lint        # Should pass with 0 errors
-   npm run type-check  # Should pass with 0 errors
-   npm test            # Should pass (or run with no tests)
-   npm run build       # Should complete in <60 seconds
+   npm run lint # Should pass with 0 errors
+   npm run type-check # Should pass with 0 errors
+   npm test # Should pass (or run with no tests)
+   npm run build # Should complete in <60 seconds
    \`\`\`
 
 See [SETUP.md](docs/SETUP.md) for more detailed setup instructions.
@@ -213,23 +227,27 @@ See [SETUP.md](docs/SETUP.md) for more detailed setup instructions.
 ## Code Style
 
 ### Formatting
+
 - Use Prettier for automatic formatting
 - Run \`npm run format\` before committing
 - Commit hooks run Prettier automatically
 
 ### Linting
+
 - Use ESLint for code quality
 - Run \`npm run lint\` to check
 - Run \`npm run lint -- --fix\` to auto-fix issues
 - No console.log() in production code (use proper logging)
 
 ### TypeScript
+
 - Write all code in TypeScript (`.ts` or `.tsx` files)
 - Strict mode enabled (\`strict: true\` in tsconfig.json)
 - No \`any\` types without justification (add comment: \`// eslint-disable-next-line @typescript-eslint/no-explicit-any\`)
 - Add types for function parameters and returns
 
 ### Naming Conventions
+
 - **Components:** PascalCase (e.g., \`ToyCard.tsx\`)
 - **Functions:** camelCase (e.g., \`getToyDetails()\`)
 - **Constants:** UPPER_SNAKE_CASE (e.g., \`MAX_RETRIES = 3\`)
@@ -238,16 +256,18 @@ See [SETUP.md](docs/SETUP.md) for more detailed setup instructions.
 ## Branch & Commit
 
 ### Branch Naming
+
 \`\`\`
-feat/add-toy-search           # New feature
-fix/resolve-auth-bug          # Bug fix
-refactor/optimize-queries     # Code improvement
-docs/update-api-docs          # Documentation
-test/add-exchange-tests       # Tests
-chore/update-dependencies     # Maintenance
+feat/add-toy-search # New feature
+fix/resolve-auth-bug # Bug fix
+refactor/optimize-queries # Code improvement
+docs/update-api-docs # Documentation
+test/add-exchange-tests # Tests
+chore/update-dependencies # Maintenance
 \`\`\`
 
 ### Commit Messages
+
 Follow [Conventional Commits](https://www.conventionalcommits.org/):
 
 \`\`\`
@@ -264,6 +284,7 @@ Format: \`<type>(<scope>): <subject>\`
 - **Subject:** Concise, imperative mood ("add" not "added")
 
 ### Commit Size
+
 - Keep commits focused on one logical change
 - Avoid mixing features/fixes in single commit
 - Allows easier code review and rollbacks
@@ -271,6 +292,7 @@ Format: \`<type>(<scope>): <subject>\`
 ## Pull Requests
 
 ### Before Submitting PR
+
 1. Update your branch with latest \`main\`:
    \`\`\`bash
    git fetch origin
@@ -279,10 +301,10 @@ Format: \`<type>(<scope>): <subject>\`
 
 2. Run all checks locally:
    \`\`\`bash
-   npm run lint         # Fix formatting
-   npm run type-check   # Fix type errors
-   npm test             # Ensure tests pass
-   npm run build        # Ensure build succeeds
+   npm run lint # Fix formatting
+   npm run type-check # Fix type errors
+   npm test # Ensure tests pass
+   npm run build # Ensure build succeeds
    \`\`\`
 
 3. If all pass, push to your branch:
@@ -291,18 +313,21 @@ Format: \`<type>(<scope>): <subject>\`
    \`\`\`
 
 ### PR Submission
+
 - Go to GitHub and open PR from your branch to \`main\`
 - PR template auto-fills (see \`.github/pull_request_template.md\`)
 - Fill in description, type, and testing instructions
 - Link related issues with \`Fixes #123\`
 
 ### PR Description
+
 - Explain **what** changed and **why**
 - Reference related issues or discussions
 - Include screenshots for UI changes
 - List testing steps for reviewers
 
 ### Code Review Process
+
 - At least 1 approval required before merge
 - GitHub Actions CI must pass
 - Address reviewer comments
@@ -311,19 +336,22 @@ Format: \`<type>(<scope>): <subject>\`
 ## Testing
 
 ### Running Tests Locally
+
 \`\`\`bash
-npm test              # Run all tests
-npm test -- --watch  # Watch mode (re-run on changes)
+npm test # Run all tests
+npm test -- --watch # Watch mode (re-run on changes)
 npm run test:coverage # Generate coverage report
 \`\`\`
 
 ### Writing Tests
+
 - Unit tests co-located with components/functions
 - Test behavior, not implementation
 - Use descriptive test names
 - See [tests/README.md](tests/README.md) for examples
 
 ### Coverage Targets
+
 - Aim for 80%+ code coverage
 - Required for main features
 - View coverage report: \`npm run test:coverage\`
@@ -333,11 +361,13 @@ See [tests/README.md](tests/README.md) for detailed testing guide.
 ## Performance & Security
 
 ### Performance
+
 - Use React DevTools Profiler to identify slow components
 - Check Network tab for unnecessary API calls
 - Optimize bundle size: \`npm run build\` shows size analysis
 
 ### Security
+
 - Never commit sensitive data (.env.local, API keys)
 - Use environment variables for secrets
 - Sanitize user input (Zod validation)
@@ -346,6 +376,7 @@ See [tests/README.md](tests/README.md) for detailed testing guide.
 ## Database Changes
 
 ### Migrations
+
 - Create migration file: \`npx supabase migration new <name>\`
 - Write SQL in migration file
 - Test locally: \`npx supabase db reset\`
@@ -356,12 +387,14 @@ See [docs/DATABASE.md](docs/DATABASE.md) for migration guide.
 ## Getting Help
 
 ### Questions & Issues
+
 - Check [docs/](docs) for existing documentation
 - Search [GitHub Issues](https://github.com/pawelkalkun/toys-for-toys/issues) for similar problems
 - Ask in GitHub Discussions
 - Email maintainers if sensitive
 
 ### Debugging
+
 - See [docs/TROUBLESHOOTING.md](docs/TROUBLESHOOTING.md) for common issues
 - Use browser DevTools for frontend issues
 - Use Supabase Studio for database issues
@@ -373,12 +406,12 @@ See [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md) for detailed structure.
 
 Quick overview:
 \`\`\`
-/app          - Next.js pages and routes
-/components   - React components
-/lib          - Utilities and hooks
-/supabase     - Database schema and migrations
-/tests        - Test files
-/docs         - Documentation
+/app - Next.js pages and routes
+/components - React components
+/lib - Utilities and hooks
+/supabase - Database schema and migrations
+/tests - Test files
+/docs - Documentation
 \`\`\`
 
 ## Documentation
@@ -407,6 +440,7 @@ By contributing, you agree code is licensed under [LICENSE](LICENSE).
 ### Step 2: Create Testing Documentation
 
 #### 2.1 Create `tests/README.md`
+
 ```markdown
 # Testing Guide
 
@@ -415,32 +449,36 @@ This guide covers unit testing, integration testing, and E2E testing for the Toy
 ## Overview
 
 ### Testing Pyramid
+
 - **Unit Tests (70%):** Individual functions and components
 - **Integration Tests (20%):** Multiple components working together
 - **E2E Tests (10%):** Full user workflows
 
 ### Test Files Location
+
 - Jest: Co-located with features (e.g., \`lib/utils.test.ts\`)
 - Playwright: Centralized in \`tests/e2e/\`
 
 ## Jest (Unit & Integration Tests)
 
 ### Setup
+
 Jest configured in \`jest.config.js\` and \`jest.setup.js\`.
 
 Key settings:
+
 - Environment: \`jest-environment-jsdom\` (for React components)
-- Path aliases: \`@/*\` maps to project root
+- Path aliases: \`@/\*\` maps to project root
 - Coverage: Configured in \`jest.config.js\`
 
 ### Running Tests
 
 \`\`\`bash
-npm test              # Run all tests once
-npm test -- --watch  # Watch mode (re-run on file changes)
-npm test -- --coverage  # Generate coverage report
-npm test -- app.test.ts  # Run specific file
-npm test -- -t "todo"  # Run tests matching pattern "todo"
+npm test # Run all tests once
+npm test -- --watch # Watch mode (re-run on file changes)
+npm test -- --coverage # Generate coverage report
+npm test -- app.test.ts # Run specific file
+npm test -- -t "todo" # Run tests matching pattern "todo"
 \`\`\`
 
 ### Writing Unit Tests
@@ -450,29 +488,29 @@ Example: Testing a utility function
 \`\`\`typescript
 // lib/utils.ts
 export function calculateTicketBalance(
-  owned: number,
-  frozen: number
+owned: number,
+frozen: number
 ): number {
-  return owned - frozen
+return owned - frozen
 }
 
 // lib/utils.test.ts
 import { calculateTicketBalance } from './utils'
 
 describe('calculateTicketBalance', () => {
-  it('calculates correct balance', () => {
-    const result = calculateTicketBalance(10, 3)
-    expect(result).toBe(7)
-  })
+it('calculates correct balance', () => {
+const result = calculateTicketBalance(10, 3)
+expect(result).toBe(7)
+})
 
-  it('handles zero values', () => {
-    expect(calculateTicketBalance(0, 0)).toBe(0)
-  })
+it('handles zero values', () => {
+expect(calculateTicketBalance(0, 0)).toBe(0)
+})
 
-  it('handles negative frozen (edge case)', () => {
-    // Edge case: frozen should never be negative, but test robustness
-    expect(calculateTicketBalance(10, -1)).toBe(11)
-  })
+it('handles negative frozen (edge case)', () => {
+// Edge case: frozen should never be negative, but test robustness
+expect(calculateTicketBalance(10, -1)).toBe(11)
+})
 })
 \`\`\`
 
@@ -486,46 +524,48 @@ import { render, screen } from '@testing-library/react'
 import ToyCard from './ToyCard'
 
 describe('ToyCard', () => {
-  const mockToy = {
-    id: '1',
-    name: 'LEGO Set',
-    description: 'Fun building blocks',
-    condition: 'like-new',
-    image_url: '/toy.jpg',
-  }
+const mockToy = {
+id: '1',
+name: 'LEGO Set',
+description: 'Fun building blocks',
+condition: 'like-new',
+image_url: '/toy.jpg',
+}
 
-  it('renders toy information', () => {
-    render(<ToyCard toy={mockToy} />)
-    expect(screen.getByText('LEGO Set')).toBeInTheDocument()
-    expect(screen.getByText('like-new')).toBeInTheDocument()
-  })
+it('renders toy information', () => {
+render(<ToyCard toy={mockToy} />)
+expect(screen.getByText('LEGO Set')).toBeInTheDocument()
+expect(screen.getByText('like-new')).toBeInTheDocument()
+})
 
-  it('calls onClick when clicked', () => {
-    const onClick = jest.fn()
-    render(<ToyCard toy={mockToy} onClick={onClick} />)
-    screen.getByRole('button').click()
-    expect(onClick).toHaveBeenCalled()
-  })
+it('calls onClick when clicked', () => {
+const onClick = jest.fn()
+render(<ToyCard toy={mockToy} onClick={onClick} />)
+screen.getByRole('button').click()
+expect(onClick).toHaveBeenCalled()
+})
 })
 \`\`\`
 
 ### Mocking
 
 #### Mocking Modules
+
 \`\`\`typescript
 jest.mock('@/lib/supabase', () => ({
-  supabase: {
-    from: jest.fn(),
-  },
+supabase: {
+from: jest.fn(),
+},
 }))
 \`\`\`
 
 #### Mocking Functions
+
 \`\`\`typescript
 const mockFetch = jest.fn()
 global.fetch = mockFetch
 mockFetch.mockResolvedValue(
-  Promise.resolve({ ok: true, json: () => ({ data: [] }) })
+Promise.resolve({ ok: true, json: () => ({ data: [] }) })
 )
 \`\`\`
 
@@ -533,19 +573,21 @@ mockFetch.mockResolvedValue(
 
 \`\`\`typescript
 describe('Async Operations', () => {
-  it('fetches toys', async () => {
-    const result = await fetchToys()
-    expect(result).toEqual([])
-  })
+it('fetches toys', async () => {
+const result = await fetchToys()
+expect(result).toEqual([])
+})
 })
 \`\`\`
 
 ## Playwright (E2E Tests)
 
 ### Setup
+
 Playwright configured in \`playwright.config.ts\`.
 
 Key settings:
+
 - Browser: Chromium (default)
 - Timeout: 30 seconds per test
 - Retries: 0 (local), 2 (CI)
@@ -554,10 +596,10 @@ Key settings:
 ### Running E2E Tests
 
 \`\`\`bash
-npx playwright test          # Run all E2E tests
-npx playwright test --ui     # Interactive UI mode
-npx playwright test --debug  # Debugger mode
-npx playwright test --headed  # Show browser window
+npx playwright test # Run all E2E tests
+npx playwright test --ui # Interactive UI mode
+npx playwright test --debug # Debugger mode
+npx playwright test --headed # Show browser window
 \`\`\`
 
 ### Writing E2E Tests
@@ -569,9 +611,9 @@ Example: User login flow
 import { test, expect } from '@playwright/test'
 
 test.describe('Login Flow', () => {
-  test('user can log in', async ({ page }) => {
-    // Navigate to login page
-    await page.goto('http://localhost:3000/login')
+test('user can log in', async ({ page }) => {
+// Navigate to login page
+await page.goto('http://localhost:3000/login')
 
     // Fill in credentials
     await page.fill('input[type="email"]', 'test@example.com')
@@ -583,7 +625,8 @@ test.describe('Login Flow', () => {
     // Wait for navigation and verify
     await page.waitForURL('**/dashboard')
     expect(page.url()).toContain('dashboard')
-  })
+
+})
 })
 \`\`\`
 
@@ -609,7 +652,7 @@ page.getByText('Click me')
 expect(locator).toBeVisible()
 expect(locator).toContainText('Hello')
 expect(page).toHaveTitle('Toy-for-Toy')
-expect(page).toHaveURL(/.*dashboard/)
+expect(page).toHaveURL(/.\*dashboard/)
 \`\`\`
 
 ## Coverage
@@ -625,11 +668,12 @@ Outputs to \`coverage/\` directory.
 ### Viewing Coverage
 
 \`\`\`bash
-open coverage/lcov-report/index.html  # Mac
-start coverage/lcov-report/index.html  # Windows
+open coverage/lcov-report/index.html # Mac
+start coverage/lcov-report/index.html # Windows
 \`\`\`
 
 ### Coverage Targets
+
 - **Statements:** 80%+
 - **Branches:** 75%+
 - **Functions:** 80%+
@@ -638,6 +682,7 @@ start coverage/lcov-report/index.html  # Windows
 ## CI Integration
 
 Tests run automatically in GitHub Actions:
+
 1. Lint check
 2. Type check
 3. Unit tests (Jest)
@@ -649,6 +694,7 @@ Tests must pass before PR merge.
 ## Best Practices
 
 ### What to Test
+
 ✅ Utility functions
 ✅ Business logic
 ✅ Component rendering
@@ -657,6 +703,7 @@ Tests must pass before PR merge.
 ✅ Error handling
 
 ### What NOT to Test
+
 ❌ Third-party libraries
 ❌ Implementation details
 ❌ Component internals
@@ -675,16 +722,17 @@ Example:
 
 \`\`\`typescript
 describe('ToyCard', () => {
-  // ARRANGE
-  const mockToy = { id: '1', name: 'LEGO' }
+// ARRANGE
+const mockToy = { id: '1', name: 'LEGO' }
 
-  it('displays toy name', () => {
-    // ACT
-    render(<ToyCard toy={mockToy} />)
+it('displays toy name', () => {
+// ACT
+render(<ToyCard toy={mockToy} />)
 
     // ASSERT
     expect(screen.getByText('LEGO')).toBeInTheDocument()
-  })
+
+})
 })
 \`\`\`
 
@@ -702,6 +750,7 @@ screen.logTestingPlaygroundURL() // Link to Testing Playground
 ### VS Code Integration
 
 Extensions:
+
 - "Jest" by orta
 - "Playwright Test for VSCode"
 
@@ -710,15 +759,18 @@ Right-click test file → Run test.
 ## Common Issues
 
 ### Tests Fail: "Cannot find module"
+
 - Run \`npm install\` to ensure dependencies installed
 - Check path aliases in \`tsconfig.json\`
 
 ### Tests Timeout
+
 - Increase timeout: \`jest.setTimeout(10000)\`
 - Check for unresolved promises
 - Verify mocks are working
 
 ### TypeScript Errors in Tests
+
 - Ensure test files are \`.test.ts\` or \`.test.tsx\`
 - Check tsconfig includes test directory
 
@@ -732,6 +784,7 @@ Right-click test file → Run test.
 ### Step 3: Create Database Documentation
 
 #### 3.1 Create `docs/DATABASE.md`
+
 ```markdown
 # Database Documentation
 
@@ -751,6 +804,7 @@ npx supabase start
 \`\`\`
 
 This starts:
+
 - PostgreSQL on \`localhost:5432\`
 - Supabase Studio on \`http://localhost:54323\`
 - API on \`http://localhost:54321\`
@@ -779,18 +833,18 @@ SUPABASE_SERVICE_ROLE_KEY=<service-role-key>
 npx supabase migration new <migration_name>
 \`\`\`
 
-This creates \`supabase/migrations/[timestamp]_<name>.sql\`.
+This creates \`supabase/migrations/[timestamp]\_<name>.sql\`.
 
 ### Writing Migrations
 
 \`\`\`sql
 -- Create new table
 CREATE TABLE toys (
-  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
-  user_id UUID NOT NULL REFERENCES auth.users(id),
-  name VARCHAR(255) NOT NULL,
-  description TEXT,
-  created_at TIMESTAMP DEFAULT NOW()
+id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+user_id UUID NOT NULL REFERENCES auth.users(id),
+name VARCHAR(255) NOT NULL,
+description TEXT,
+created_at TIMESTAMP DEFAULT NOW()
 );
 
 -- Add index for performance
@@ -801,12 +855,12 @@ CREATE INDEX toys_user_id_idx ON toys(user_id);
 
 Locally:
 \`\`\`bash
-npx supabase db reset  # Resets to latest migrations
+npx supabase db reset # Resets to latest migrations
 \`\`\`
 
 Remote (Vercel):
 \`\`\`bash
-npx supabase db push  # Push to remote project
+npx supabase db push # Push to remote project
 \`\`\`
 
 ## Row-Level Security (RLS)
@@ -820,11 +874,11 @@ ALTER TABLE toys ENABLE ROW LEVEL SECURITY;
 
 -- Policy: Users can select their own toys
 CREATE POLICY toys_select ON toys
-  FOR SELECT USING (auth.uid() = user_id);
+FOR SELECT USING (auth.uid() = user_id);
 
 -- Policy: Users can insert their own toys
 CREATE POLICY toys_insert ON toys
-  FOR INSERT WITH CHECK (auth.uid() = user_id);
+FOR INSERT WITH CHECK (auth.uid() = user_id);
 \`\`\`
 
 ### Test RLS
@@ -840,13 +894,13 @@ CREATE POLICY toys_insert ON toys
 \`\`\`sql
 INSERT INTO toys (user_id, name, description)
 VALUES (auth.uid(), 'LEGO Set', 'Fun building blocks')
-RETURNING *;
+RETURNING \*;
 \`\`\`
 
 ### Query Own Toys
 
 \`\`\`sql
-SELECT * FROM toys WHERE user_id = auth.uid();
+SELECT \* FROM toys WHERE user_id = auth.uid();
 \`\`\`
 
 ### Update Toy
@@ -854,7 +908,7 @@ SELECT * FROM toys WHERE user_id = auth.uid();
 \`\`\`sql
 UPDATE toys SET name = 'New Name'
 WHERE id = '123e4567-e89b-12d3-a456-426614174000'
-RETURNING *;
+RETURNING \*;
 \`\`\`
 
 ## Backup & Recovery
@@ -874,21 +928,25 @@ psql postgresql://user:pass@localhost/postgres < backup.sql
 ### Remote Backup
 
 Supabase Studio → Settings → Backups
+
 - Daily automatic backups (7-day retention)
 - Manual backup available anytime
 
 ## Troubleshooting
 
 ### "Connection refused"
+
 - Verify Supabase running: \`docker ps | grep supabase\`
 - Check environment variables
 - Restart: \`npx supabase stop && npx supabase start\`
 
 ### "RLS policy missing"
-- Check policy exists: \`SELECT * FROM pg_policies WHERE tablename = 'toys';\`
+
+- Check policy exists: \`SELECT \* FROM pg_policies WHERE tablename = 'toys';\`
 - Create missing policy
 
 ### "Permission denied"
+
 - Verify user authenticated
 - Check RLS policy allows operation
 - Review auth token validity
@@ -910,7 +968,7 @@ Use \`EXPLAIN ANALYZE\` to optimize slow queries:
 
 \`\`\`sql
 EXPLAIN ANALYZE
-SELECT * FROM toys WHERE user_id = auth.uid();
+SELECT \* FROM toys WHERE user_id = auth.uid();
 \`\`\`
 
 ## Resources
@@ -923,12 +981,14 @@ SELECT * FROM toys WHERE user_id = auth.uid();
 ### Step 4: Create Additional Documentation Files
 
 #### 4.1 Create `docs/API.md`
-```markdown
+
+`````markdown
 # API Documentation
 
 ## Overview
 
 Base URL:
+
 - Development: \`http://localhost:3000/api\`
 - Production: \`https://toys-for-toys.vercel.app/api\`
 
@@ -942,44 +1002,52 @@ Authorization: Bearer <jwt_token>
 
 ## Error Codes
 
-| Code | Meaning |
-|------|---------|
-| 200 | Success |
-| 201 | Created |
-| 400 | Bad Request |
-| 401 | Unauthorized |
-| 403 | Forbidden |
-| 404 | Not Found |
-| 500 | Server Error |
+| Code | Meaning      |
+| ---- | ------------ |
+| 200  | Success      |
+| 201  | Created      |
+| 400  | Bad Request  |
+| 401  | Unauthorized |
+| 403  | Forbidden    |
+| 404  | Not Found    |
+| 500  | Server Error |
 
 ## Endpoints
 
 ### Auth Endpoints
+
 (To be documented in Task 3)
 
 ### Toy Endpoints
+
 (To be documented in Task 4)
 
 ### Exchange Endpoints
+
 (To be documented in Task 4)
 
 More documentation in implementation tasks...
 \`\`\`
 
 #### 4.2 Create `docs/TROUBLESHOOTING.md`
-```markdown
+
+````markdown
 # Troubleshooting Guide
 
 ## Setup Issues
 
 ### "Cannot find module @/components"
+
 **Solution:**
+
 - Check path aliases in \`tsconfig.json\`
 - Run \`npm install\` to reinstall dependencies
 - Restart dev server
 
 ### "ENOENT: no such file or directory .env.local"
+
 **Solution:**
+
 - Create \`.env.local\` from \`.env.example\`
 - Copy values from Supabase and Firebase
 - Restart dev server
@@ -987,20 +1055,26 @@ More documentation in implementation tasks...
 ## Database Issues
 
 ### "Connection refused (localhost:5432)"
+
 **Solution:**
+
 - Start Supabase: \`npx supabase start\`
 - Check Docker running: \`docker ps\`
 - Verify environment variables
 
 ### "No such table: toys"
+
 **Solution:**
+
 - Run migrations: \`npx supabase db reset\`
 - Check migration files exist in \`supabase/migrations/\`
 
 ## Build Issues
 
 ### "npm run build fails"
+
 **Solution:**
+
 - Check TypeScript errors: \`npm run type-check\`
 - Fix linting errors: \`npm run lint -- --fix\`
 - Delete .next folder: \`rm -rf .next && npm run build\`
@@ -1008,7 +1082,9 @@ More documentation in implementation tasks...
 ## Testing Issues
 
 ### "Tests timeout"
+
 **Solution:**
+
 - Increase timeout: \`jest.setTimeout(10000)\`
 - Check for unresolved promises
 - Debug with: \`npm test -- --verbose\`
@@ -1016,7 +1092,9 @@ More documentation in implementation tasks...
 ## Deployment Issues
 
 ### "Vercel build fails"
+
 **Solution:**
+
 - Check GitHub Actions logs (CI must pass first)
 - Review Vercel build logs
 - Verify environment variables in Vercel dashboard
@@ -1024,7 +1102,9 @@ More documentation in implementation tasks...
 ## Performance Issues
 
 ### "Dev server slow"
+
 **Solution:**
+
 - Restart dev server
 - Clear Next.js cache: \`rm -rf .next\`
 - Check Chrome DevTools Profiler
@@ -1038,56 +1118,65 @@ More documentation in implementation tasks...
   - Steps to reproduce
   - Error messages
   - Environment (OS, Node version, etc.)
-\`\`\`
+    \`\`\`
 
 #### 4.3 Create `docs/ARCHITECTURE.md`
+
 ```markdown
 # Architecture Documentation
 
 ## System Overview
+```
+````
+`````
 
 ```
+
 Client (Web/Mobile)
-        ↓
+↓
 Next.js Frontend
-        ↓
+↓
 Supabase Backend
 ├─ PostgreSQL
 ├─ Auth
 ├─ Storage
 └─ Edge Functions
-        ↓
+↓
 External Services
 ├─ Firebase (Push Notifications)
 ├─ SendGrid (Email)
 └─ Google Ads
+
 ```
 
 ## Directory Structure
 
 \`\`\`
-/app              - Next.js App Router
-/components       - React UI components
-/lib              - Utilities, hooks, constants
-/supabase         - Database schema & migrations
-/tests            - Test files
-/docs             - Documentation
-/public           - Static assets
+/app - Next.js App Router
+/components - React UI components
+/lib - Utilities, hooks, constants
+/supabase - Database schema & migrations
+/tests - Test files
+/docs - Documentation
+/public - Static assets
 \`\`\`
 
 ## Technology Decisions
 
 ### Frontend: Next.js + React
+
 - Server-side rendering for performance
 - Built-in API routes
 - Vercel deployment integration
 
 ### Database: PostgreSQL (Supabase)
+
 - Relational data model
 - Row-Level Security
 - Real-time subscriptions
 
 ### Authentication: Supabase Auth
+
 - JWT-based
 - Built-in email confirmation
 - Password reset flows
@@ -1111,7 +1200,8 @@ External Services
 \`\`\`
 
 #### 4.4 Create `docs/SETUP.md`
-```markdown
+
+````markdown
 # Development Setup Guide
 
 ## Prerequisites
@@ -1144,6 +1234,7 @@ cp .env.example .env.local
 \`\`\`
 
 Then edit \`.env.local\` with:
+
 - Supabase URL and keys (from Task 1.2)
 - Firebase config (from Task 1.3)
 
@@ -1166,10 +1257,10 @@ Visit \`http://localhost:3000\` in browser.
 ### 6. Verify Setup
 
 \`\`\`bash
-npm run lint        # Check linting (should pass)
-npm run type-check  # Check TypeScript (should pass)
-npm test            # Run tests
-npm run build       # Build for production
+npm run lint # Check linting (should pass)
+npm run type-check # Check TypeScript (should pass)
+npm test # Run tests
+npm run build # Build for production
 \`\`\`
 
 All should complete without errors.
@@ -1177,6 +1268,7 @@ All should complete without errors.
 ## IDE Setup (VS Code)
 
 Recommended extensions:
+
 - ES Lint
 - Prettier - Code formatter
 - Jest
@@ -1188,6 +1280,7 @@ See [TROUBLESHOOTING.md](TROUBLESHOOTING.md) for common issues.
 \`\`\`
 
 #### 4.5 Create `docs/CODE_PATTERNS.md`
+
 ```markdown
 # Code Patterns & Examples
 
@@ -1198,17 +1291,17 @@ import { supabase } from '@/lib/supabase'
 
 // Fetch data
 const { data, error } = await supabase
-  .from('toys')
-  .select('*')
-  .eq('user_id', userId)
+.from('toys')
+.select('\*')
+.eq('user_id', userId)
 
 if (error) throw error
 console.log(data)
 
 // Insert data
 await supabase
-  .from('toys')
-  .insert({ user_id: userId, name: 'LEGO' })
+.from('toys')
+.insert({ user_id: userId, name: 'LEGO' })
 \`\`\`
 
 ## React Hooks
@@ -1216,21 +1309,21 @@ await supabase
 \`\`\`typescript
 // Fetching data
 const { data: toys, loading } = useAsyncData(
-  async () => {
-    const { data, error } = await supabase
-      .from('toys')
-      .select('*')
-    return data
-  },
-  []
+async () => {
+const { data, error } = await supabase
+.from('toys')
+.select('\*')
+return data
+},
+[]
 )
 
 // State management
 import { create } from 'zustand'
 
 const useStore = create((set) => ({
-  count: 0,
-  increment: () => set((state) => ({ count: state.count + 1 })),
+count: 0,
+increment: () => set((state) => ({ count: state.count + 1 })),
 }))
 \`\`\`
 
@@ -1241,21 +1334,21 @@ import { useForm } from 'react-hook-form'
 import { z } from 'zod'
 
 const schema = z.object({
-  name: z.string().min(3),
-  email: z.string().email(),
+name: z.string().min(3),
+email: z.string().email(),
 })
 
 export default function MyForm() {
-  const { register, handleSubmit, errors } = useForm({
-    resolver: zodResolver(schema),
-  })
+const { register, handleSubmit, errors } = useForm({
+resolver: zodResolver(schema),
+})
 
-  return (
-    <form onSubmit={handleSubmit(onSubmit)}>
-      <input {...register('name')} />
-      {errors.name && <span>{errors.name.message}</span>}
-    </form>
-  )
+return (
+<form onSubmit={handleSubmit(onSubmit)}>
+<input {...register('name')} />
+{errors.name && <span>{errors.name.message}</span>}
+</form>
+)
 }
 \`\`\`
 
@@ -1263,15 +1356,15 @@ export default function MyForm() {
 
 \`\`\`typescript
 try {
-  const { data, error } = await supabase
-    .from('toys')
-    .select('*')
+const { data, error } = await supabase
+.from('toys')
+.select('\*')
 
-  if (error) throw error
-  return data
+if (error) throw error
+return data
 } catch (error) {
-  console.error('Failed to fetch toys:', error)
-  throw new Error('Could not load toys. Please try again.')
+console.error('Failed to fetch toys:', error)
+throw new Error('Could not load toys. Please try again.')
 }
 \`\`\`
 
@@ -1287,6 +1380,7 @@ Update the main README with documentation links and quick start.
 ## Testing Checklist
 
 ### File Creation
+
 - [ ] CONTRIBUTING.md exists and is comprehensive
 - [ ] tests/README.md exists with examples
 - [ ] docs/DATABASE.md explains schema and migrations
@@ -1299,6 +1393,7 @@ Update the main README with documentation links and quick start.
 - [ ] README.md updated with links and badges
 
 ### Content Quality
+
 - [ ] All markdown files are valid (no syntax errors)
 - [ ] Links between docs are working
 - [ ] Examples are accurate and runnable
@@ -1307,6 +1402,7 @@ Update the main README with documentation links and quick start.
 - [ ] Code examples compile without errors
 
 ### Completeness
+
 - [ ] Setup instructions work for new developers
 - [ ] Testing guide covers Jest and Playwright
 - [ ] Database guide explains migrations and RLS
@@ -1337,12 +1433,14 @@ Update the main README with documentation links and quick start.
 ## Success Criteria
 
 ### Objective Metrics
+
 - ✅ All documentation files created
 - ✅ All markdown files valid (no syntax errors)
 - ✅ 80%+ of common issues covered in troubleshooting
 - ✅ Setup guide successfully followed by 2+ new developers
 
 ### Subjective Metrics
+
 - ✅ Documentation is clear and easy to follow
 - ✅ Examples are practical and accurate
 - ✅ Contributing guide encourages participation
@@ -1353,34 +1451,38 @@ Update the main README with documentation links and quick start.
 ## Dependencies & Blockers
 
 ### Unblocks
+
 - Easier onboarding of new contributors
 - Faster development with clear patterns
 - Better quality with testing guidance
 - Reduced support burden
 
 ### Blocked By
+
 - Task 1.1-1.5 (setup complete to document)
 
 ---
 
 ## Deliverables
-
 ```
+````
+
 toys-for-toys/
-├── CONTRIBUTING.md                 ✅ Created
+├── CONTRIBUTING.md ✅ Created
 ├── docs/
-│   ├── SETUP.md                    ✅ Created
-│   ├── DATABASE.md                 ✅ Created
-│   ├── API.md                      ✅ Created
-│   ├── ARCHITECTURE.md             ✅ Created
-│   ├── TROUBLESHOOTING.md          ✅ Created
-│   ├── CODE_PATTERNS.md            ✅ Created
-│   └── INDEX.md                    ✅ Created (optional)
+│ ├── SETUP.md ✅ Created
+│ ├── DATABASE.md ✅ Created
+│ ├── API.md ✅ Created
+│ ├── ARCHITECTURE.md ✅ Created
+│ ├── TROUBLESHOOTING.md ✅ Created
+│ ├── CODE_PATTERNS.md ✅ Created
+│ └── INDEX.md ✅ Created (optional)
 ├── tests/
-│   └── README.md                   ✅ Created
+│ └── README.md ✅ Created
 ├── .github/
-│   └── pull_request_template.md    ✅ Created
-└── README.md                       ✅ Updated
+│ └── pull_request_template.md ✅ Created
+└── README.md ✅ Updated
+
 ```
 
 ---
@@ -1410,3 +1512,4 @@ toys-for-toys/
 **Status:** Ready to implement
 **Last Updated:** 2025-11-13
 **Next Epic:** Epic 2 - Database Schema & Migrations
+```

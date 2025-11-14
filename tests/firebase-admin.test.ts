@@ -72,7 +72,7 @@ describe('Firebase Admin SDK Initialization', () => {
           },
           projectId: mockServiceAccount.project_id,
         },
-        'admin',
+        'admin'
       );
     }).not.toThrow();
 
@@ -104,9 +104,7 @@ describe('Firebase Admin SDK Initialization', () => {
       'token_uri',
     ];
 
-    const serviceAccount = JSON.parse(
-      process.env.FIREBASE_ADMIN_SDK_KEY || '{}',
-    );
+    const serviceAccount = JSON.parse(process.env.FIREBASE_ADMIN_SDK_KEY || '{}');
 
     requiredFields.forEach((field) => {
       expect(serviceAccount).toHaveProperty(field);
@@ -116,26 +114,20 @@ describe('Firebase Admin SDK Initialization', () => {
   });
 
   test('service account type should be "service_account"', () => {
-    const serviceAccount = JSON.parse(
-      process.env.FIREBASE_ADMIN_SDK_KEY || '{}',
-    );
+    const serviceAccount = JSON.parse(process.env.FIREBASE_ADMIN_SDK_KEY || '{}');
 
     expect(serviceAccount.type).toBe('service_account');
   });
 
   test('service account should have valid project_id', () => {
-    const serviceAccount = JSON.parse(
-      process.env.FIREBASE_ADMIN_SDK_KEY || '{}',
-    );
+    const serviceAccount = JSON.parse(process.env.FIREBASE_ADMIN_SDK_KEY || '{}');
 
     expect(typeof serviceAccount.project_id).toBe('string');
     expect(serviceAccount.project_id.length).toBeGreaterThan(0);
   });
 
   test('service account should have properly formatted private_key', () => {
-    const serviceAccount = JSON.parse(
-      process.env.FIREBASE_ADMIN_SDK_KEY || '{}',
-    );
+    const serviceAccount = JSON.parse(process.env.FIREBASE_ADMIN_SDK_KEY || '{}');
 
     expect(serviceAccount.private_key).toBeDefined();
     expect(serviceAccount.private_key).toContain('-----BEGIN');
@@ -144,9 +136,7 @@ describe('Firebase Admin SDK Initialization', () => {
   });
 
   test('service account should have valid client_email', () => {
-    const serviceAccount = JSON.parse(
-      process.env.FIREBASE_ADMIN_SDK_KEY || '{}',
-    );
+    const serviceAccount = JSON.parse(process.env.FIREBASE_ADMIN_SDK_KEY || '{}');
 
     expect(serviceAccount.client_email).toBeDefined();
     expect(serviceAccount.client_email).toContain('@');
@@ -227,7 +217,7 @@ describe('Firebase Admin SDK Initialization', () => {
         credential: { getAccessToken: jest.fn() },
         projectId: mockServiceAccount.project_id,
       },
-      'admin',
+      'admin'
     );
 
     expect(initializeApp).toHaveBeenCalledTimes(1);

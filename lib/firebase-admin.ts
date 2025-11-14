@@ -100,9 +100,7 @@ function getServiceAccount(): ServiceAccount {
 
     for (const field of requiredFields) {
       if (!serviceAccount[field as keyof ServiceAccount]) {
-        throw new Error(
-          `Service account missing required field: ${field}`
-        );
+        throw new Error(`Service account missing required field: ${field}`);
       }
     }
 

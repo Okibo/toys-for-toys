@@ -10,12 +10,8 @@ export default function Home(): React.ReactNode {
             The Eco-Friendly, Cashless Toy Exchange Platform. Give a toy, get a ticket, take a toy.
           </p>
           <div className="mt-10 flex items-center justify-center gap-4">
-            <button className="btn-primary">
-              Get Started
-            </button>
-            <button className="btn-secondary">
-              Learn More
-            </button>
+            <button className="btn-primary">Get Started</button>
+            <button className="btn-secondary">Learn More</button>
           </div>
         </div>
       </div>

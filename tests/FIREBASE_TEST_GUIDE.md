@@ -20,6 +20,7 @@ tests/
 ## Running Tests
 
 ### Quick Start
+
 ```bash
 # Run all Firebase tests
 npm test -- tests/firebase --no-coverage
@@ -35,6 +36,7 @@ npm test -- tests/firebase --watch
 ```
 
 ### Debugging a Specific Test
+
 ```bash
 # Run only one test suite
 npm test -- tests/firebase-env.test.ts
@@ -53,12 +55,14 @@ npm test -- --verbose
 Tests expect these implementations that don't exist yet:
 
 ### Missing Implementations
+
 1. `lib/firebase.ts` - Client initialization
 2. `lib/firebase-admin.ts` - Admin SDK & messaging
 3. Firebase packages not installed
 4. Environment variables not configured
 
 ### Expected Failure Message
+
 ```
 Cannot find module 'firebase/app'
 Cannot find module '@/lib/firebase'
@@ -70,9 +74,11 @@ Cannot find module '@/lib/firebase-admin'
 ## What Each Test File Validates
 
 ### firebase.test.ts
+
 **Validates client-side Firebase setup**
 
 Test examples:
+
 ```typescript
 // App initialization
 ✓ should initialize Firebase app without throwing errors
@@ -88,9 +94,11 @@ Test examples:
 ```
 
 ### firebase-admin.test.ts
+
 **Validates server-side Firebase Admin setup**
 
 Test examples:
+
 ```typescript
 // Admin initialization
 ✓ should initialize Firebase Admin app
@@ -106,9 +114,11 @@ Test examples:
 ```
 
 ### firebase-messaging.test.ts
+
 **Validates message handling**
 
 Test examples:
+
 ```typescript
 // Subscriptions
 ✓ should handle foreground messages with onMessage
@@ -124,9 +134,11 @@ Test examples:
 ```
 
 ### firebase-env.test.ts
+
 **Validates environment variables**
 
 Test examples:
+
 ```typescript
 // Client variables
 ✓ NEXT_PUBLIC_FIREBASE_PROJECT_ID should be defined
@@ -143,9 +155,11 @@ Test examples:
 ```
 
 ### firebase-security.test.ts
+
 **Validates security best practices**
 
 Test examples:
+
 ```typescript
 // Credentials protection
 ✓ FIREBASE_ADMIN_SDK_KEY should not use NEXT_PUBLIC_ prefix
@@ -167,10 +181,12 @@ Test examples:
 Use this to track implementation progress:
 
 ### 1. Install Firebase Packages
+
 - [ ] Run `npm install firebase firebase-admin`
 - [ ] Verify packages in package.json
 
 ### 2. Create lib/firebase.ts (Client)
+
 ```typescript
 // Should export:
 export const app: FirebaseApp;
@@ -184,6 +200,7 @@ export const messaging: Messaging;
 ```
 
 ### 3. Create lib/firebase-admin.ts (Server)
+
 ```typescript
 // Should export:
 export const adminApp: FirebaseAdminApp;
@@ -197,7 +214,9 @@ export const sendPushNotification: (message) => Promise<string>;
 ```
 
 ### 4. Configure Environment Variables
+
 In `.env.local`:
+
 ```bash
 # Client-side (safe for browser)
 NEXT_PUBLIC_FIREBASE_PROJECT_ID=your-project-id
@@ -210,12 +229,14 @@ FIREBASE_ADMIN_SDK_KEY={...service account JSON...}
 ```
 
 ### 5. Implement Messaging Functions
+
 - [ ] Create message subscription helper in `lib/firebase-messaging.ts`
 - [ ] Handle foreground messages
 - [ ] Token retrieval and validation
 - [ ] Service worker registration
 
 ### 6. Run Tests
+
 ```bash
 npm test -- tests/firebase --no-coverage
 # All 136 tests should pass (GREEN phase)
@@ -226,6 +247,7 @@ npm test -- tests/firebase --no-coverage
 ## Expected Test Results After Implementation
 
 ### Once Fully Implemented
+
 ```
 PASS tests/firebase.test.ts (11 tests)
 PASS tests/firebase-admin.test.ts (19 tests)
@@ -243,6 +265,7 @@ Time:        ~2-3 seconds
 ## Common Test Patterns Used
 
 ### Environment Variable Testing
+
 ```typescript
 beforeEach(() => {
   process.env.NEXT_PUBLIC_FIREBASE_API_KEY = 'test-key';
@@ -258,6 +281,7 @@ test('should validate API key', () => {
 ```
 
 ### Mocking Firebase
+
 ```typescript
 jest.mock('firebase/app', () => ({
   initializeApp: jest.fn(),
@@ -271,6 +295,7 @@ test('should initialize app', () => {
 ```
 
 ### Async Testing
+
 ```typescript
 test('should request device token', async () => {
   const token = await getToken(messaging, { vapidKey: 'key' });
@@ -283,18 +308,21 @@ test('should request device token', async () => {
 ## Test Coverage Goals
 
 ### Current Coverage (Red Phase)
+
 - Statement: 0% (no implementation)
 - Branch: 0% (no implementation)
 - Function: 0% (no implementation)
 - Line: 0% (no implementation)
 
 ### Target Coverage (Green Phase)
+
 - Statement: 85%+
 - Branch: 80%+
 - Function: 90%+
 - Line: 85%+
 
 ### Generate Coverage Report
+
 ```bash
 npm test -- tests/firebase --coverage
 ```
@@ -304,24 +332,30 @@ npm test -- tests/firebase --coverage
 ## Troubleshooting
 
 ### Firebase Modules Not Found
+
 **Problem**: `Cannot find module 'firebase/app'`
 **Solution**:
+
 ```bash
 npm install firebase firebase-admin
 npm test -- tests/firebase --no-coverage
 ```
 
 ### Environment Variables Not Set
+
 **Problem**: `NEXT_PUBLIC_FIREBASE_API_KEY should be defined`
 **Solution**: Create `.env.local` with Firebase config
 
 ### Service Worker Errors
+
 **Problem**: Tests fail with service worker not available
 **Solution**: Tests mock service worker - likely implementation issue
 
 ### Tests Pass But App Doesn't Initialize
+
 **Problem**: All tests pass but Firebase not working in app
 **Solution**:
+
 - Verify `lib/firebase.ts` is correctly exporting
 - Check component imports use correct path `@/lib/firebase`
 - Verify `.env.local` matches test expectations
@@ -332,8 +366,8 @@ npm test -- tests/firebase --no-coverage
 
 All tests enforce these security patterns:
 
-1. **NEXT_PUBLIC_ Prefix Rule**
-   - Only client-safe values use NEXT_PUBLIC_
+1. **NEXT*PUBLIC* Prefix Rule**
+   - Only client-safe values use NEXT*PUBLIC*
    - Admin SDK key NEVER has this prefix
 
 2. **Environment-Only Credentials**
@@ -407,6 +441,7 @@ These Firebase functions will be used by:
 **Status**: RED PHASE (Tests Failing - Ready for Implementation)
 
 When implementation is complete, run:
+
 ```bash
 npm test -- tests/firebase --coverage
 ```

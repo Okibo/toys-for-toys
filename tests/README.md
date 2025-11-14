@@ -5,6 +5,7 @@
 The project uses **Jest** for unit and integration testing with TypeScript support via `ts-jest`.
 
 ### Current Jest Setup
+
 - **Test environment**: Node.js
 - **TypeScript support**: Enabled via `ts-jest` preset
 - **Path aliases**: Configured for `@/components`, `@/lib`, `@/app`, `@/supabase`, `@/pages`, and `@/public`
@@ -13,6 +14,7 @@ The project uses **Jest** for unit and integration testing with TypeScript suppo
 - **Config file**: `jest.config.js`
 
 ### Running Jest Tests Locally
+
 ```bash
 npm test                    # Run all tests
 npm test -- --watch        # Run tests in watch mode (re-run on file changes)
@@ -44,6 +46,7 @@ test.describe('Authentication Flow', () => {
 ```
 
 ### Key Playwright Patterns
+
 - Use `test.describe()` to group related tests
 - Use `await page.goto()` to navigate to pages
 - Use selectors (`page.fill()`, `page.click()`, `page.locator()`) to interact with elements
@@ -53,11 +56,13 @@ test.describe('Authentication Flow', () => {
 ### Running Playwright Tests Locally
 
 First, ensure the dev server is running:
+
 ```bash
 npm run dev              # Start Next.js dev server (separate terminal)
 ```
 
 Then run Playwright tests:
+
 ```bash
 npx playwright test                     # Run all E2E tests
 npx playwright test --ui                # Run in UI mode (interactive)
@@ -69,12 +74,14 @@ npx playwright test --debug             # Debug mode (pause on each step)
 ## How to Run Tests
 
 ### Running All Tests
+
 ```bash
 npm test                # Run all Jest tests
 npm run test            # Alternative (same as above)
 ```
 
 ### Running Specific Test Files
+
 ```bash
 npm test -- config.test.ts              # Run single test file
 npm test -- firebase-admin.test.ts      # Run Firebase admin tests
@@ -82,6 +89,7 @@ npm test -- --testPathPattern="firebase"  # Run tests matching pattern
 ```
 
 ### Running with Coverage
+
 ```bash
 npm test -- --coverage                  # Generate coverage report
 npm test -- --coverage --silent         # Coverage report without verbose output
@@ -89,6 +97,7 @@ npm test -- --coverage --collectCoverageFrom="lib/**"  # Coverage for specific d
 ```
 
 ### Watch Mode (Development)
+
 ```bash
 npm test -- --watch                     # Re-run tests on file changes
 npm test -- --watch --coverage          # Watch mode with coverage
@@ -97,12 +106,14 @@ npm test -- --watch --coverage          # Watch mode with coverage
 ## Coverage Targets
 
 ### Current Coverage Goals
+
 - **Statements**: 80%+
 - **Branches**: 80%+
 - **Functions**: 80%+
 - **Lines**: 80%+
 
 These targets apply to the following directories:
+
 - `app/` - Next.js application layer
 - `components/` - React UI components
 - `lib/` - Utility functions and hooks
@@ -117,6 +128,7 @@ npm test -- --coverage    # Generate coverage report in terminal
 ```
 
 The output shows:
+
 - **File**: Module being tested
 - **Stmts**: Statement coverage percentage
 - **Branch**: Branch coverage percentage
@@ -125,12 +137,14 @@ The output shows:
 - **Uncovered Line #s**: Specific lines lacking test coverage
 
 To view an HTML coverage report (if configured):
+
 ```bash
 # Open coverage/lcov-report/index.html in your browser
 open coverage/lcov-report/index.html
 ```
 
 ### Coverage Strategy
+
 - Focus on high-value code paths first (business logic, API routes, utilities)
 - Aim for 80%+ coverage on critical components (authentication, ticket economy, exchanges)
 - Use coverage reports to identify untested edge cases and error handling

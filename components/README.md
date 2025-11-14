@@ -217,6 +217,7 @@ All components use **Tailwind CSS** for styling. They include:
 ## Testing Components
 
 Components are ready for testing with:
+
 - Jest for unit tests
 - React Testing Library for component testing
 - Playwright for E2E tests

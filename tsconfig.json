@@ -2,11 +2,7 @@
   "compilerOptions": {
     "target": "ES2020",
     "useDefineForClassFields": true,
-    "lib": [
-      "ES2020",
-      "DOM",
-      "DOM.Iterable"
-    ],
+    "lib": ["ES2020", "DOM", "DOM.Iterable"],
     "module": "ESNext",
     "skipLibCheck": true,
     "esModuleInterop": true,
@@ -40,42 +36,18 @@
     "incremental": true,
     "baseUrl": ".",
     "paths": {
-      "@/components/*": [
-        "./components/*"
-      ],
-      "@/components": [
-        "./components"
-      ],
-      "@/lib/*": [
-        "./lib/*"
-      ],
-      "@/lib": [
-        "./lib"
-      ],
-      "@/app/*": [
-        "./app/*"
-      ],
-      "@/app": [
-        "./app"
-      ],
-      "@/supabase/*": [
-        "./supabase/*"
-      ],
-      "@/supabase": [
-        "./supabase"
-      ],
-      "@/public/*": [
-        "./public/*"
-      ],
-      "@/public": [
-        "./public"
-      ],
-      "@/tests/*": [
-        "./tests/*"
-      ],
-      "@/tests": [
-        "./tests"
-      ]
+      "@/components/*": ["./components/*"],
+      "@/components": ["./components"],
+      "@/lib/*": ["./lib/*"],
+      "@/lib": ["./lib"],
+      "@/app/*": ["./app/*"],
+      "@/app": ["./app"],
+      "@/supabase/*": ["./supabase/*"],
+      "@/supabase": ["./supabase"],
+      "@/public/*": ["./public/*"],
+      "@/public": ["./public"],
+      "@/tests/*": ["./tests/*"],
+      "@/tests": ["./tests"]
     },
     "plugins": [
       {
@@ -83,17 +55,6 @@
       }
     ]
   },
-  "include": [
-    "next-env.d.ts",
-    "**/*.ts",
-    "**/*.tsx",
-    ".next/types/**/*.ts"
-  ],
-  "exclude": [
-    "node_modules",
-    ".next",
-    "dist",
-    "out",
-    "build"
-  ]
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
+  "exclude": ["node_modules", ".next", "dist", "out", "build"]
 }

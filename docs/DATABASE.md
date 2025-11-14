@@ -9,6 +9,7 @@ npx supabase start
 ```
 
 This command:
+
 - Starts a local PostgreSQL database
 - Initializes Supabase services (Auth, Realtime, Storage)
 - Outputs connection credentials to the terminal
@@ -24,10 +25,12 @@ http://localhost:54323
 ```
 
 **Default credentials:**
+
 - Email: `supabase`
 - Password: `postgres`
 
 Studio provides:
+
 - Database browser (tables, schemas, functions)
 - Query editor for SQL
 - Authentication user management
@@ -79,6 +82,7 @@ npx supabase db push
 ```
 
 This:
+
 - Reads migration files from `supabase/migrations/`
 - Applies new migrations in order
 - Updates the local schema
@@ -94,6 +98,7 @@ npx supabase db push --remote
 ```
 
 **Before pushing:**
+
 1. Ensure migration has been tested locally
 2. Commit migration file to git
 3. Have appropriate database credentials (service role key)
@@ -109,12 +114,14 @@ This applies migrations to your production/staging Supabase project.
 Row-Level Security (RLS) in PostgreSQL allows fine-grained access control. Supabase automatically enforces RLS policies based on the authenticated user's JWT token.
 
 **Key Concepts:**
+
 - **Policy**: A rule that defines which rows a user can SELECT, INSERT, UPDATE, or DELETE
 - **Check Expression**: SQL condition evaluated per row (e.g., `auth.uid() = user_id`)
 - **Using Clause**: Condition for SELECT/UPDATE/DELETE operations
 - **With Check Clause**: Condition for INSERT/UPDATE operations
 
 **Example Policy:**
+
 ```sql
 -- Users can only view their own toys
 CREATE POLICY "Users can view own toys" ON toys
@@ -125,11 +132,13 @@ CREATE POLICY "Users can view own toys" ON toys
 ### Developing RLS Policies Locally
 
 1. **Enable RLS on your table:**
+
    ```sql
    ALTER TABLE toys ENABLE ROW LEVEL SECURITY;
    ```
 
 2. **Create a policy in a migration:**
+
    ```sql
    CREATE POLICY "Users can view own toys" ON toys
      FOR SELECT
@@ -155,37 +164,36 @@ CREATE POLICY "Users can view own toys" ON toys
 ### Testing RLS Policies
 
 **Via Supabase Client (JavaScript):**
+
 ```typescript
 // Test as authenticated user
-const { data, error } = await supabase
-  .from('toys')
-  .select('*');
+const { data, error } = await supabase.from('toys').select('*');
 // Only returns rows where auth.uid() = user_id
 
 // Test INSERT
-const { data, error } = await supabase
-  .from('toys')
-  .insert({ title: 'My Toy', user_id: userId });
+const { data, error } = await supabase.from('toys').insert({ title: 'My Toy', user_id: userId });
 // Success only if policy allows (auth.uid() = user_id)
 ```
 
 **Common RLS Patterns:**
 
-| Use Case | Policy |
-|----------|--------|
-| Users see only their data | `auth.uid() = user_id` |
-| Public read, auth write | `FOR SELECT: true`, `FOR INSERT: auth.uid() = user_id` |
-| Admin bypass | `auth.jwt() ->> 'role' = 'admin'` or `auth.uid() = admin_uid` |
-| Shared access via group | `user_id = auth.uid() OR toy_id IN (SELECT toy_id FROM shared_toys WHERE user_id = auth.uid())` |
+| Use Case                  | Policy                                                                                          |
+| ------------------------- | ----------------------------------------------------------------------------------------------- |
+| Users see only their data | `auth.uid() = user_id`                                                                          |
+| Public read, auth write   | `FOR SELECT: true`, `FOR INSERT: auth.uid() = user_id`                                          |
+| Admin bypass              | `auth.jwt() ->> 'role' = 'admin'` or `auth.uid() = admin_uid`                                   |
+| Shared access via group   | `user_id = auth.uid() OR toy_id IN (SELECT toy_id FROM shared_toys WHERE user_id = auth.uid())` |
 
 ### Debugging RLS Issues
 
 **If data is missing after adding RLS:**
+
 - Check policy exists: `SELECT * FROM pg_policies WHERE tablename = 'toys';`
 - Verify policy condition logic
 - Confirm RLS is enabled: `SELECT * FROM information_schema.tables WHERE tablename = 'toys' AND row_security;`
 
 **If operations fail unexpectedly:**
+
 - Check error message for "permission denied" or "row-level security"
 - Verify `auth.uid()` matches `user_id` in your test data
 - Test with explicit SQL: `SET local "request.jwt.claims" = '{"sub":"your-user-id"}';`
@@ -194,11 +202,11 @@ const { data, error } = await supabase
 
 ## Quick Reference
 
-| Task | Command |
-|------|---------|
-| Start local DB | `npx supabase start` |
-| Stop local DB | `npx supabase stop` |
-| Create migration | `npx supabase migration new <name>` |
-| Apply migrations locally | `npx supabase db push` |
-| Push to production | `npx supabase db push --remote` |
-| Access Studio locally | `http://localhost:54323` |
+| Task                     | Command                             |
+| ------------------------ | ----------------------------------- |
+| Start local DB           | `npx supabase start`                |
+| Stop local DB            | `npx supabase stop`                 |
+| Create migration         | `npx supabase migration new <name>` |
+| Apply migrations locally | `npx supabase db push`              |
+| Push to production       | `npx supabase db push --remote`     |
+| Access Studio locally    | `http://localhost:54323`            |

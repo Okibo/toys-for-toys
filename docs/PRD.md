@@ -1,4 +1,5 @@
 # Product Requirements Document: Toy-for-Toy
+
 ## Cashless, GDPR-Compliant Toy Exchange Platform
 
 **Document Version:** 1.0
@@ -13,9 +14,11 @@
 Toy-for-Toy is a mobile and web-based platform that enables parents to exchange children's toys through a closed-loop, ticket-based economy system with zero monetary transactions between users. The platform monetizes through targeted advertising and rewarded mini-games while maintaining GDPR compliance for child data protection.
 
 ### Vision
+
 To create a sustainable, eco-friendly, and economically fair toy-sharing ecosystem that reduces waste, extends toy lifecycles, and provides children with access to diverse toys without creating parental financial burden or platform dependency on user payments.
 
 ### Primary Business Goals
+
 1. **Build a self-sustaining, ad-supported marketplace** with 10,000+ active monthly users within 12 months
 2. **Achieve GDPR compliance certification** ensuring legal operation across EU markets
 3. **Generate predictable ad revenue** of EUR 15K-25K monthly at scale (from display ads and rewarded video completion rates)
@@ -23,11 +26,13 @@ To create a sustainable, eco-friendly, and economically fair toy-sharing ecosyst
 5. **Establish trusted toy exchange community** with 95%+ positive user feedback and <2% fraud/dispute rate
 
 ### Target Market
+
 - **Primary Users:** Parents aged 30-55 in EU (initially Poland, expanding to Germany and English-speaking regions)
 - **Secondary Users:** Children aged 4-14 (as participants, not direct users)
 - **Segment Focus:** Eco-conscious, cost-aware families; parents seeking sustainable consumption alternatives
 
 ### Success Metrics (MVP Phase)
+
 - 5,000 active monthly users (first 6 months)
 - 2,000 completed exchanges per month (steady state)
 - 40%+ monthly active user engagement rate
@@ -40,19 +45,23 @@ To create a sustainable, eco-friendly, and economically fair toy-sharing ecosyst
 ## Product Overview
 
 ### Problem Statement
+
 1. **Economic Barrier:** Parents struggle with rising toy costs; children lose interest quickly, creating waste
 2. **Storage & Waste:** Homes accumulate unused toys; 90% end up in landfills annually
 3. **Fairness & Trust:** Traditional gift economies lack mechanism to track "fairness" of exchanges
 4. **Child Privacy Risk:** Most toy-sharing platforms lack robust child data protection
 
 ### Product Solution
+
 Toy-for-Toy solves these through:
+
 - **Ticket Economy:** Fair 1:1 exchange model removes monetary value, eliminating bargaining friction
 - **Closed Loop System:** No cash out; tickets stay in ecosystem, creating sustainable engagement cycle
 - **Smart Matching:** Algorithmic pairing of toy availability with wishlist preferences reduces friction
 - **Parental Controls:** Built-in consent, visibility, and data deletion workflows for GDPR compliance
 
 ### Platform Positioning
+
 - **Not a marketplace:** No buying/selling of toys for money
 - **Not a gift economy:** Expects reciprocity through 1:1 ticket system
 - **Not a storage service:** Toys must be active (listed or exchanged) to remain on platform
@@ -63,12 +72,15 @@ Toy-for-Toy solves these through:
 ## User Personas
 
 ### Primary User: Elena (Parent, 38)
+
 **Goals:**
+
 - Find toys her children enjoy without large spending
 - Reduce household clutter sustainably
 - Trust that exchanges are fair and delivery is secure
 
 **Pain Points:**
+
 - Overwhelmed with unused toys at home
 - Concerned about child safety in online exchanges
 - Skeptical of marketplace fairness for toy trading
@@ -76,12 +88,15 @@ Toy-for-Toy solves these through:
 **Engagement Pattern:** 3-4 times per week; exchanges toys for different age/interest groups
 
 ### Secondary User: Marcus (Parent/Tech-Savvy, 42)
+
 **Goals:**
+
 - Teach children environmental responsibility
 - Access to premium/niche toys through equal exchange
 - Minimize shipping costs and logistical complexity
 
 **Pain Points:**
+
 - Frustrated with damaged toys from shipping
 - Concerns about meeting sellers in person
 - Complexity of managing multiple exchanges simultaneously
@@ -89,12 +104,15 @@ Toy-for-Toy solves these through:
 **Engagement Pattern:** 1-2 times per week; strategic planner of exchanges
 
 ### Tertiary User: Sofia (Child, 7)
+
 **Goals:**
+
 - Play with diverse toys without parent buying new ones
 - Earn rewards through mini-games (gamification engagement)
 - Share toy preferences with parents
 
 **Pain Points:**
+
 - Can't directly control toy selection (parental mediation)
 - Wants immediate gratification (shipping delays frustrate)
 - Limited understanding of exchange fairness
@@ -108,12 +126,15 @@ Toy-for-Toy solves these through:
 ### Epic 1: User Onboarding & Profile Management
 
 **US1.1: Parent Registration & Consent**
+
 ```
 As a parent
 I want to register with my email and set up parental controls
 So that I can manage my children's toy exchanges securely and compliantly
 ```
+
 **Acceptance Criteria:**
+
 - [ ] Sign-up flow: Email → Password → Parental Consent → Child Profile Creation
 - [ ] Explicit GDPR consent checkbox with link to full privacy policy
 - [ ] Option to select data processing level (minimal tracking vs. personalized ads)
@@ -122,12 +143,15 @@ So that I can manage my children's toy exchanges securely and compliantly
 - [ ] Two-factor authentication optional but recommended
 
 **US1.2: Child Profile Setup**
+
 ```
 As a parent
 I want to create profiles for each child with age and interests
 So that the system can recommend matching toys accurately
 ```
+
 **Acceptance Criteria:**
+
 - [ ] Fields: Child name, birthdate, interests (multi-select tags), allergies/safety notes
 - [ ] Parent explicitly confirms: "I have parental authority and consent to share this data"
 - [ ] Child interests use predefined taxonomy (not free-text) to standardize matching
@@ -136,12 +160,15 @@ So that the system can recommend matching toys accurately
 - [ ] Parental email receives confirmation of each profile created
 
 **US1.3: Initial Ticket Allocation**
+
 ```
 As a new user
 I want to understand my starting ticket balance
 So that I know how many toys I can request immediately
 ```
+
 **Acceptance Criteria:**
+
 - [ ] New parent accounts receive 3 starter tickets (not earned, promotional)
 - [ ] Allocation displays with explanation: "3 free tickets to get started"
 - [ ] Cannot use tickets until first toy is listed (forces bidirectional participation)
@@ -151,12 +178,15 @@ So that I know how many toys I can request immediately
 ### Epic 2: Toy Listing & Inventory Management
 
 **US2.1: List a Toy**
+
 ```
 As a parent
 I want to list a toy with photos, condition, and category tags
 So that other parents can find and request it
 ```
+
 **Acceptance Criteria:**
+
 - [ ] Form fields: Toy name, description, condition (like-new/good/fair/poor), category, tags, age range
 - [ ] Photo upload: Minimum 1 photo, maximum 5, with compression (max 2MB each)
 - [ ] Category dropdown (toys, books, games, sports, pretend-play, etc.)
@@ -169,12 +199,15 @@ So that other parents can find and request it
 - [ ] 24h moderation window; toy hidden from search if not approved
 
 **US2.2: Manage Active Listings**
+
 ```
 As a parent
 I want to view, edit, and delist toys from my inventory
 So that I can keep my listings accurate and remove items I no longer want to share
 ```
+
 **Acceptance Criteria:**
+
 - [ ] Dashboard shows: Active listings, Pending exchanges, Completed exchanges, Deactivated toys
 - [ ] Edit listing: Update photos, description, condition, tags (not after exchange initiated)
 - [ ] Delist toy: Available if no active exchange; immediate removal from search
@@ -182,12 +215,15 @@ So that I can keep my listings accurate and remove items I no longer want to sha
 - [ ] Bulk actions: Delist multiple toys at once
 
 **US2.3: Toy Moderation & Safety**
+
 ```
 As a platform
 I want to moderate toy listings for safety and appropriateness
 So that only age-appropriate, safe toys are exchanged
 ```
+
 **Acceptance Criteria:**
+
 - [ ] Moderation queue visible to staff only
 - [ ] Criteria: Age-appropriate, no prohibited items (weapons, choking hazards, recalls), clear photos
 - [ ] Automated reject triggers: Photos with faces, adult items, non-toys
@@ -200,12 +236,15 @@ So that only age-appropriate, safe toys are exchanged
 ### Epic 3: Smart Wishlist & Matching Engine
 
 **US3.1: Create & Manage Wishlist**
+
 ```
 As a parent
 I want to add toys to a wishlist for my child
 So that the system can notify me when matching toys become available
 ```
+
 **Acceptance Criteria:**
+
 - [ ] Wishlist creation per child profile
 - [ ] Add toys via: Search catalog, Browse categories, Scan toy photos (future)
 - [ ] Add custom wish: "Blue LEGO set" (free-text) with optional category/tag suggestions
@@ -216,12 +255,15 @@ So that the system can notify me when matching toys become available
 - [ ] Share wishlist with partner parent via link (optional feature, Phase 2)
 
 **US3.2: Smart Matching Algorithm**
+
 ```
 As a user
 I want the system to notify me when toys matching my child's interests become available
 So that I discover relevant exchanges without manual searching
 ```
+
 **Acceptance Criteria:**
+
 - [ ] Matching runs daily at 2 AM UTC (low-load time)
 - [ ] Score function: Tags match (40%), Age range match (30%), Condition preference (20%), Recency bonus (10%)
 - [ ] Match threshold: Minimum 60% similarity to trigger notification
@@ -231,12 +273,15 @@ So that I discover relevant exchanges without manual searching
 - [ ] User can disable matching for any child anytime (preference setting)
 
 **US3.3: Manual Toy Discovery**
+
 ```
 As a parent
 I want to browse and search for toys to request
 So that I can find specific toys or discover serendipitous exchanges
 ```
+
 **Acceptance Criteria:**
+
 - [ ] Search bar with autocomplete (searches: Toy name, description, category, tags)
 - [ ] Filter by: Category, Age range, Condition, Last listed date
 - [ ] Sort by: Newest first, Popularity (wishlist count), Condition, Relevance
@@ -251,12 +296,15 @@ So that I can find specific toys or discover serendipitous exchanges
 ### Epic 4: Exchange & Escrow System
 
 **US4.1: Request a Toy**
+
 ```
 As a parent
 I want to request a toy from another parent's listing
 So that I can initiate an exchange
 ```
+
 **Acceptance Criteria:**
+
 - [ ] Request button on toy detail view (only if user has tickets)
 - [ ] Select which child the toy is for (dropdown from child profiles)
 - [ ] Add optional message to lister (e.g., "My daughter loves cars!")
@@ -268,12 +316,15 @@ So that I can initiate an exchange
 - [ ] Timeout: If lister doesn't respond in 48h, request auto-cancels and ticket refunded
 
 **US4.2: Accept/Decline Exchange Request**
+
 ```
 As a toy lister
 I want to accept or decline requests for my toy
 So that I maintain control over who receives my items
 ```
+
 **Acceptance Criteria:**
+
 - [ ] Notification shows requester's: Name, profile badge (completed exchanges count), message
 - [ ] Accept button: "Accept & Arrange Delivery"
 - [ ] Decline button: "Decline" (requester's ticket refunded)
@@ -283,12 +334,15 @@ So that I maintain control over who receives my items
 - [ ] In-app messaging enabled between parties for coordination
 
 **US4.3: Escrow & Ticket Freezing**
+
 ```
 As the platform
 I want to hold tickets in escrow during exchange
 So that neither party can reverse the transaction unfairly
 ```
+
 **Acceptance Criteria:**
+
 - [ ] Requester's ticket frozen upon acceptance (visible in wallet as "frozen")
 - [ ] Lister's earned ticket frozen until delivery confirmed (visible as "pending")
 - [ ] Frozen tickets cannot be used for other exchanges
@@ -298,12 +352,15 @@ So that neither party can reverse the transaction unfairly
 - [ ] Timeout logic: If no delivery confirmation within 7 days, auto-complete and release tickets
 
 **US4.4: Delivery & Confirmation**
+
 ```
 As a parent
 I want to confirm delivery of a toy I received
 So that the exchange completes and tickets are released
 ```
+
 **Acceptance Criteria:**
+
 - [ ] Upon toy arrival, requester clicks "Confirm Delivery Received"
 - [ ] Confirmation dialog: "I confirm I received the toy in [condition]" (required field)
 - [ ] Condition options: Like listed, Minor wear, Significant damage, Item missing/incomplete
@@ -317,12 +374,15 @@ So that the exchange completes and tickets are released
 - [ ] Dispute timeline: Must be reported within 7 days of confirmation
 
 **US4.5: Auto-Completion Timeout**
+
 ```
 As the platform
 I want to auto-complete exchanges after 7 days to prevent indefinite locks
 So that tickets are released and users can continue exchanging
 ```
+
 **Acceptance Criteria:**
+
 - [ ] If recipient doesn't confirm delivery within 7 days of "in_transit", auto-complete
 - [ ] Auto-completion triggers: Email notification to recipient before (48h warning)
 - [ ] Upon auto-completion:
@@ -336,12 +396,15 @@ So that tickets are released and users can continue exchanging
 ### Epic 5: Mini-Games & Rewards
 
 **US5.1: Daily Mini-Game Access**
+
 ```
 As a child
 I want to play daily mini-games to earn ticket fragments
 So that I can contribute to my family's toy exchange capability
 ```
+
 **Acceptance Criteria:**
+
 - [ ] Access "Games" tab from main navigation
 - [ ] Display: 3 available games, game descriptions, fragment reward amounts
 - [ ] Daily reset: One play per game per child per calendar day (UTC timezone)
@@ -352,12 +415,15 @@ So that I can contribute to my family's toy exchange capability
 - [ ] Game analytics: Track completion rate, time spent, engagement metrics
 
 **US5.2: Rewarded Video Ads**
+
 ```
 As a game player
 I want the option to watch a video ad to earn bonus fragments
 So that I have an additional earning mechanism without payment
 ```
+
 **Acceptance Criteria:**
+
 - [ ] After game completion: "Watch a video for +0.25 bonus fragments?"
 - [ ] Video ad served by Google AdMob (pre-configured network)
 - [ ] Ad video must be watched completely (skip button disabled after 5s)
@@ -367,12 +433,15 @@ So that I have an additional earning mechanism without payment
 - [ ] GDPR: Ad targeting uses only age/interests; no PII or location data
 
 **US5.3: Fragment-to-Ticket Conversion**
+
 ```
 As a user
 I want to convert ticket fragments to whole tickets
 So that I can use earnings toward toy requests
 ```
+
 **Acceptance Criteria:**
+
 - [ ] Conversion rate: 4 fragments = 1 ticket (clear ratio)
 - [ ] Manual conversion: User clicks "Redeem" in wallet (no automatic conversion)
 - [ ] Conversion history: Visible in transaction log with timestamps
@@ -382,12 +451,15 @@ So that I can use earnings toward toy requests
 - [ ] Analytics: Track conversion rate and fragment accumulation per user cohort
 
 **US5.4: Game Moderation & Child Safety**
+
 ```
 As a platform
 I want to ensure games are age-appropriate and don't expose children to harmful content
 So that parents trust the gaming experience
 ```
+
 **Acceptance Criteria:**
+
 - [ ] Games content reviewed by team before launch
 - [ ] No ads shown to children under 6 (only unlocked at age 7+)
 - [ ] Ad content filtering: Only G-rated, family-appropriate ads served
@@ -400,12 +472,15 @@ So that parents trust the gaming experience
 ### Epic 6: Notifications & Communication
 
 **US6.1: Smart Notifications**
+
 ```
 As a user
 I want to receive timely notifications about toy matches and exchange status
 So that I stay informed without being overwhelmed
 ```
+
 **Acceptance Criteria:**
+
 - [ ] Notification types: Match found, Request received, Exchange status update, Game reward earned, Account alert
 - [ ] Delivery channels: In-app (notification center), Email, Push notification (mobile)
 - [ ] Frequency control: User can set per-notification-type (instant, daily digest, weekly, never)
@@ -415,12 +490,15 @@ So that I stay informed without being overwhelmed
 - [ ] Unsubscribe link in every email (compliant with CAN-SPAM)
 
 **US6.2: In-App Messaging (Exchange Coordination)**
+
 ```
 As an exchange participant
 I want to message the other parent to coordinate toy handoff
 So that we can agree on delivery logistics
 ```
+
 **Acceptance Criteria:**
+
 - [ ] Messaging only available during active exchange (not general social feature)
 - [ ] Message thread scoped to single exchange (not persistent general chat)
 - [ ] Message content: Text only, max 500 chars per message (MVP scope)
@@ -431,12 +509,15 @@ So that we can agree on delivery logistics
 - [ ] Blocklist: Users can block all communication from specific parents (after dispute)
 
 **US6.3: Notification Preferences**
+
 ```
 As a user
 I want granular control over how and when I'm notified
 So that notifications serve me without creating digital noise
 ```
+
 **Acceptance Criteria:**
+
 - [ ] Settings page: Notification preferences per type and channel
 - [ ] Channels: In-app, Email, SMS (future), Push (mobile)
 - [ ] Notification frequency options: Instant, Daily digest, Weekly digest, Never
@@ -450,12 +531,15 @@ So that notifications serve me without creating digital noise
 ### Epic 7: Trust & Safety Mechanisms
 
 **US7.1: User Ratings & Reviews**
+
 ```
 As a user
 I want to rate and review other parents after exchanges
 So that the community can identify trustworthy users
 ```
+
 **Acceptance Criteria:**
+
 - [ ] Ratings available after exchange completion (within 7 days)
 - [ ] Rating scale: 1-5 stars for two dimensions:
   - [ ] Item condition matched listing (1-5)
@@ -467,12 +551,15 @@ So that the community can identify trustworthy users
 - [ ] Fraud detection: Sudden drop in ratings triggers admin review
 
 **US7.2: Report & Block Users**
+
 ```
 As a user
 I want to report problematic users and prevent communication
 So that I feel safe from harassment or fraud
 ```
+
 **Acceptance Criteria:**
+
 - [ ] Report button on user profile and in exchange message thread
 - [ ] Report categories: Inappropriate behavior, Fraudulent item, Harassment, Safety concern
 - [ ] Optional details field: "Describe the issue" (0-500 chars)
@@ -483,12 +570,15 @@ So that I feel safe from harassment or fraud
 - [ ] Escalation path: Serious reports (safety threats) escalated to compliance team immediately
 
 **US7.3: Fraud Prevention**
+
 ```
 As the platform
 I want to detect and prevent fraudulent exchanges
 So that the community remains trustworthy and safe
 ```
+
 **Acceptance Criteria:**
+
 - [ ] Automated checks:
   - [ ] Duplicate accounts (same email, IP address, device ID)
   - [ ] Rapid toy listing/delisting patterns (>10 listings in 1 day)
@@ -503,12 +593,15 @@ So that the community remains trustworthy and safe
 ### Epic 8: GDPR Compliance & Data Management
 
 **US8.1: Parental Consent Flows**
+
 ```
 As a parent
 I want to explicitly consent to child data collection
 So that I understand and control what data is stored about my children
 ```
+
 **Acceptance Criteria:**
+
 - [ ] At account creation: Explicit checkbox "I consent to store [Child Name]'s profile for toy matching and age-appropriate recommendations"
 - [ ] Consent receipt: Email confirmation with what data is collected
 - [ ] Granular consent options:
@@ -520,12 +613,15 @@ So that I understand and control what data is stored about my children
 - [ ] Signature/timestamp: Digital consent record with IP address for audit
 
 **US8.2: Data Subject Access Requests (DSAR)**
+
 ```
 As a parent
 I want to download a copy of all data held about my account and children
 So that I can exercise my GDPR right to access
 ```
+
 **Acceptance Criteria:**
+
 - [ ] DSAR request form in account settings: "Download my data"
 - [ ] Processing: User receives structured export within 10 working days
 - [ ] Format: JSON or CSV containing:
@@ -538,12 +634,15 @@ So that I can exercise my GDPR right to access
 - [ ] Download link: Emailed to account email (not stored permanently)
 
 **US8.3: Data Deletion & Right to Erasure**
+
 ```
 As a parent
 I want to permanently delete my account and all associated data
 So that I can exercise my right to be forgotten
 ```
+
 **Acceptance Criteria:**
+
 - [ ] Account deletion request in settings: "Delete account and all data"
 - [ ] Confirmation: "This action is permanent. All toys, messages, and activity will be deleted. Proceed?"
 - [ ] Grace period: 30-day waiting period before permanent deletion (user can cancel anytime)
@@ -557,12 +656,15 @@ So that I can exercise my right to be forgotten
 - [ ] Confirmation email: Sent before and after deletion
 
 **US8.4: Privacy Policy & Data Transparency**
+
 ```
 As a user
 I want a clear, child-friendly privacy policy
 So that I understand how data is handled
 ```
+
 **Acceptance Criteria:**
+
 - [ ] Privacy policy available in Polish, German, English
 - [ ] Sections: Data collected, Use of data, Child safety, Ad targeting, Third-party services, Rights
 - [ ] Child-friendly summary: 1-page simplified explanation for children (age 7+)
@@ -575,12 +677,15 @@ So that I understand how data is handled
 ### Epic 9: Internationalization (i18n) & Localization
 
 **US9.1: Multi-Language Support**
+
 ```
 As a user
 I want to use the app in my preferred language
 So that the experience is native and accessible
 ```
+
 **Acceptance Criteria:**
+
 - [ ] Supported languages: Polish (primary), German, English (MVP)
 - [ ] Language selector in account settings and at login screen
 - [ ] Default: Polish for accounts created with @pl domain; German for @de; English otherwise
@@ -589,12 +694,15 @@ So that the experience is native and accessible
 - [ ] Language persistence: Remembered across sessions (stored in user preferences)
 
 **US9.2: Locale-Specific Formatting**
+
 ```
 As a user
 I want dates, numbers, and currency to display in my local format
 So that I understand information correctly
 ```
+
 **Acceptance Criteria:**
+
 - [ ] Dates: DD.MM.YYYY for Polish/German; DD/MM/YYYY for English
 - [ ] Numbers: "1.234,56" (Polish/German) vs "1,234.56" (English)
 - [ ] Currency: EUR displayed as "14,99 zł" (Polish) or "14,99 EUR" (German)
@@ -602,12 +710,15 @@ So that I understand information correctly
 - [ ] Addresses: Format matched to country standard (e.g., "Zip City Country" for US, "Street Zip City" for EU)
 
 **US9.3: Translation Management**
+
 ```
 As a developer
 I want a centralized translation management system
 So that adding new languages is scalable
 ```
+
 **Acceptance Criteria:**
+
 - [ ] Translation files: JSON structure in `/locales/[lang]/common.json`
 - [ ] Keys: Hierarchical (e.g., `nav.games.title`, `errors.invalid_email`)
 - [ ] Fallback: Missing translations fall back to English (not blank UI)
@@ -629,15 +740,16 @@ The ticket system is the economic engine of the platform. It ensures fair exchan
 
 **Ticket Lifecycle:**
 
-| State | Description | User View | Conditions |
-|-------|-------------|-----------|------------|
-| **Owned** | User possesses ticket | Wallet shows "3 available" | Can use for toy requests |
-| **Frozen (Request)** | Deducted upon toy request | Wallet shows "1 frozen - awaiting response" | Wait for lister to accept/decline |
-| **Earned (Escrow)** | Earned from successful toy listing | Wallet shows "1 pending - delivery awaited" | Wait for recipient to confirm delivery |
-| **Refunded** | Returned if request declined or auto-expires | Wallet shows "+1 returned" | Instant, available for reuse |
-| **Consumed** | Permanently removed on exchange completion | No longer visible | Exchange marked "completed" |
+| State                | Description                                  | User View                                   | Conditions                             |
+| -------------------- | -------------------------------------------- | ------------------------------------------- | -------------------------------------- |
+| **Owned**            | User possesses ticket                        | Wallet shows "3 available"                  | Can use for toy requests               |
+| **Frozen (Request)** | Deducted upon toy request                    | Wallet shows "1 frozen - awaiting response" | Wait for lister to accept/decline      |
+| **Earned (Escrow)**  | Earned from successful toy listing           | Wallet shows "1 pending - delivery awaited" | Wait for recipient to confirm delivery |
+| **Refunded**         | Returned if request declined or auto-expires | Wallet shows "+1 returned"                  | Instant, available for reuse           |
+| **Consumed**         | Permanently removed on exchange completion   | No longer visible                           | Exchange marked "completed"            |
 
 **Rules:**
+
 - Minimum balance check: User must have 1+ ticket to make request
 - No negative balances: Users cannot overdraft tickets
 - Fragment accumulation: Earned from games, redeemable at 4:1 ratio
@@ -646,6 +758,7 @@ The ticket system is the economic engine of the platform. It ensures fair exchan
 - Transfer: Tickets cannot be gifted or transferred between users (single wallet per account)
 
 **Database Schema (Simplified):**
+
 ```sql
 CREATE TABLE tickets (
   id UUID PRIMARY KEY,
@@ -673,6 +786,7 @@ CREATE TABLE exchanges (
 ```
 
 **Anti-Gaming Mechanisms:**
+
 - Rapid listing/delisting: Flagged if >10 listings per hour from single user
 - Fragment farming: Max 2 rewarded ads per game per child per day
 - Ticket hoarding: No limit, but accounts with 50+ unused tickets reviewed for gaming patterns
@@ -732,12 +846,14 @@ Request toy (1 ticket)    │
    - Fraud detected (major damage, wrong item): Admin offers refund to requester; may ban lister
 
 **Timeout & Auto-Completion:**
+
 - In-transit timeout: 7 days
 - Warning: Email 48h before auto-completion
 - Action: Auto-mark "delivered" if no confirmation (tickets released)
 - Note: Cannot dispute after auto-completion (incentivizes prompt action)
 
 **Data Schema:**
+
 ```sql
 ALTER TABLE exchanges ADD COLUMN (
   delivery_confirmed_at TIMESTAMP,
@@ -750,6 +866,7 @@ ALTER TABLE exchanges ADD COLUMN (
 ```
 
 **RLS Policy:**
+
 ```sql
 -- Users can only see their own exchanges
 CREATE POLICY exchanges_select ON exchanges
@@ -768,6 +885,7 @@ CREATE POLICY exchanges_select ON exchanges
 The system uses a hierarchical category-tag structure for accurate matching.
 
 **Top-Level Categories:**
+
 1. **Building & Construction:** LEGO, blocks, magnet tiles, construction sets
 2. **Vehicles:** Cars, trains, airplanes, ride-ons
 3. **Action & Pretend Play:** Dolls, action figures, costumes, play sets
@@ -780,6 +898,7 @@ The system uses a hierarchical category-tag structure for accurate matching.
 10. **Bath & Sensory:** Bath toys, sensory boards, fidgets
 
 **Sample Tags (under Categories):**
+
 - Building: "LEGO bricks", "Wooden blocks", "Magnetic tiles", "Construction vehicles"
 - Action: "Superheroes", "Dinosaurs", "Police", "Fairy tale", "Pirate"
 - Age-specific tags: "0-3 months", "6-12 months", "Toddler (1-3)", "Preschool (4-5)", "School-age (6-8)"
@@ -830,6 +949,7 @@ Match Trigger Threshold: Score ≥ 60 → Notification sent
 6. **Send:** Format digest and queue notification (email or push per user preference)
 
 **Wishlist Privacy:**
+
 - Wishlists are private (not visible to other users)
 - Matching is one-directional: Users don't see "who wishlisted my toy"
 - Analytics only: Track "times wishlisted" as metric for toy popularity
@@ -839,6 +959,7 @@ Match Trigger Threshold: Score ≥ 60 → Notification sent
 #### 4. Mini-Games Design
 
 **Game 1: Color Match Puzzle**
+
 - **Duration:** 2-3 minutes
 - **Mechanic:** Match pairs of colored blocks; 12 pairs per game
 - **Difficulty:** 3 levels (increases grid size and time pressure)
@@ -848,6 +969,7 @@ Match Trigger Threshold: Score ≥ 60 → Notification sent
 - **Child-Safe:** No player data collection beyond completion count
 
 **Game 2: Memory Cards**
+
 - **Duration:** 2-4 minutes
 - **Mechanic:** Flip cards to match toy images; 16-20 cards depending on age
 - **Difficulty:** 3 levels (card count increases, timeout tightens)
@@ -857,6 +979,7 @@ Match Trigger Threshold: Score ≥ 60 → Notification sent
 - **Progression:** Unlock "expert" level after 5 completions
 
 **Game 3: Toy Trivia**
+
 - **Duration:** 2-3 minutes
 - **Mechanic:** Answer 5 questions about toys, sustainability, or fun facts
 - **Difficulty:** Age-adjusted (4-7: simple, 8-12: moderate, 13+: challenging)
@@ -866,6 +989,7 @@ Match Trigger Threshold: Score ≥ 60 → Notification sent
 - **Sample Q:** "Which toy is better for the environment? (A) Plastic toy (B) Wooden toy (C) Both if reused"
 
 **Game Analytics (Non-Invasive):**
+
 - Per-game: Completion count, average time, difficulty level chosen
 - Per-child: Total fragments earned, games played per week, completion rate
 - Platform: Aggregate game popularity, difficulty distribution
@@ -873,6 +997,7 @@ Match Trigger Threshold: Score ≥ 60 → Notification sent
 - No profiling or ML model training on game data
 
 **Parental Controls:**
+
 - Disable games entirely for a child (setting: "Games disabled")
 - Daily session limit: Optional cap (e.g., "Max 15 minutes/day")
 - Time-of-day restrictions: Optional (e.g., "Games allowed 3-6 PM only")
@@ -884,17 +1009,17 @@ Match Trigger Threshold: Score ≥ 60 → Notification sent
 
 **Notification Types & Triggers:**
 
-| Type | Trigger | Channels | Frequency Control |
-|------|---------|----------|-------------------|
-| **Match Found** | Matching algorithm finds score ≥60 | Email, Push | Daily digest / Instant |
-| **Request Received** | Another user requests my toy | In-app, Email, Push | Instant (priority) |
-| **Request Response** | Lister accepts/declines my request | In-app, Email, Push | Instant (priority) |
-| **Exchange Status** | Exchange state changes (accepted, in-transit, etc.) | In-app, Email, Push | Instant (priority) |
-| **Delivery Overdue** | Exchange not confirmed after 5 days | Email | Once (escalation) |
-| **Game Reward** | Child completes game | In-app, Push | Instant (optional) |
-| **Message Received** | Partner sends message in exchange chat | In-app, Push | Instant |
-| **Account Alert** | Security events (login, new device) | Email | Instant (security) |
-| **Platform Update** | New feature, maintenance, policy change | Email | Weekly digest |
+| Type                 | Trigger                                             | Channels            | Frequency Control      |
+| -------------------- | --------------------------------------------------- | ------------------- | ---------------------- |
+| **Match Found**      | Matching algorithm finds score ≥60                  | Email, Push         | Daily digest / Instant |
+| **Request Received** | Another user requests my toy                        | In-app, Email, Push | Instant (priority)     |
+| **Request Response** | Lister accepts/declines my request                  | In-app, Email, Push | Instant (priority)     |
+| **Exchange Status**  | Exchange state changes (accepted, in-transit, etc.) | In-app, Email, Push | Instant (priority)     |
+| **Delivery Overdue** | Exchange not confirmed after 5 days                 | Email               | Once (escalation)      |
+| **Game Reward**      | Child completes game                                | In-app, Push        | Instant (optional)     |
+| **Message Received** | Partner sends message in exchange chat              | In-app, Push        | Instant                |
+| **Account Alert**    | Security events (login, new device)                 | Email               | Instant (security)     |
+| **Platform Update**  | New feature, maintenance, policy change             | Email               | Weekly digest          |
 
 **Notification Channels:**
 
@@ -919,6 +1044,7 @@ Match Trigger Threshold: Score ≥ 60 → Notification sent
    - Retention: Notification center shows last 50 notifications
 
 **Intelligent Batching:**
+
 - Same notification type within 12 hours: Deduplicate
 - Example: "3 matches found for your wishlists" (single notification vs. three separate)
 
@@ -945,6 +1071,7 @@ Match Trigger Threshold: Score ≥ 60 → Notification sent
    - Escalation: Repeated violations → Temporary suspension (7 days) → Permanent ban
 
 **Prohibited Items (Hard Block):**
+
 - Weapons, explosives, sharp objects
 - Electronics not age-appropriate (adult tablets, phones)
 - Choking hazards (small parts for under-3)
@@ -953,6 +1080,7 @@ Match Trigger Threshold: Score ≥ 60 → Notification sent
 - Consumables (food, medicines)
 
 **Message Moderation:**
+
 - Automated keyword detection: Phone numbers, addresses, payment requests, harmful content
 - Action: Flag message; block sending if severe; admin review
 - User warning: "This message contains contact info. For safety, use in-app messaging only."
@@ -963,16 +1091,16 @@ Match Trigger Threshold: Score ≥ 60 → Notification sent
 
 ### Performance Requirements
 
-| Metric | Target | Details |
-|--------|--------|---------|
-| Page Load | <2s (first paint) | Initial web load on 3G connection |
-| Search Response | <500ms | Toy search with filters |
-| Matching Algorithm | Completes within 1 hour | Daily run window: 02:00-03:00 UTC |
-| API Response | <200ms (p95) | Standard REST endpoints (excluding file uploads) |
-| Mobile App Launch | <3s | From OS launch to interactive UI |
-| Notification Delivery | <5 minutes | From event trigger to FCM receipt |
-| Photo Upload | <10s | 2MB image with compression |
-| Realtime Sync | <1s latency | Message delivery, ticket balance updates |
+| Metric                | Target                  | Details                                          |
+| --------------------- | ----------------------- | ------------------------------------------------ |
+| Page Load             | <2s (first paint)       | Initial web load on 3G connection                |
+| Search Response       | <500ms                  | Toy search with filters                          |
+| Matching Algorithm    | Completes within 1 hour | Daily run window: 02:00-03:00 UTC                |
+| API Response          | <200ms (p95)            | Standard REST endpoints (excluding file uploads) |
+| Mobile App Launch     | <3s                     | From OS launch to interactive UI                 |
+| Notification Delivery | <5 minutes              | From event trigger to FCM receipt                |
+| Photo Upload          | <10s                    | 2MB image with compression                       |
+| Realtime Sync         | <1s latency             | Message delivery, ticket balance updates         |
 
 ### Scalability Requirements
 
@@ -1125,6 +1253,7 @@ Match Trigger Threshold: Score ≥ 60 → Notification sent
 ### API Endpoints (RESTful)
 
 **Authentication:**
+
 - `POST /auth/signup` - Register new parent account
 - `POST /auth/login` - Login with email/password
 - `POST /auth/logout` - Logout and revoke token
@@ -1133,6 +1262,7 @@ Match Trigger Threshold: Score ≥ 60 → Notification sent
 - `POST /auth/verify-email` - Verify email after signup
 
 **Profiles & Kids:**
+
 - `GET /profile` - Get user profile info
 - `PUT /profile` - Update profile (email, preferences, language)
 - `POST /kids` - Create child profile
@@ -1142,6 +1272,7 @@ Match Trigger Threshold: Score ≥ 60 → Notification sent
 - `POST /kids/:id/consent` - Record parental consent (GDPR audit)
 
 **Toys:**
+
 - `POST /toys` - List new toy (costs 1 ticket)
 - `GET /toys` - Search toys with filters (pagination)
 - `GET /toys/:id` - Get toy detail view
@@ -1151,6 +1282,7 @@ Match Trigger Threshold: Score ≥ 60 → Notification sent
 - `DELETE /toys/:id/wishlist` - Remove from wishlist
 
 **Exchanges:**
+
 - `POST /exchanges` - Request toy (creates exchange, debits 1 ticket)
 - `GET /exchanges` - List user's exchanges (filtered by status)
 - `GET /exchanges/:id` - Get exchange detail (with messages)
@@ -1160,31 +1292,37 @@ Match Trigger Threshold: Score ≥ 60 → Notification sent
 - `POST /exchanges/:id/dispute` - Requester reports issue
 
 **Messages:**
+
 - `POST /exchanges/:id/messages` - Send message in exchange chat
 - `GET /exchanges/:id/messages` - Get message thread
 - `DELETE /messages/:id` - Delete own message (soft delete, anonymized)
 
 **Tickets & Wallet:**
+
 - `GET /wallet` - Get ticket balance (owned, frozen, earned, pending)
 - `POST /wallet/redeem-fragments` - Convert fragments to ticket
 - `GET /wallet/history` - Transaction history (last 30 days)
 
 **Notifications:**
+
 - `GET /notifications` - Get notification center (last 50)
 - `PUT /notifications/:id/read` - Mark notification as read
 - `DELETE /notifications/:id` - Delete notification
 - `PUT /notification-preferences` - Update notification settings per type
 
 **Games:**
+
 - `POST /games/:game-id/complete` - Submit game completion
 - `GET /games/:game-id/leaderboard` - Get top players (anonymized)
 
 **Wishlist:**
+
 - `GET /wishlists/:kid-id` - Get child's wishlist
 - `POST /wishlists/:kid-id/items` - Add item to wishlist
 - `DELETE /wishlists/:kid-id/items/:item-id` - Remove from wishlist
 
 **Admin Endpoints (Moderation Team Only):**
+
 - `GET /admin/moderation-queue` - List pending toy approvals
 - `POST /admin/toys/:id/approve` - Approve toy
 - `POST /admin/toys/:id/reject` - Reject toy (with reason)
@@ -1199,6 +1337,7 @@ Match Trigger Threshold: Score ≥ 60 → Notification sent
 ### Frontend Architecture
 
 **Tech Stack:**
+
 - Framework: Next.js 14+ (App Router)
 - UI Library: shadcn/ui
 - Styling: Tailwind CSS
@@ -1208,6 +1347,7 @@ Match Trigger Threshold: Score ≥ 60 → Notification sent
 - Mobile: Capacitor (wraps web app for iOS/Android)
 
 **Key Directory Structure:**
+
 ```
 /app
 ├── (auth)                  # Auth pages (login, signup, consent)
@@ -1301,6 +1441,7 @@ ALTER TABLE exchanges
 ### Mobile Integration (Capacitor)
 
 **Capacitor Config:**
+
 ```json
 {
   "appId": "com.toyfortoy.app",
@@ -1323,6 +1464,7 @@ ALTER TABLE exchanges
 ```
 
 **Native Features:**
+
 - Push notifications via Firebase FCM
 - Photo capture (toy images from camera)
 - File sharing (send exchange details to SMS/email)
@@ -1335,11 +1477,13 @@ ALTER TABLE exchanges
 ### Legal Framework
 
 **Applicability:** GDPR applies because:
+
 1. Service offered to EU residents (primary: Poland, Germany)
 2. Personal data of children collected (under 16, parental consent required)
 3. Data processing occurs in EU (Supabase hosted in EU region)
 
 **Responsibility Model:**
+
 - **Data Controller:** Company (Toy-for-Toy entity)
 - **Data Processor:** Supabase, Firebase, SendGrid, Vercel (via Data Processing Agreements)
 - **Joint Controller:** None (single entity responsible)
@@ -1349,17 +1493,20 @@ ALTER TABLE exchanges
 #### 1. Lawful Basis for Processing
 
 **For Parent Data (Email, Name):**
+
 - Lawful basis: Contract (necessary to provide service)
 - Consent: Not required (contractual necessity)
 - Retention: Until account deletion (user can delete anytime)
 
 **For Child Data (Age, Interests):**
+
 - Lawful basis: **Parental Consent** (GDPR Article 8)
 - Consent requirement: Parent must explicitly consent
 - Verifiable consent: Email confirmation + IP log + timestamp
 - Revocation: Parent can withdraw at any time → data deleted within 30 days
 
 **For Marketing/Ads:**
+
 - Lawful basis: Consent (separate checkbox)
 - Consent: "I agree to targeted ads based on child's age/interests"
 - Mechanism: Easy opt-out (unsubscribe link in all marketing emails)
@@ -1368,6 +1515,7 @@ ALTER TABLE exchanges
 #### 2. Consent Flows
 
 **Initial Registration (Parent):**
+
 ```
 Step 1: Email + Password
 Step 2: "Create child profile?" → Name, DOB, Interests
@@ -1388,11 +1536,13 @@ Step 5: CONFIRMATION EMAIL with:
 ```
 
 **Child Data Changes:**
+
 - Parent can edit child profile → "Confirm changes" dialog
 - Consent timestamp updated each time
 - Email sent: "Profile updated on [date]"
 
 **Consent Withdrawal:**
+
 ```
 Account Settings → Privacy & Data → Revoke Consent for [Child Name]
 → "Revoking consent will delete all data about [Child Name]
@@ -1504,17 +1654,17 @@ Account Settings → Privacy & Data → Revoke Consent for [Child Name]
 
 #### 6. Data Retention Policy
 
-| Data Category | Retention Period | Reason for Retention | Deletion Method |
-|---------------|------------------|---------------------|-----------------|
-| Account (active) | Until deletion | Operational necessity | Hard delete |
-| Child profiles | Until revoked/deletion | Parental consent term | Hard delete |
-| Exchanges (completed) | 6 months after completion | Dispute resolution window | Hard delete, counts retained |
-| Messages | 30 days after exchange completion | Coordination needs | Soft delete (anonymized) |
-| Consent records | Until revoked + 3 years | Legal compliance (GDPR audit) | Hard delete |
-| Game activity | 1 year | Engagement analytics | Aggregate purge |
-| Login logs | 30 days | Security audit trail | Hard delete |
-| Access logs (failed) | 7 days | Fraud detection | Hard delete |
-| Backup data | 30 days beyond retention | Disaster recovery | Hard delete |
+| Data Category         | Retention Period                  | Reason for Retention          | Deletion Method              |
+| --------------------- | --------------------------------- | ----------------------------- | ---------------------------- |
+| Account (active)      | Until deletion                    | Operational necessity         | Hard delete                  |
+| Child profiles        | Until revoked/deletion            | Parental consent term         | Hard delete                  |
+| Exchanges (completed) | 6 months after completion         | Dispute resolution window     | Hard delete, counts retained |
+| Messages              | 30 days after exchange completion | Coordination needs            | Soft delete (anonymized)     |
+| Consent records       | Until revoked + 3 years           | Legal compliance (GDPR audit) | Hard delete                  |
+| Game activity         | 1 year                            | Engagement analytics          | Aggregate purge              |
+| Login logs            | 30 days                           | Security audit trail          | Hard delete                  |
+| Access logs (failed)  | 7 days                            | Fraud detection               | Hard delete                  |
+| Backup data           | 30 days beyond retention          | Disaster recovery             | Hard delete                  |
 
 #### 7. Cross-Border Data Transfers
 
@@ -1545,11 +1695,13 @@ Account Settings → Privacy & Data → Revoke Consent for [Child Name]
 #### 8. Data Protection Impact Assessment (DPIA)
 
 **Conduct DPIA for:**
+
 - Child data processing (high-risk due to children)
 - Automated matching (profiling with age/interests)
 - Ad targeting (behavioral classification)
 
 **DPIA Documentation:**
+
 - Description of processing
 - Necessity & proportionality assessment
 - Risk analysis (unauthorized access, profiling, etc.)
@@ -1563,12 +1715,14 @@ Account Settings → Privacy & Data → Revoke Consent for [Child Name]
 **Requirement:** If processing large amounts of child data, designate DPO
 
 **Responsibilities:**
+
 - Oversee GDPR compliance
 - Handle user complaints and DSAR requests
 - Conduct audits and reviews
 - Contact point for supervisory authorities
 
 **Contact Information (Public):**
+
 - DPO Email: `dpo@toyfortoy.example.com`
 - DPO Postal: [Legal Address]
 - DPO Phone: [Contact Number]
@@ -1606,13 +1760,13 @@ Account Settings → Privacy & Data → Revoke Consent for [Child Name]
 
 **Placement Locations:**
 
-| Location | Type | Frequency | Revenue Est. |
-|----------|------|-----------|--------------|
-| Toy detail (below description) | Native ad (other toys) | 1 per page | 0.02-0.05 EUR/view |
-| Toy search results (every 5th item) | Banner 300x250 | 5 per page | 0.03-0.06 EUR/view |
-| Exchange flow (awaiting response) | Leaderboard / Video | 1 per flow | 0.05-0.10 EUR/view |
-| Games screen (above game list) | Banner 320x50 (mobile) | 1 per screen | 0.02-0.04 EUR/view |
-| Notification digest (footer) | Contextual ad | 1 per email | 0.01-0.02 EUR/view |
+| Location                            | Type                   | Frequency    | Revenue Est.       |
+| ----------------------------------- | ---------------------- | ------------ | ------------------ |
+| Toy detail (below description)      | Native ad (other toys) | 1 per page   | 0.02-0.05 EUR/view |
+| Toy search results (every 5th item) | Banner 300x250         | 5 per page   | 0.03-0.06 EUR/view |
+| Exchange flow (awaiting response)   | Leaderboard / Video    | 1 per flow   | 0.05-0.10 EUR/view |
+| Games screen (above game list)      | Banner 320x50 (mobile) | 1 per screen | 0.02-0.04 EUR/view |
+| Notification digest (footer)        | Contextual ad          | 1 per email  | 0.01-0.02 EUR/view |
 
 **Ad Network:** Google AdMob (mobile) + Google AdSense (web)
 **Targeting:** Age group + category preferences (no PII)
@@ -1623,6 +1777,7 @@ Account Settings → Privacy & Data → Revoke Consent for [Child Name]
 **Mechanic:** User watches 15-30s video to earn game bonus
 
 **Implementation:**
+
 - After game completion: "Watch a video for +0.25 bonus fragments?"
 - Ad played via AdMob
 - On completion: Fragments credited
@@ -1630,6 +1785,7 @@ Account Settings → Privacy & Data → Revoke Consent for [Child Name]
 - Revenue: ~0.50-2.00 EUR per completed video (higher rates than display)
 
 **Conversion Metrics:**
+
 - Expected CTR: 30-50% (voluntary, incentivized)
 - Completion rate: 70-90% (users motivated by reward)
 - RPM (Revenue per 1000 impressions): 15-30 EUR
@@ -1639,6 +1795,7 @@ Account Settings → Privacy & Data → Revoke Consent for [Child Name]
 **Concept:** Toy manufacturers can feature new toys on platform for fee
 
 **Implementation:**
+
 - Premium listing: "Featured" badge, top search results
 - Cost: EUR 50-200 per toy per month (promotional)
 - Moderation: Same safety rules as user toys
@@ -1653,16 +1810,17 @@ Account Settings → Privacy & Data → Revoke Consent for [Child Name]
 
 **User Growth Scenario:**
 
-| Month | MAU | Toy Exchanges/Day | Display Ad Impressions | Rewarded Video Views | Est. Monthly Revenue |
-|-------|-----|-------------------|------------------------|----------------------|----------------------|
-| M1-3 (Launch) | 500 | 50 | 10K | 100 | EUR 500 |
-| M6 | 2,000 | 200 | 40K | 400 | EUR 2,000 |
-| M12 | 5,000 | 500 | 100K | 1,000 | EUR 5,000 |
-| M18 | 10,000 | 1,000 | 200K | 2,000 | EUR 12,000 |
-| M24 | 15,000 | 1,500 | 300K | 3,000 | EUR 18,000 |
-| M36 | 30,000 | 3,000 | 600K | 6,000 | EUR 35,000 |
+| Month         | MAU    | Toy Exchanges/Day | Display Ad Impressions | Rewarded Video Views | Est. Monthly Revenue |
+| ------------- | ------ | ----------------- | ---------------------- | -------------------- | -------------------- |
+| M1-3 (Launch) | 500    | 50                | 10K                    | 100                  | EUR 500              |
+| M6            | 2,000  | 200               | 40K                    | 400                  | EUR 2,000            |
+| M12           | 5,000  | 500               | 100K                   | 1,000                | EUR 5,000            |
+| M18           | 10,000 | 1,000             | 200K                   | 2,000                | EUR 12,000           |
+| M24           | 15,000 | 1,500             | 300K                   | 3,000                | EUR 18,000           |
+| M36           | 30,000 | 3,000             | 600K                   | 6,000                | EUR 35,000           |
 
 **Assumptions:**
+
 - Display ad rate: 0.03 EUR CPM (cost per 1000 impressions)
 - Rewarded video: 0.50 EUR per completion
 - Ad load: 2-3 ad opportunities per active user per week
@@ -1677,6 +1835,7 @@ Account Settings → Privacy & Data → Revoke Consent for [Child Name]
 ### Phase 1: MVP (Months 1-3)
 
 **In Scope:**
+
 - Core ticket economy (list toy, request, escrow, confirm delivery)
 - Basic toy discovery (search, categories, filters)
 - Child profile creation with consent flow
@@ -1689,6 +1848,7 @@ Account Settings → Privacy & Data → Revoke Consent for [Child Name]
 - GDPR: Consent, privacy policy, basic data deletion
 
 **Out of Scope (Phase 2+):**
+
 - Mobile apps (Capacitor build)
 - Advanced matching (AI-based personalization)
 - Multiple mini-games
@@ -1704,6 +1864,7 @@ Account Settings → Privacy & Data → Revoke Consent for [Child Name]
 ### Phase 2: Polish & Growth (Months 4-6)
 
 **Features:**
+
 - Capacitor mobile app builds (iOS + Android beta)
 - 2nd & 3rd mini-games (Memory, Trivia)
 - Rewarded video ads integration
@@ -1716,6 +1877,7 @@ Account Settings → Privacy & Data → Revoke Consent for [Child Name]
 - Toy photo moderation (AI + human review)
 
 **Success Metrics:**
+
 - 3,000+ MAU
 - 500 exchanges/day
 - 40%+ weekly active user rate
@@ -1726,6 +1888,7 @@ Account Settings → Privacy & Data → Revoke Consent for [Child Name]
 ### Phase 3: Scale & Trust (Months 7-12)
 
 **Features:**
+
 - Analytics dashboard (user growth, exchange metrics)
 - Sponsored toy listings (brand partnerships)
 - Advanced matching (ML recommendations)
@@ -1738,6 +1901,7 @@ Account Settings → Privacy & Data → Revoke Consent for [Child Name]
 - International expansion (France, Netherlands)
 
 **Success Metrics:**
+
 - 10,000+ MAU
 - 1,500+ exchanges/day
 - EUR 12K-15K monthly revenue
@@ -1755,64 +1919,64 @@ Account Settings → Privacy & Data → Revoke Consent for [Child Name]
 
 ### Engagement Metrics
 
-| Metric | Target (M6) | Target (M12) | Measurement |
-|--------|------------|------------|--------------|
-| **Monthly Active Users (MAU)** | 2,000 | 5,000 | Unique user logins/month |
-| **Daily Active Users (DAU)** | 400 | 1,500 | Unique user logins/day |
-| **Weekly Active Users (WAU)** | 800 | 3,000 | Unique user logins/week |
-| **User Retention (30-day)** | 35% | 45% | % users active on day 30 |
-| **Frequency (avg. logins/user/week)** | 1.5 | 2.0 | Mean login frequency |
+| Metric                                | Target (M6) | Target (M12) | Measurement              |
+| ------------------------------------- | ----------- | ------------ | ------------------------ |
+| **Monthly Active Users (MAU)**        | 2,000       | 5,000        | Unique user logins/month |
+| **Daily Active Users (DAU)**          | 400         | 1,500        | Unique user logins/day   |
+| **Weekly Active Users (WAU)**         | 800         | 3,000        | Unique user logins/week  |
+| **User Retention (30-day)**           | 35%         | 45%          | % users active on day 30 |
+| **Frequency (avg. logins/user/week)** | 1.5         | 2.0          | Mean login frequency     |
 
 ### Exchange Metrics
 
-| Metric | Target (M6) | Target (M12) | Measurement |
-|--------|------------|------------|--------------|
-| **Exchanges per Day** | 200 | 500 | Active exchanges created/day |
-| **Exchanges per User (lifetime)** | 3 | 8 | Total exchanges per user |
-| **Completion Rate** | 85% | 90% | % of exchanges marked "completed" |
-| **Avg. Time to Completion** | 7 days | 6 days | From request to delivery confirmed |
-| **Delivery Confirmation Rate** | 90% | 95% | % of exchanges with delivery confirmed |
+| Metric                            | Target (M6) | Target (M12) | Measurement                            |
+| --------------------------------- | ----------- | ------------ | -------------------------------------- |
+| **Exchanges per Day**             | 200         | 500          | Active exchanges created/day           |
+| **Exchanges per User (lifetime)** | 3           | 8            | Total exchanges per user               |
+| **Completion Rate**               | 85%         | 90%          | % of exchanges marked "completed"      |
+| **Avg. Time to Completion**       | 7 days      | 6 days       | From request to delivery confirmed     |
+| **Delivery Confirmation Rate**    | 90%         | 95%          | % of exchanges with delivery confirmed |
 
 ### Quality & Trust Metrics
 
-| Metric | Target (M6) | Target (M12) | Measurement |
-|--------|------------|------------|--------------|
-| **Avg. User Rating** | 4.3/5.0 | 4.5/5.0 | Mean rating across all users |
-| **Fraud/Dispute Rate** | 3% | 1.5% | Disputed exchanges / total |
-| **Response Rate (lister)** | 80% | 90% | % of requests with accept/decline |
-| **Defect Rate (condition mismatch)** | 10% | 5% | % of deliveries reported as damaged |
-| **Repeat User Rate** | 40% | 55% | % of users with 3+ exchanges |
+| Metric                               | Target (M6) | Target (M12) | Measurement                         |
+| ------------------------------------ | ----------- | ------------ | ----------------------------------- |
+| **Avg. User Rating**                 | 4.3/5.0     | 4.5/5.0      | Mean rating across all users        |
+| **Fraud/Dispute Rate**               | 3%          | 1.5%         | Disputed exchanges / total          |
+| **Response Rate (lister)**           | 80%         | 90%          | % of requests with accept/decline   |
+| **Defect Rate (condition mismatch)** | 10%         | 5%           | % of deliveries reported as damaged |
+| **Repeat User Rate**                 | 40%         | 55%          | % of users with 3+ exchanges        |
 
 ### Business Metrics
 
-| Metric | Target (M6) | Target (M12) | Measurement |
-|--------|------------|------------|--------------|
-| **Ad Impressions/Month** | 40K | 100K | Total ad views |
-| **Click-Through Rate (CTR)** | 2% | 2.5% | Clicks / impressions |
-| **Cost per Install (CPI, if paid ads)** | EUR 2 | EUR 1.50 | Marketing spend / new installs |
-| **Monthly Ad Revenue** | EUR 2K | EUR 5K | Total ad network payouts |
-| **CAC Payback Period** | N/A | <6 mo | Revenue / CAC |
-| **User Lifetime Value (LTV)** | EUR 15 | EUR 40 | Estimated lifetime ad revenue/user |
+| Metric                                  | Target (M6) | Target (M12) | Measurement                        |
+| --------------------------------------- | ----------- | ------------ | ---------------------------------- |
+| **Ad Impressions/Month**                | 40K         | 100K         | Total ad views                     |
+| **Click-Through Rate (CTR)**            | 2%          | 2.5%         | Clicks / impressions               |
+| **Cost per Install (CPI, if paid ads)** | EUR 2       | EUR 1.50     | Marketing spend / new installs     |
+| **Monthly Ad Revenue**                  | EUR 2K      | EUR 5K       | Total ad network payouts           |
+| **CAC Payback Period**                  | N/A         | <6 mo        | Revenue / CAC                      |
+| **User Lifetime Value (LTV)**           | EUR 15      | EUR 40       | Estimated lifetime ad revenue/user |
 
 ### Operational Metrics
 
-| Metric | Target (M6) | Target (M12) | Measurement |
-|--------|------------|------------|--------------|
-| **Toy Listing Moderation Time** | <4h | <2h | From submission to approval |
-| **Support Response Time** | <24h | <4h | From user inquiry to support reply |
-| **API Uptime** | 99.5% | 99.9% | % of time API is responsive |
-| **Page Load Time (p95)** | <2s | <1.5s | Time to interactive |
-| **Mobile App Crash Rate** | <0.1% | <0.05% | Crashes / sessions |
+| Metric                          | Target (M6) | Target (M12) | Measurement                        |
+| ------------------------------- | ----------- | ------------ | ---------------------------------- |
+| **Toy Listing Moderation Time** | <4h         | <2h          | From submission to approval        |
+| **Support Response Time**       | <24h        | <4h          | From user inquiry to support reply |
+| **API Uptime**                  | 99.5%       | 99.9%        | % of time API is responsive        |
+| **Page Load Time (p95)**        | <2s         | <1.5s        | Time to interactive                |
+| **Mobile App Crash Rate**       | <0.1%       | <0.05%       | Crashes / sessions                 |
 
 ### Analytics & Compliance
 
-| Metric | Target | Measurement |
-|--------|--------|------------|
-| **GDPR Consent Rate** | >95% | % of accounts with explicit consent |
-| **Parental Consent Recorded** | 100% | All child data with verified consent |
-| **Data Deletion Requests (processed)** | <5 | Expected low volume; all <10 working days |
-| **Privacy Policy Completion** | >90% | Users who read before creating account |
-| **Report Processing Time (abuse)** | <24h | From report submission to admin action |
+| Metric                                 | Target | Measurement                               |
+| -------------------------------------- | ------ | ----------------------------------------- |
+| **GDPR Consent Rate**                  | >95%   | % of accounts with explicit consent       |
+| **Parental Consent Recorded**          | 100%   | All child data with verified consent      |
+| **Data Deletion Requests (processed)** | <5     | Expected low volume; all <10 working days |
+| **Privacy Policy Completion**          | >90%   | Users who read before creating account    |
+| **Report Processing Time (abuse)**     | <24h   | From report submission to admin action    |
 
 ---
 
@@ -1820,46 +1984,46 @@ Account Settings → Privacy & Data → Revoke Consent for [Child Name]
 
 ### Technical Risks
 
-| Risk | Impact | Likelihood | Mitigation |
-|------|--------|-----------|-----------|
-| **Supabase Outage** (DB unavailable) | High | Low (99.9% SLA) | Backup database snapshot daily; failover plan documented |
-| **Realtime sync lag** (message/ticket delays) | Medium | Medium | Implement polling fallback; monitor latency metrics |
-| **Firebase FCM failure** (push not sent) | Medium | Low | Email fallback for urgent notifications |
-| **Third-party API rate limiting** | Low | Medium | Implement request batching; monitor quota usage |
-| **Mobile app crash on launch** | High | Low | Thorough testing on 10+ device models before release |
-| **Scalability bottleneck** (slow at 50K users) | High | Medium | Database indexing, CDN for static assets, API caching |
+| Risk                                           | Impact | Likelihood      | Mitigation                                               |
+| ---------------------------------------------- | ------ | --------------- | -------------------------------------------------------- |
+| **Supabase Outage** (DB unavailable)           | High   | Low (99.9% SLA) | Backup database snapshot daily; failover plan documented |
+| **Realtime sync lag** (message/ticket delays)  | Medium | Medium          | Implement polling fallback; monitor latency metrics      |
+| **Firebase FCM failure** (push not sent)       | Medium | Low             | Email fallback for urgent notifications                  |
+| **Third-party API rate limiting**              | Low    | Medium          | Implement request batching; monitor quota usage          |
+| **Mobile app crash on launch**                 | High   | Low             | Thorough testing on 10+ device models before release     |
+| **Scalability bottleneck** (slow at 50K users) | High   | Medium          | Database indexing, CDN for static assets, API caching    |
 
 ### Business Risks
 
-| Risk | Impact | Likelihood | Mitigation |
-|------|--------|-----------|-----------|
-| **Low user adoption** (<500 MAU at M6) | High | Medium | Strong go-to-market (parenting influencers, eco communities); product-market fit validation |
-| **High churn rate** (>50% monthly) | High | Medium | Engagement focus (games, matching), user interviews, iterate UI |
-| **Fraud/scams escalate** (damaged toys, no-shows) | High | Medium | Strict moderation, user verification, dispute resolution SLA |
-| **Ad revenue lower than projected** | High | High (market-dependent) | Diversify: sponsored listings (Phase 2), premium features (Phase 3) |
-| **Competitors enter market** | Medium | High | Brand differentiation (eco-focus, community), speed to scale |
-| **User churn to competitor** | High | Medium | Lock-in strategies: badges, leaderboards, exclusive events (careful not to dark-pattern) |
+| Risk                                              | Impact | Likelihood              | Mitigation                                                                                  |
+| ------------------------------------------------- | ------ | ----------------------- | ------------------------------------------------------------------------------------------- |
+| **Low user adoption** (<500 MAU at M6)            | High   | Medium                  | Strong go-to-market (parenting influencers, eco communities); product-market fit validation |
+| **High churn rate** (>50% monthly)                | High   | Medium                  | Engagement focus (games, matching), user interviews, iterate UI                             |
+| **Fraud/scams escalate** (damaged toys, no-shows) | High   | Medium                  | Strict moderation, user verification, dispute resolution SLA                                |
+| **Ad revenue lower than projected**               | High   | High (market-dependent) | Diversify: sponsored listings (Phase 2), premium features (Phase 3)                         |
+| **Competitors enter market**                      | Medium | High                    | Brand differentiation (eco-focus, community), speed to scale                                |
+| **User churn to competitor**                      | High   | Medium                  | Lock-in strategies: badges, leaderboards, exclusive events (careful not to dark-pattern)    |
 
 ### Legal & Compliance Risks
 
-| Risk | Impact | Likelihood | Mitigation |
-|------|--------|-----------|-----------|
-| **GDPR violation** (non-consensual data use) | Critical | Low | Strict consent implementation, DPA review, regular audits |
-| **Child safety incident** (inappropriate contact) | Critical | Low | Message moderation, blocklist, report system, Terms of Service |
-| **Toy safety issue** (recall not flagged) | High | Low | Integrate EU recall database; automated flagging |
-| **Data breach exposure** (PII leaked) | High | Low | Encryption, RLS enforcement, regular security audits, breach response plan |
-| **Regulatory request** (DPA audit) | Medium | Low | Document compliance; designate DPO; maintain audit logs |
-| **Terms of Service violation** (user abuse) | Medium | Medium | Clear policies, enforcement team, appeal process |
+| Risk                                              | Impact   | Likelihood | Mitigation                                                                 |
+| ------------------------------------------------- | -------- | ---------- | -------------------------------------------------------------------------- |
+| **GDPR violation** (non-consensual data use)      | Critical | Low        | Strict consent implementation, DPA review, regular audits                  |
+| **Child safety incident** (inappropriate contact) | Critical | Low        | Message moderation, blocklist, report system, Terms of Service             |
+| **Toy safety issue** (recall not flagged)         | High     | Low        | Integrate EU recall database; automated flagging                           |
+| **Data breach exposure** (PII leaked)             | High     | Low        | Encryption, RLS enforcement, regular security audits, breach response plan |
+| **Regulatory request** (DPA audit)                | Medium   | Low        | Document compliance; designate DPO; maintain audit logs                    |
+| **Terms of Service violation** (user abuse)       | Medium   | Medium     | Clear policies, enforcement team, appeal process                           |
 
 ### Market & User Risks
 
-| Risk | Impact | Likelihood | Mitigation |
-|------|--------|-----------|-----------|
-| **Market skepticism** (cashless economy novel) | Medium | Medium | Clear education; transparent economy mechanics; community stories |
-| **Logistics challenges** (shipping costs, delays) | Medium | High | Encourage local exchanges; integrate shipping partnerships (Phase 2) |
-| **Toxic community** (harassment, scams) | Medium | Medium | Strong moderation, user ratings, blocklist, community guidelines |
-| **Parent concerns** (child privacy, safety) | High | Medium | Transparent privacy policy, parental dashboard, trust badges |
-| **Seasonal demand fluctuation** (low in summer) | Low | High | Diversify with seasonal campaigns; games provide off-season engagement |
+| Risk                                              | Impact | Likelihood | Mitigation                                                             |
+| ------------------------------------------------- | ------ | ---------- | ---------------------------------------------------------------------- |
+| **Market skepticism** (cashless economy novel)    | Medium | Medium     | Clear education; transparent economy mechanics; community stories      |
+| **Logistics challenges** (shipping costs, delays) | Medium | High       | Encourage local exchanges; integrate shipping partnerships (Phase 2)   |
+| **Toxic community** (harassment, scams)           | Medium | Medium     | Strong moderation, user ratings, blocklist, community guidelines       |
+| **Parent concerns** (child privacy, safety)       | High   | Medium     | Transparent privacy policy, parental dashboard, trust badges           |
+| **Seasonal demand fluctuation** (low in summer)   | Low    | High       | Diversify with seasonal campaigns; games provide off-season engagement |
 
 ---
 
@@ -1869,97 +2033,97 @@ Account Settings → Privacy & Data → Revoke Consent for [Child Name]
 
 **Phase 1: MVP (Months 1-3)**
 
-| Milestone | Target Date | Deliverables |
-|-----------|-------------|--------------|
-| **Project Setup** | Week 1 | Repo initialized, dev env, Supabase project created, CI/CD pipeline |
-| **Backend Core** | Week 3 | Database schema, auth, RLS policies, Core APIs (toys, exchanges, tickets) |
-| **Frontend MVP** | Week 5 | Pages: Login, Dashboard, Toy Search, Toy Detail, Create Exchange, Wallet |
-| **Games MVP** | Week 6 | Color Match game, basic UI, fragment reward system |
-| **Notifications** | Week 7 | Email notifications, notification preferences, in-app notification center |
-| **GDPR Compliance** | Week 8 | Consent flow, privacy policy, DSAR skeleton, data deletion handler |
-| **Ad Integration** | Week 8 | Google AdMob/AdSense setup, ad placement on toy detail |
-| **Internal Testing** | Week 9 | QA testing, performance testing, security audit |
-| **Soft Launch** | Week 10 | Invite 100 beta users, gather feedback, iterate |
-| **Bug Fixes & Polish** | Week 11-12 | Fix reported issues, improve UX, performance optimization |
-| **Public Launch** | Week 12 | Release v1.0 to public, announce via PR |
+| Milestone              | Target Date | Deliverables                                                              |
+| ---------------------- | ----------- | ------------------------------------------------------------------------- |
+| **Project Setup**      | Week 1      | Repo initialized, dev env, Supabase project created, CI/CD pipeline       |
+| **Backend Core**       | Week 3      | Database schema, auth, RLS policies, Core APIs (toys, exchanges, tickets) |
+| **Frontend MVP**       | Week 5      | Pages: Login, Dashboard, Toy Search, Toy Detail, Create Exchange, Wallet  |
+| **Games MVP**          | Week 6      | Color Match game, basic UI, fragment reward system                        |
+| **Notifications**      | Week 7      | Email notifications, notification preferences, in-app notification center |
+| **GDPR Compliance**    | Week 8      | Consent flow, privacy policy, DSAR skeleton, data deletion handler        |
+| **Ad Integration**     | Week 8      | Google AdMob/AdSense setup, ad placement on toy detail                    |
+| **Internal Testing**   | Week 9      | QA testing, performance testing, security audit                           |
+| **Soft Launch**        | Week 10     | Invite 100 beta users, gather feedback, iterate                           |
+| **Bug Fixes & Polish** | Week 11-12  | Fix reported issues, improve UX, performance optimization                 |
+| **Public Launch**      | Week 12     | Release v1.0 to public, announce via PR                                   |
 
 **Phase 2: Growth (Months 4-6)**
 
-| Milestone | Target Date | Deliverables |
-|-----------|-------------|--------------|
-| **Mobile Apps** | Month 4 | Capacitor setup, iOS + Android beta builds |
-| **Additional Games** | Month 4 | Memory card game, Toy trivia game |
-| **Rewarded Ads** | Month 4 | AdMob rewarded video integration, testing |
-| **Internationalization** | Month 5 | German & English translations, locale formatting |
-| **Push Notifications** | Month 5 | Firebase FCM integration, push testing on mobile |
-| **Admin Dashboard** | Month 5 | Moderation UI, toy approval, report handling |
-| **Parental Controls** | Month 5 | Game time limits, ad opt-out, child privacy settings |
-| **GDPR Portal** | Month 6 | DSAR automation, data export, easy deletion |
-| **App Store Release** | Month 6 | iOS App Store + Google Play Store submission, approval |
-| **Growth Campaign** | Month 6 | Influencer partnerships, eco-community outreach |
+| Milestone                | Target Date | Deliverables                                           |
+| ------------------------ | ----------- | ------------------------------------------------------ |
+| **Mobile Apps**          | Month 4     | Capacitor setup, iOS + Android beta builds             |
+| **Additional Games**     | Month 4     | Memory card game, Toy trivia game                      |
+| **Rewarded Ads**         | Month 4     | AdMob rewarded video integration, testing              |
+| **Internationalization** | Month 5     | German & English translations, locale formatting       |
+| **Push Notifications**   | Month 5     | Firebase FCM integration, push testing on mobile       |
+| **Admin Dashboard**      | Month 5     | Moderation UI, toy approval, report handling           |
+| **Parental Controls**    | Month 5     | Game time limits, ad opt-out, child privacy settings   |
+| **GDPR Portal**          | Month 6     | DSAR automation, data export, easy deletion            |
+| **App Store Release**    | Month 6     | iOS App Store + Google Play Store submission, approval |
+| **Growth Campaign**      | Month 6     | Influencer partnerships, eco-community outreach        |
 
 **Phase 3: Scale & Trust (Months 7-12)**
 
-| Milestone | Target Date | Deliverables |
-|-----------|-------------|--------------|
-| **Sponsored Listings** | Month 7 | Brand partnership system, payment processing (Phase 3 business) |
-| **Advanced Matching** | Month 8 | ML recommendations, personalized match algorithm |
-| **Community Features** | Month 8 | Badges, leaderboards, user profiles, follow system |
-| **Analytics Dashboard** | Month 8 | KPI tracking, user growth charts, export reports |
-| **International Expansion** | Month 9 | France + Netherlands setup, language support, local partnerships |
-| **Affiliate Program** | Month 9 | Referral system, bonus ticket rewards |
-| **Performance Optimization** | Month 10 | Database indexing, caching, CDN optimization, mobile performance |
-| **Security Audit** | Month 10 | Third-party penetration test, compliance review |
-| **Year 1 Review** | Month 12 | Retrospective, strategy for Year 2, roadmap updates |
+| Milestone                    | Target Date | Deliverables                                                     |
+| ---------------------------- | ----------- | ---------------------------------------------------------------- |
+| **Sponsored Listings**       | Month 7     | Brand partnership system, payment processing (Phase 3 business)  |
+| **Advanced Matching**        | Month 8     | ML recommendations, personalized match algorithm                 |
+| **Community Features**       | Month 8     | Badges, leaderboards, user profiles, follow system               |
+| **Analytics Dashboard**      | Month 8     | KPI tracking, user growth charts, export reports                 |
+| **International Expansion**  | Month 9     | France + Netherlands setup, language support, local partnerships |
+| **Affiliate Program**        | Month 9     | Referral system, bonus ticket rewards                            |
+| **Performance Optimization** | Month 10    | Database indexing, caching, CDN optimization, mobile performance |
+| **Security Audit**           | Month 10    | Third-party penetration test, compliance review                  |
+| **Year 1 Review**            | Month 12    | Retrospective, strategy for Year 2, roadmap updates              |
 
 ---
 
 ## Appendix: Glossary & Definitions
 
-| Term | Definition |
-|------|-----------|
-| **Ticket** | Virtual currency (1 ticket = 1 toy exchange right) |
-| **Fragment** | Earned from games; 4 fragments = 1 ticket |
-| **Exchange** | Transaction between two parents involving 1 toy for 1 ticket |
-| **Escrow** | Ticket held by system during exchange (not accessible to either user) |
-| **Lister** | Parent who lists toy for exchange |
-| **Requester** | Parent who requests toy from lister |
-| **Wishlist** | Per-child list of desired toys for matching |
-| **Matching** | Algorithmic pairing of child wishlists with available toys |
-| **RLS** | Row-Level Security (database security enforced at Supabase) |
-| **GDPR** | General Data Protection Regulation (EU privacy law) |
-| **COPPA** | Children's Online Privacy Protection Act (US law, future consideration) |
-| **DPA** | Data Processing Agreement (legal contract with third parties) |
-| **DSAR** | Data Subject Access Request (user right to download personal data) |
-| **DPO** | Data Protection Officer (compliance role) |
-| **i18n** | Internationalization (multi-language support) |
-| **FCM** | Firebase Cloud Messaging (push notification service) |
-| **MAU** | Monthly Active Users (engagement metric) |
-| **DAU** | Daily Active Users (engagement metric) |
-| **RPM** | Revenue Per 1000 impressions (ad metric) |
-| **CTR** | Click-Through Rate (ad metric) |
-| **CAC** | Customer Acquisition Cost (marketing metric) |
-| **LTV** | Lifetime Value (user value metric) |
-| **SLA** | Service Level Agreement (uptime guarantee) |
+| Term          | Definition                                                              |
+| ------------- | ----------------------------------------------------------------------- |
+| **Ticket**    | Virtual currency (1 ticket = 1 toy exchange right)                      |
+| **Fragment**  | Earned from games; 4 fragments = 1 ticket                               |
+| **Exchange**  | Transaction between two parents involving 1 toy for 1 ticket            |
+| **Escrow**    | Ticket held by system during exchange (not accessible to either user)   |
+| **Lister**    | Parent who lists toy for exchange                                       |
+| **Requester** | Parent who requests toy from lister                                     |
+| **Wishlist**  | Per-child list of desired toys for matching                             |
+| **Matching**  | Algorithmic pairing of child wishlists with available toys              |
+| **RLS**       | Row-Level Security (database security enforced at Supabase)             |
+| **GDPR**      | General Data Protection Regulation (EU privacy law)                     |
+| **COPPA**     | Children's Online Privacy Protection Act (US law, future consideration) |
+| **DPA**       | Data Processing Agreement (legal contract with third parties)           |
+| **DSAR**      | Data Subject Access Request (user right to download personal data)      |
+| **DPO**       | Data Protection Officer (compliance role)                               |
+| **i18n**      | Internationalization (multi-language support)                           |
+| **FCM**       | Firebase Cloud Messaging (push notification service)                    |
+| **MAU**       | Monthly Active Users (engagement metric)                                |
+| **DAU**       | Daily Active Users (engagement metric)                                  |
+| **RPM**       | Revenue Per 1000 impressions (ad metric)                                |
+| **CTR**       | Click-Through Rate (ad metric)                                          |
+| **CAC**       | Customer Acquisition Cost (marketing metric)                            |
+| **LTV**       | Lifetime Value (user value metric)                                      |
+| **SLA**       | Service Level Agreement (uptime guarantee)                              |
 
 ---
 
 ## Document Approval & Sign-Off
 
-| Role | Name | Date | Signature |
-|------|------|------|-----------|
-| **Product Owner** | [To be assigned] | [TBD] | |
-| **Engineering Lead** | [To be assigned] | [TBD] | |
-| **Legal/Compliance** | [To be assigned] | [TBD] | |
-| **Design Lead** | [To be assigned] | [TBD] | |
+| Role                 | Name             | Date  | Signature |
+| -------------------- | ---------------- | ----- | --------- |
+| **Product Owner**    | [To be assigned] | [TBD] |           |
+| **Engineering Lead** | [To be assigned] | [TBD] |           |
+| **Legal/Compliance** | [To be assigned] | [TBD] |           |
+| **Design Lead**      | [To be assigned] | [TBD] |           |
 
 ---
 
 ## Document History
 
-| Version | Date | Author | Changes |
-|---------|------|--------|---------|
-| 1.0 | 2025-11-13 | AI-Generated | Initial comprehensive PRD for MVP phase |
+| Version | Date       | Author       | Changes                                 |
+| ------- | ---------- | ------------ | --------------------------------------- |
+| 1.0     | 2025-11-13 | AI-Generated | Initial comprehensive PRD for MVP phase |
 
 ---
 

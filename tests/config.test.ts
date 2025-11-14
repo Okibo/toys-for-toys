@@ -103,8 +103,7 @@ describe('Task 1.1: TypeScript & Configuration', () => {
 
     test('should have declaration or declarationMap for type exports', () => {
       const hasDeclaration =
-        tsConfig.compilerOptions.declaration ||
-        tsConfig.compilerOptions.declarationMap;
+        tsConfig.compilerOptions.declaration || tsConfig.compilerOptions.declarationMap;
       expect(hasDeclaration).toBeDefined();
     });
 
@@ -145,9 +144,7 @@ describe('Task 1.1: TypeScript & Configuration', () => {
     test('should exclude dist or .next from compilation', () => {
       const exclude = tsConfig.exclude;
       const hasDistOrNext =
-        exclude.includes('dist') ||
-        exclude.includes('.next') ||
-        exclude.includes('out');
+        exclude.includes('dist') || exclude.includes('.next') || exclude.includes('out');
 
       expect(hasDistOrNext).toBe(true);
     });
@@ -174,50 +171,42 @@ describe('Task 1.1: TypeScript & Configuration', () => {
     });
 
     test('should have path aliases in tsconfig.json or jsconfig.json', () => {
-      const paths =
-        tsConfig?.compilerOptions?.paths || jsConfig?.compilerOptions?.paths;
+      const paths = tsConfig?.compilerOptions?.paths || jsConfig?.compilerOptions?.paths;
       expect(paths).toBeDefined();
     });
 
     test('should have @/components path alias', () => {
-      const paths =
-        tsConfig?.compilerOptions?.paths || jsConfig?.compilerOptions?.paths;
+      const paths = tsConfig?.compilerOptions?.paths || jsConfig?.compilerOptions?.paths;
       expect(paths['@/components']).toBeDefined();
     });
 
     test('should have @/lib path alias', () => {
-      const paths =
-        tsConfig?.compilerOptions?.paths || jsConfig?.compilerOptions?.paths;
+      const paths = tsConfig?.compilerOptions?.paths || jsConfig?.compilerOptions?.paths;
       expect(paths['@/lib']).toBeDefined();
     });
 
     test('should have @/app path alias', () => {
-      const paths =
-        tsConfig?.compilerOptions?.paths || jsConfig?.compilerOptions?.paths;
+      const paths = tsConfig?.compilerOptions?.paths || jsConfig?.compilerOptions?.paths;
       expect(paths['@/app']).toBeDefined();
     });
 
     test('should have @/supabase path alias', () => {
-      const paths =
-        tsConfig?.compilerOptions?.paths || jsConfig?.compilerOptions?.paths;
+      const paths = tsConfig?.compilerOptions?.paths || jsConfig?.compilerOptions?.paths;
       expect(paths['@/supabase']).toBeDefined();
     });
 
     test('should have @/public path alias', () => {
-      const paths =
-        tsConfig?.compilerOptions?.paths || jsConfig?.compilerOptions?.paths;
+      const paths = tsConfig?.compilerOptions?.paths || jsConfig?.compilerOptions?.paths;
       expect(paths['@/public']).toBeDefined();
     });
 
     test('should have @/tests path alias', () => {
-      const paths =
-        tsConfig?.compilerOptions?.paths || jsConfig?.compilerOptions?.paths;
+      const paths = tsConfig?.compilerOptions?.paths || jsConfig?.compilerOptions?.paths;
       expect(paths['@/tests']).toBeDefined();
     });
 
     test('path aliases should point to correct directories', () => {
-      const paths =
-        tsConfig?.compilerOptions?.paths || jsConfig?.compilerOptions?.paths;
+      const paths = tsConfig?.compilerOptions?.paths || jsConfig?.compilerOptions?.paths;
 
       // Each alias should be an array with at least one path
       Object.entries(paths).forEach(([_alias, targets]) => {
@@ -227,14 +216,11 @@ describe('Task 1.1: TypeScript & Configuration', () => {
     });
 
     test('@/components should point to ./components directory', () => {
-      const paths =
-        tsConfig?.compilerOptions?.paths || jsConfig?.compilerOptions?.paths;
+      const paths = tsConfig?.compilerOptions?.paths || jsConfig?.compilerOptions?.paths;
       const componentsPaths = paths['@/components'];
 
       expect(componentsPaths).toBeDefined();
-      const pointsToComponents = componentsPaths.some((p: string) =>
-        p.includes('components')
-      );
+      const pointsToComponents = componentsPaths.some((p: string) => p.includes('components'));
       expect(pointsToComponents).toBe(true);
     });
   });
@@ -303,9 +289,7 @@ describe('Task 1.1: TypeScript & Configuration', () => {
         const eslintConfig = JSON.parse(content);
 
         // Should have either parserOptions or env
-        expect(
-          eslintConfig.parserOptions || eslintConfig.env
-        ).toBeDefined();
+        expect(eslintConfig.parserOptions || eslintConfig.env).toBeDefined();
       }
     });
   });
@@ -337,9 +321,7 @@ describe('Task 1.1: TypeScript & Configuration', () => {
       const prettierJsonPath = path.join(PROJECT_ROOT, '.prettierrc.json');
       const prettierPath = path.join(PROJECT_ROOT, '.prettierrc');
 
-      const configPath = fs.existsSync(prettierJsonPath)
-        ? prettierJsonPath
-        : prettierPath;
+      const configPath = fs.existsSync(prettierJsonPath) ? prettierJsonPath : prettierPath;
 
       if (fs.existsSync(configPath)) {
         const content = fs.readFileSync(configPath, 'utf-8');
@@ -354,8 +336,7 @@ describe('Task 1.1: TypeScript & Configuration', () => {
       const nextConfigJsPath = path.join(PROJECT_ROOT, 'next.config.js');
       const nextConfigMjsPath = path.join(PROJECT_ROOT, 'next.config.mjs');
 
-      const hasNextConfig =
-        fs.existsSync(nextConfigJsPath) || fs.existsSync(nextConfigMjsPath);
+      const hasNextConfig = fs.existsSync(nextConfigJsPath) || fs.existsSync(nextConfigMjsPath);
 
       expect(hasNextConfig).toBe(true);
     });

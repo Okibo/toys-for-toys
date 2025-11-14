@@ -26,11 +26,7 @@ import {
   getServiceWorkerStatus,
   type ServiceWorkerStatus,
 } from '@/lib/service-worker';
-import {
-  requestNotificationToken,
-  subscribeToMessages,
-  type MessagePayload,
-} from '@/lib/firebase';
+import { requestNotificationToken, subscribeToMessages, type MessagePayload } from '@/lib/firebase';
 
 /**
  * Notification state and handlers
@@ -179,9 +175,7 @@ export function useNotifications(): UseNotificationsResult {
           throw new Error('User denied notification permission');
         }
       } else if (window.Notification.permission === 'denied') {
-        throw new Error(
-          'Notifications are blocked. Please enable them in browser settings.'
-        );
+        throw new Error('Notifications are blocked. Please enable them in browser settings.');
       }
 
       // Step 3: Get FCM token

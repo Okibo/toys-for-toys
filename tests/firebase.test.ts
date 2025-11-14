@@ -37,8 +37,7 @@ describe('Firebase Client Initialization', () => {
     // Set up environment variables
     process.env.NEXT_PUBLIC_FIREBASE_API_KEY = mockFirebaseConfig.apiKey;
     process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID = mockFirebaseConfig.projectId;
-    process.env.NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID =
-      mockFirebaseConfig.messagingSenderId;
+    process.env.NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID = mockFirebaseConfig.messagingSenderId;
     process.env.NEXT_PUBLIC_FIREBASE_APP_ID = mockFirebaseConfig.appId;
   });
 
@@ -60,12 +59,7 @@ describe('Firebase Client Initialization', () => {
   });
 
   test('Firebase Cloud Messaging config should contain all required fields', () => {
-    const requiredFields = [
-      'apiKey',
-      'projectId',
-      'messagingSenderId',
-      'appId',
-    ];
+    const requiredFields = ['apiKey', 'projectId', 'messagingSenderId', 'appId'];
 
     requiredFields.forEach((field) => {
       expect(mockFirebaseConfig).toHaveProperty(field);
@@ -125,9 +119,7 @@ describe('Firebase Client Initialization', () => {
   });
 
   test('Firebase messaging sender ID should be a non-empty string', () => {
-    expect(typeof process.env.NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID).toBe(
-      'string',
-    );
+    expect(typeof process.env.NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID).toBe('string');
     expect(process.env.NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID).not.toBe('');
   });
 
@@ -157,18 +149,12 @@ describe('Firebase Client Initialization', () => {
   });
 
   test('Firebase Cloud Messaging config values should match environment variables', () => {
-    expect(mockFirebaseConfig.apiKey).toBe(
-      process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
-    );
-    expect(mockFirebaseConfig.projectId).toBe(
-      process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID,
-    );
+    expect(mockFirebaseConfig.apiKey).toBe(process.env.NEXT_PUBLIC_FIREBASE_API_KEY);
+    expect(mockFirebaseConfig.projectId).toBe(process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID);
     expect(mockFirebaseConfig.messagingSenderId).toBe(
-      process.env.NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID,
+      process.env.NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID
     );
-    expect(mockFirebaseConfig.appId).toBe(
-      process.env.NEXT_PUBLIC_FIREBASE_APP_ID,
-    );
+    expect(mockFirebaseConfig.appId).toBe(process.env.NEXT_PUBLIC_FIREBASE_APP_ID);
   });
 
   test('should not contain any private credentials in config', () => {

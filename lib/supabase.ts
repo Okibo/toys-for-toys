@@ -6,10 +6,10 @@ const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
 if (!supabaseUrl || !supabaseAnonKey) {
   throw new Error(
     'Missing Supabase environment variables. ' +
-    'Please ensure the following are set in your .env.local file:\n' +
-    '- NEXT_PUBLIC_SUPABASE_URL\n' +
-    '- NEXT_PUBLIC_SUPABASE_ANON_KEY\n\n' +
-    'Refer to docs/DATABASE.md for setup instructions.'
+      'Please ensure the following are set in your .env.local file:\n' +
+      '- NEXT_PUBLIC_SUPABASE_URL\n' +
+      '- NEXT_PUBLIC_SUPABASE_ANON_KEY\n\n' +
+      'Refer to docs/DATABASE.md for setup instructions.'
   );
 }
 

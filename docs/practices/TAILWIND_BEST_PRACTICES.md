@@ -20,9 +20,11 @@ This guide provides best practices for working with Tailwind CSS in the Toys-for
 ## Utility-First Thinking
 
 ### Core Principle
+
 Apply utility classes directly to HTML elements rather than creating custom CSS for every component.
 
 ### Example: WRONG
+
 ```css
 /* DON'T do this */
 .card-header {
@@ -39,13 +41,13 @@ Apply utility classes directly to HTML elements rather than creating custom CSS 
 ```
 
 ### Example: RIGHT
+
 ```tsx
-<div className="p-4 text-lg font-semibold text-gray-900 border-b border-gray-200">
-  Card Title
-</div>
+<div className="p-4 text-lg font-semibold text-gray-900 border-b border-gray-200">Card Title</div>
 ```
 
 ### Rationale
+
 - Fewer CSS files to maintain
 - Utilities are single-purpose and reusable
 - Easier to understand visual styling by reading HTML
@@ -56,9 +58,11 @@ Apply utility classes directly to HTML elements rather than creating custom CSS 
 ## Responsive Design
 
 ### Mobile-First Approach
+
 Always design for mobile first, then add complexity with larger breakpoints.
 
 ### Breakpoints
+
 ```
 sm:  640px  - Small devices (tablets portrait)
 md:  768px  - Medium devices (tablets landscape)
@@ -68,13 +72,13 @@ xl:  1280px - Extra large (wide monitors)
 ```
 
 ### Example: Responsive Typography
+
 ```tsx
-<h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold">
-  Welcome to Toys for Toys
-</h1>
+<h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold">Welcome to Toys for Toys</h1>
 ```
 
 ### Example: Responsive Layout
+
 ```tsx
 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
   {/* Grid changes from 1 column (mobile) to 2 (tablet) to 3 (desktop) */}
@@ -82,6 +86,7 @@ xl:  1280px - Extra large (wide monitors)
 ```
 
 ### Example: Responsive Spacing
+
 ```tsx
 <section className="px-4 sm:px-6 md:px-8 py-8 sm:py-12 md:py-16">
   {/* Padding adjusts based on screen size */}
@@ -89,6 +94,7 @@ xl:  1280px - Extra large (wide monitors)
 ```
 
 ### Tips
+
 - Test on actual mobile devices, not just browser dev tools
 - Use responsive images with srcset attribute
 - Consider touch targets: minimum 44x44px (11x11mm)
@@ -99,6 +105,7 @@ xl:  1280px - Extra large (wide monitors)
 ## Dark Mode
 
 ### Implementation
+
 The project uses class-based dark mode. Add the `dark` class to toggle:
 
 ```tsx
@@ -110,6 +117,7 @@ The project uses class-based dark mode. Add the `dark` class to toggle:
 ```
 
 ### Using Dark Mode Classes
+
 ```tsx
 <div className="bg-white text-gray-900 dark:bg-gray-950 dark:text-gray-100">
   Content that adapts to light and dark mode
@@ -117,6 +125,7 @@ The project uses class-based dark mode. Add the `dark` class to toggle:
 ```
 
 ### Example: Card with Dark Mode
+
 ```tsx
 <div className="bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-lg shadow-sm dark:shadow-none">
   <h3 className="text-gray-900 dark:text-white">Card Title</h3>
@@ -125,17 +134,21 @@ The project uses class-based dark mode. Add the `dark` class to toggle:
 ```
 
 ### Color Pairing for Dark Mode
+
 When using a light mode color, always add a dark mode variant:
+
 ```tsx
 // Good
-className="bg-blue-100 dark:bg-blue-900 text-blue-900 dark:text-blue-100"
+className = 'bg-blue-100 dark:bg-blue-900 text-blue-900 dark:text-blue-100';
 
 // Bad - no dark mode
-className="bg-blue-100 text-blue-900"
+className = 'bg-blue-100 text-blue-900';
 ```
 
 ### System Preference Detection
+
 For automatic detection, add this to a theme provider:
+
 ```tsx
 // Detect system preference
 const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
@@ -151,6 +164,7 @@ if (prefersDark) {
 ## Component Patterns
 
 ### Using @apply for Component Abstraction
+
 When you have repeated utility combinations, use `@apply` in globals.css:
 
 ```css
@@ -169,6 +183,7 @@ When you have repeated utility combinations, use `@apply` in globals.css:
 ```
 
 Then use in components:
+
 ```tsx
 <button className="btn-primary">Click me</button>
 <button className="btn-secondary">Secondary</button>
@@ -176,11 +191,20 @@ Then use in components:
 ```
 
 ### Creating Card Component
+
 ```tsx
 // components/Card.tsx
-export function Card({ children, className = '' }: { children: React.ReactNode; className?: string }) {
+export function Card({
+  children,
+  className = '',
+}: {
+  children: React.ReactNode;
+  className?: string;
+}) {
   return (
-    <div className={`bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-lg shadow-sm ${className}`}>
+    <div
+      className={`bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-lg shadow-sm ${className}`}
+    >
       {children}
     </div>
   );
@@ -190,24 +214,25 @@ export function Card({ children, className = '' }: { children: React.ReactNode; 
 <Card>
   <h3 className="text-lg font-semibold text-gray-900 dark:text-white">Title</h3>
   <p className="text-gray-600 dark:text-gray-400">Content</p>
-</Card>
+</Card>;
 ```
 
 ### Creating Layout Component
+
 ```tsx
 // components/Container.tsx
-export function Container({ children, className = '' }: { children: React.ReactNode; className?: string }) {
-  return (
-    <div className={`container-base ${className}`}>
-      {children}
-    </div>
-  );
+export function Container({
+  children,
+  className = '',
+}: {
+  children: React.ReactNode;
+  className?: string;
+}) {
+  return <div className={`container-base ${className}`}>{children}</div>;
 }
 
 // Usage - container-base is defined in globals.css
-<Container className="py-12">
-  {/* Content with responsive padding and max-width */}
-</Container>
+<Container className="py-12">{/* Content with responsive padding and max-width */}</Container>;
 ```
 
 ---
@@ -215,6 +240,7 @@ export function Container({ children, className = '' }: { children: React.ReactN
 ## Performance Tips
 
 ### 1. Content Path Configuration
+
 The `content` array in tailwind.config.ts must include all files with Tailwind classes:
 
 ```typescript
@@ -228,7 +254,9 @@ content: [
 If you add a new directory, update this array.
 
 ### 2. Avoid Dynamic Class Names
+
 WRONG - Tailwind can't detect dynamic classes:
+
 ```tsx
 <div className={`bg-${color}-500`}>
   {/* This won't work - Tailwind can't parse dynamic colors */}
@@ -236,6 +264,7 @@ WRONG - Tailwind can't detect dynamic classes:
 ```
 
 RIGHT - Use a mapping or predefined classes:
+
 ```tsx
 const colorClasses: Record<string, string> = {
   red: 'bg-red-500',
@@ -243,12 +272,11 @@ const colorClasses: Record<string, string> = {
   green: 'bg-green-500',
 };
 
-<div className={colorClasses[color]}>
-  {/* Tailwind can find and include these classes */}
-</div>
+<div className={colorClasses[color]}>{/* Tailwind can find and include these classes */}</div>;
 ```
 
 ### 3. Extract Repeated Patterns
+
 Extract repeated utility combinations to reduce file size:
 
 ```css
@@ -269,17 +297,21 @@ Extract repeated utility combinations to reduce file size:
 ```
 
 ### 4. Monitor Bundle Size
+
 Check CSS output size during development:
+
 ```bash
 npm run build
 # Check .next/static/css directory for file sizes
 ```
 
 Aim for:
+
 - Development: No limit (full Tailwind included)
 - Production: 50-100KB depending on feature usage
 
 ### 5. Use CSS Variables for Theme Values
+
 For customizable themes, use CSS variables:
 
 ```css
@@ -293,6 +325,7 @@ For customizable themes, use CSS variables:
 ```
 
 Then reference in Tailwind config:
+
 ```typescript
 // In tailwind.config.ts
 colors: {
@@ -306,6 +339,7 @@ colors: {
 ## Accessibility
 
 ### 1. Color Contrast
+
 Always ensure sufficient contrast between text and background:
 
 ```tsx
@@ -317,6 +351,7 @@ Always ensure sufficient contrast between text and background:
 ```
 
 ### 2. Focus States
+
 All interactive elements must have visible focus states:
 
 ```tsx
@@ -328,6 +363,7 @@ All interactive elements must have visible focus states:
 This is included in globals.css for all elements.
 
 ### 3. Touch Target Size
+
 Ensure buttons and links are at least 44x44px (11mm):
 
 ```tsx
@@ -343,6 +379,7 @@ Ensure buttons and links are at least 44x44px (11mm):
 ```
 
 ### 4. Text Sizing
+
 Use `text-base` or larger for body text:
 
 ```tsx
@@ -358,6 +395,7 @@ Use `text-base` or larger for body text:
 ```
 
 ### 5. Semantic HTML
+
 Always use semantic elements with appropriate ARIA attributes:
 
 ```tsx
@@ -381,15 +419,15 @@ Always use semantic elements with appropriate ARIA attributes:
 ## Common Patterns
 
 ### Centered Container
+
 ```tsx
 <div className="flex items-center justify-center min-h-screen">
-  <div className="text-center">
-    {/* Centered content */}
-  </div>
+  <div className="text-center">{/* Centered content */}</div>
 </div>
 ```
 
 ### Responsive Grid
+
 ```tsx
 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
   {/* Three columns on desktop, two on tablet, one on mobile */}
@@ -397,6 +435,7 @@ Always use semantic elements with appropriate ARIA attributes:
 ```
 
 ### Sticky Header
+
 ```tsx
 <header className="sticky top-0 bg-white dark:bg-gray-900 border-b border-gray-200 dark:border-gray-800 z-50">
   {/* Header content */}
@@ -404,22 +443,20 @@ Always use semantic elements with appropriate ARIA attributes:
 ```
 
 ### Card Grid
+
 ```tsx
 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-  {items.map(item => (
+  {items.map((item) => (
     <div key={item.id} className="card p-6">
-      <h3 className="text-lg font-semibold text-gray-900 dark:text-white">
-        {item.title}
-      </h3>
-      <p className="text-gray-600 dark:text-gray-400 mt-2">
-        {item.description}
-      </p>
+      <h3 className="text-lg font-semibold text-gray-900 dark:text-white">{item.title}</h3>
+      <p className="text-gray-600 dark:text-gray-400 mt-2">{item.description}</p>
     </div>
   ))}
 </div>
 ```
 
 ### Flex Between
+
 ```tsx
 <div className="flex-between">
   <span>Label</span>
@@ -428,23 +465,19 @@ Always use semantic elements with appropriate ARIA attributes:
 ```
 
 ### Gradient Background
+
 ```tsx
-<div className="bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500">
-  {/* Content */}
-</div>
+<div className="bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500">{/* Content */}</div>
 ```
 
 ### Hero Section
+
 ```tsx
 <section className="min-h-screen bg-gradient-to-b from-blue-50 to-white dark:from-gray-950 dark:to-gray-900">
   <div className="container-base py-24">
     <div className="max-w-3xl mx-auto text-center">
-      <h1 className="text-5xl md:text-6xl font-bold text-gray-900 dark:text-white">
-        Hero Title
-      </h1>
-      <p className="mt-6 text-xl text-gray-600 dark:text-gray-300">
-        Hero subtitle
-      </p>
+      <h1 className="text-5xl md:text-6xl font-bold text-gray-900 dark:text-white">Hero Title</h1>
+      <p className="mt-6 text-xl text-gray-600 dark:text-gray-300">Hero subtitle</p>
     </div>
   </div>
 </section>
@@ -455,15 +488,17 @@ Always use semantic elements with appropriate ARIA attributes:
 ## Anti-Patterns to Avoid
 
 ### 1. Don't Use !important
+
 ```tsx
 // BAD
-className="p-4 !p-8"
+className = 'p-4 !p-8';
 
 // GOOD - Override with more specific utility
-className="p-8"
+className = 'p-8';
 ```
 
 ### 2. Don't Mix Utility Styles with Custom CSS
+
 ```tsx
 // BAD - mixing approaches
 <div className="my-custom-class p-4">
@@ -477,43 +512,49 @@ className="p-8"
 ```
 
 ### 3. Don't Extract Components Too Early
+
 ```tsx
 // BAD - over-engineered for simple use
 // components/Text.tsx
 export const Text = ({ children }) => <p className="text-base">{children}</p>;
 
 // GOOD - use Tailwind directly
-<p className="text-base">{children}</p>
+<p className="text-base">{children}</p>;
 ```
 
 ### 4. Don't Nest Classes Excessively
+
 ```tsx
 // BAD - hard to read
-className="relative inline-flex items-center justify-center font-semibold text-sm leading-none rounded-full whitespace-nowrap transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 px-3 py-1 bg-blue-600 text-white hover:bg-blue-700"
+className =
+  'relative inline-flex items-center justify-center font-semibold text-sm leading-none rounded-full whitespace-nowrap transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 px-3 py-1 bg-blue-600 text-white hover:bg-blue-700';
 
 // GOOD - extract to component or use @apply
-className="btn-primary"
+className = 'btn-primary';
 ```
 
 ### 5. Don't Create Custom Color Names
+
 ```tsx
 // BAD - custom naming
-className="bg-primary text-secondary"
+className = 'bg-primary text-secondary';
 
 // GOOD - use Tailwind standard colors or extend config
-className="bg-blue-600 text-gray-700"
+className = 'bg-blue-600 text-gray-700';
 ```
 
 ### 6. Don't Ignore Responsive Design
+
 ```tsx
 // BAD - only desktop view
-className="w-1/3 absolute left-0 top-0"
+className = 'w-1/3 absolute left-0 top-0';
 
 // GOOD - responsive from mobile
-className="w-full md:w-1/3 absolute left-0 top-0"
+className = 'w-full md:w-1/3 absolute left-0 top-0';
 ```
 
 ### 7. Don't Use Pixel Values When Tailwind Has Utilities
+
 ```tsx
 // BAD - custom CSS value
 style={{ width: '320px' }}

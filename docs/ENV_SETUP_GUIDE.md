@@ -26,12 +26,13 @@ This guide walks you through setting up Firebase credentials for local developme
 4. **Copy Public Credentials**
    - You'll see configuration with the following fields
    - We only need specific fields for Cloud Messaging (not Auth, Database, or Storage - those use Supabase):
+
    ```javascript
    const firebaseConfig = {
-     apiKey: "AIzaSy...",
-     projectId: "toys-for-toys-mvp",
-     messagingSenderId: "123456789012345",
-     appId: "1:123456789012345:web:abc123def456ghi789"
+     apiKey: 'AIzaSy...',
+     projectId: 'toys-for-toys-mvp',
+     messagingSenderId: '123456789012345',
+     appId: '1:123456789012345:web:abc123def456ghi789',
    };
    ```
 
@@ -70,6 +71,7 @@ This guide walks you through setting up Firebase credentials for local developme
 
 1. **Open the downloaded JSON file** with a text editor
    - It will look like:
+
    ```json
    {
      "type": "service_account",
@@ -88,6 +90,7 @@ This guide walks you through setting up Firebase credentials for local developme
 2. **Convert to Single Line String**
    - Easiest method: Copy entire JSON content and paste
    - Or use command line:
+
    ```bash
    # On macOS/Linux
    cat /path/to/downloaded/file.json | tr '\n' ' ' | sed 's/"//g'
@@ -100,6 +103,7 @@ This guide walks you through setting up Firebase credentials for local developme
 
 1. **Open `.env.local` again**
    - Paste the entire JSON as a single line:
+
    ```env
    FIREBASE_ADMIN_SDK_KEY='{"type":"service_account","project_id":"toys-for-toys-mvp","private_key_id":"abc123def456...","private_key":"-----BEGIN RSA PRIVATE KEY-----\nMIIEowIBAAKCAQEA...\n-----END RSA PRIVATE KEY-----\n","client_email":"firebase-adminsdk-abc123@toys-for-toys-mvp.iam.gserviceaccount.com","client_id":"123456789012345","auth_uri":"https://accounts.google.com/o/oauth2/auth","token_uri":"https://oauth2.googleapis.com/token","auth_provider_x509_cert_url":"https://www.googleapis.com/oauth2/v1/certs","client_x509_cert_url":"https://www.googleapis.com/robot/v1/metadata/x509/firebase-adminsdk-abc123%40toys-for-toys-mvp.iam.gserviceaccount.com"}'
    ```
@@ -122,15 +126,19 @@ This guide walks you through setting up Firebase credentials for local developme
 ### 2d: Clean Up
 
 1. **Delete the downloaded JSON file**
+
    ```bash
    rm ~/Downloads/toys-for-toys-mvp-firebase-adminsdk-abc123-def456.json
    ```
+
    - This prevents accidental file exposure
 
 2. **Secure the `.env.local` file**
+
    ```bash
    chmod 600 /Users/pawelkalkun/Projects/private/toys-for-toys/.env.local
    ```
+
    - This restricts read access to owner only
 
 ## Step 3: Verify Configuration
@@ -151,6 +159,7 @@ grep "FIREBASE_ADMIN_SDK_KEY" .env.local
 ### 3b: Test Firebase Connection
 
 1. **Start development server**
+
    ```bash
    npm install  # If not already done
    npm run dev
@@ -164,8 +173,8 @@ grep "FIREBASE_ADMIN_SDK_KEY" .env.local
 3. **Verify credentials are accessible**
    ```javascript
    // In browser console:
-   process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID  // Should show project ID
-   process.env.FIREBASE_ADMIN_SDK_KEY  // Should be undefined (server-side only)
+   process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID; // Should show project ID
+   process.env.FIREBASE_ADMIN_SDK_KEY; // Should be undefined (server-side only)
    ```
 
 ### 3c: Run Tests
@@ -209,6 +218,7 @@ All tests should PASS.
    - All variables should be listed
 
 2. **Trigger a new deployment**
+
    ```bash
    git push main  # or push to production branch
    ```
@@ -247,6 +257,7 @@ To secure the public API key:
 **Cause:** A Firebase Cloud Messaging environment variable is missing from `.env.local`
 
 **Solution:**
+
 - Verify all required `NEXT_PUBLIC_FIREBASE_*` variables are in `.env.local`:
   - NEXT_PUBLIC_FIREBASE_API_KEY
   - NEXT_PUBLIC_FIREBASE_PROJECT_ID
@@ -260,6 +271,7 @@ To secure the public API key:
 **Cause:** Server-side code can't find the admin SDK key
 
 **Solution:**
+
 - Verify `FIREBASE_ADMIN_SDK_KEY` is in `.env.local`
 - Restart dev server: `npm run dev`
 - Check key is properly formatted (single line, single quotes)
@@ -269,6 +281,7 @@ To secure the public API key:
 **Cause:** The JSON structure is invalid or incomplete
 
 **Solution:**
+
 - Download a fresh service account JSON from Firebase Console
 - Verify the JSON contains all fields:
   - type
@@ -287,6 +300,7 @@ To secure the public API key:
 **Cause:** Environment variables not properly set in Vercel
 
 **Solution:**
+
 - Check Vercel Dashboard > Settings > Environment Variables
 - Verify these Cloud Messaging variables match Firebase Console:
   - NEXT_PUBLIC_FIREBASE_API_KEY
@@ -302,6 +316,7 @@ To secure the public API key:
 **Cause:** `firebase-admin` imported in client-side code
 
 **Solution:**
+
 - Search for `firebase-admin` imports in `/components`, `/lib/hooks`, `/pages` (not `/pages/api`)
 - Move `firebase-admin` usage to `/lib/firebase-admin.ts` or `/pages/api/*`
 - Only import from `/lib/firebase.ts` in client code
@@ -330,8 +345,8 @@ After setup is complete:
 ## Support
 
 For issues or questions:
+
 - Check `docs/FIREBASE_SECURITY.md` for security guidance
 - Check `docs/FIREBASE_QUICK_REFERENCE.md` for common patterns
 - Review test files for examples: `tests/firebase-*.test.ts`
 - Consult Firebase documentation: https://firebase.google.com/docs
-

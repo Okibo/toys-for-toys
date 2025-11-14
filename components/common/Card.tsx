@@ -44,15 +44,9 @@ export const Card: React.FC<CardProps> = ({
       {(title || subtitle) && (
         <div className="px-6 py-4">
           {title && (
-            <h2 className="text-lg font-semibold text-gray-900 dark:text-white">
-              {title}
-            </h2>
+            <h2 className="text-lg font-semibold text-gray-900 dark:text-white">{title}</h2>
           )}
-          {subtitle && (
-            <p className="mt-1 text-sm text-gray-600 dark:text-gray-400">
-              {subtitle}
-            </p>
-          )}
+          {subtitle && <p className="mt-1 text-sm text-gray-600 dark:text-gray-400">{subtitle}</p>}
         </div>
       )}
 
@@ -60,18 +54,12 @@ export const Card: React.FC<CardProps> = ({
         <hr className="border-gray-200 dark:border-slate-700" />
       )}
 
-      <div className="px-6 py-4">
-        {children}
-      </div>
+      <div className="px-6 py-4">{children}</div>
 
       {footer && (
         <>
-          {showDivider && (
-            <hr className="border-gray-200 dark:border-slate-700" />
-          )}
-          <div className="px-6 py-4 bg-gray-50 dark:bg-slate-700">
-            {footer}
-          </div>
+          {showDivider && <hr className="border-gray-200 dark:border-slate-700" />}
+          <div className="px-6 py-4 bg-gray-50 dark:bg-slate-700">{footer}</div>
         </>
       )}
     </div>

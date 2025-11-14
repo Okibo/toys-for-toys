@@ -9,10 +9,7 @@ interface HeaderProps {
   children?: React.ReactNode;
 }
 
-export const Header: React.FC<HeaderProps> = ({
-  className = '',
-  children,
-}) => {
+export const Header: React.FC<HeaderProps> = ({ className = '', children }) => {
   return (
     <header
       className={`
@@ -27,9 +24,7 @@ export const Header: React.FC<HeaderProps> = ({
       `}
     >
       <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center h-16">
-          {children}
-        </div>
+        <div className="flex justify-between items-center h-16">{children}</div>
       </nav>
     </header>
   );

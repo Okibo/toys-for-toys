@@ -74,6 +74,7 @@ module.exports = {
     '/dist/',
     '/build/',
     '/out/',
+    '/tests/e2e/',
   ],
 
   // Setup files to run before tests
@@ -81,14 +82,17 @@ module.exports = {
 
   // Transform files - ts-jest handles .ts and .tsx files
   transform: {
-    '^.+\\.tsx?$': ['ts-jest', {
-      tsconfig: {
-        // Override tsconfig.json for Jest
-        jsx: 'react-jsx',
-        esModuleInterop: true,
-        allowSyntheticDefaultImports: true,
+    '^.+\\.tsx?$': [
+      'ts-jest',
+      {
+        tsconfig: {
+          // Override tsconfig.json for Jest
+          jsx: 'react-jsx',
+          esModuleInterop: true,
+          allowSyntheticDefaultImports: true,
+        },
       },
-    }],
+    ],
   },
 
   // Module file extensions to resolve

@@ -57,9 +57,7 @@ describe('Task 1.1: Monorepo Structure & Dependencies Setup', () => {
       const devDeps = packageJson.devDependencies || {};
       // At least one of these should be present for React types
       const hasReactTypes =
-        devDeps['@types/react'] ||
-        devDeps['@types/node'] ||
-        devDeps['typescript'];
+        devDeps['@types/react'] || devDeps['@types/node'] || devDeps['typescript'];
 
       expect(hasReactTypes).toBeDefined();
     });

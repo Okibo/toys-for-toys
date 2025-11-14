@@ -1,13 +1,16 @@
 # Tailwind CSS & shadcn/ui Setup Documentation
 
 ## Overview
+
 This document details the complete Tailwind CSS and shadcn/ui configuration for the Toys-for-Toys project (Phase 3 - GREEN).
 
 ## Files Created
 
 ### 1. /tailwind.config.ts
+
 **Purpose**: Main Tailwind CSS configuration file
 **Key Features**:
+
 - TypeScript configuration for type safety
 - Content paths configured for: `app/**`, `components/**`, `lib/**`
 - Dark mode enabled using `class` strategy (allows manual theme switching)
@@ -15,6 +18,7 @@ This document details the complete Tailwind CSS and shadcn/ui configuration for 
 - Empty plugins array (ready for future Tailwind plugins)
 
 **Configuration Details**:
+
 ```typescript
 - content: Scans for Tailwind classes in app, components, and lib directories
 - darkMode: 'class' - Uses class-based dark mode (user preference via data attribute)
@@ -23,13 +27,16 @@ This document details the complete Tailwind CSS and shadcn/ui configuration for 
 ```
 
 ### 2. /postcss.config.js
+
 **Purpose**: PostCSS configuration for CSS processing
 **Key Features**:
+
 - Tailwind CSS plugin integration
 - Autoprefixer for vendor-specific prefixes
 - Minimal, production-ready configuration
 
 **Configuration Details**:
+
 ```javascript
 - tailwindcss plugin: Processes @tailwind directives
 - autoprefixer: Adds vendor prefixes for cross-browser compatibility
@@ -38,8 +45,10 @@ This document details the complete Tailwind CSS and shadcn/ui configuration for 
 **Note**: `autoprefixer` needs to be added to `package.json` devDependencies during npm install phase.
 
 ### 3. /app/globals.css
+
 **Purpose**: Global styles and Tailwind CSS directives
 **Key Features**:
+
 - Tailwind directives: @tailwind base, components, utilities
 - Base layer styles with @apply directives
 - Component layer with reusable CSS classes
@@ -49,25 +58,30 @@ This document details the complete Tailwind CSS and shadcn/ui configuration for 
 - Smooth transitions for theme changes
 
 **Included Component Classes**:
+
 - `.btn-primary` - Primary call-to-action button
 - `.btn-secondary` - Secondary action button
 - `.card` - Standard card component
 - `.input-base` - Base input field styles
 
 **Included Utility Classes**:
+
 - `.container-base` - Responsive container with max-width and padding
 - `.flex-center` - Flexbox centered layout
 - `.flex-between` - Flexbox space-between layout
 
 ### 4. /components.json
+
 **Purpose**: shadcn/ui configuration for component initialization and scaffolding
 **Key Features**:
+
 - RSC (React Server Components) enabled
 - TypeScript enabled
 - Alias prefix set to @ for import convenience
 - Path aliases configured to match tsconfig.json
 
 **Configuration Details**:
+
 ```json
 - style: "default" - Uses shadcn/ui default styling
 - rsc: true - Enables React Server Components support
@@ -79,7 +93,9 @@ This document details the complete Tailwind CSS and shadcn/ui configuration for 
 ## Files Modified
 
 ### 1. /app/layout.tsx
+
 **Changes Made**:
+
 - Added import of `./globals.css` for global styles
 - Added `suppressHydrationWarning` to `<html>` tag (required for dark mode)
 - Updated `<body>` tag with Tailwind CSS classes:
@@ -87,7 +103,9 @@ This document details the complete Tailwind CSS and shadcn/ui configuration for 
   - Dark mode: `dark:bg-gray-950 dark:text-gray-100`
 
 ### 2. /app/page.tsx
+
 **Changes Made**:
+
 - Replaced plain HTML with Tailwind CSS styled components
 - Responsive design with mobile-first approach
 - Demonstrates key Tailwind utilities:
@@ -101,6 +119,7 @@ This document details the complete Tailwind CSS and shadcn/ui configuration for 
 ## Configuration Summary
 
 ### Tailwind CSS Configuration
+
 - **Version**: 3.3.5 (from package.json)
 - **Content Paths**: `app/**`, `components/**`, `lib/**`
 - **Dark Mode**: Class-based (manual control)
@@ -108,6 +127,7 @@ This document details the complete Tailwind CSS and shadcn/ui configuration for 
 - **Responsive Breakpoints**: sm (640px), md (768px), lg (1024px), xl (1280px), 2xl (1536px)
 
 ### CSS Processing Pipeline
+
 ```
 Source Files (.tsx, .jsx)
         ↓
@@ -121,6 +141,7 @@ Next.js Build Output
 ```
 
 ### shadcn/ui Setup
+
 - **Component Directory**: `/components`
 - **Library Alias**: `@/components`
 - **Import Style**: ES modules with @ alias
@@ -132,6 +153,7 @@ Next.js Build Output
 The configuration supports mobile-first responsive design:
 
 ### Breakpoints
+
 - **Default (mobile)**: No prefix - CSS applies to all screen sizes
 - **sm**: 640px - `sm:class-name`
 - **md**: 768px - `md:class-name`
@@ -140,6 +162,7 @@ The configuration supports mobile-first responsive design:
 - **2xl**: 1536px - `2xl:class-name`
 
 ### Dark Mode
+
 - **Strategy**: Class-based (`dark:class-name`)
 - **Implementation**: Add `dark` class to root `<html>` or `<body>` element
 - **Preference Detection**: `prefers-color-scheme: dark` media query in globals.css
@@ -147,12 +170,15 @@ The configuration supports mobile-first responsive design:
 ## Performance Considerations
 
 ### PurgeCSS (Content Configuration)
+
 The `content` array in `tailwind.config.ts` ensures only used CSS classes are included in production:
+
 - Scans `.tsx`, `.ts`, `.jsx`, `.js`, `.mdx` files
 - Covers all major directories (app, components, lib)
 - Automatically removes unused utilities in production build
 
 ### File Size Impact
+
 - Development: Full Tailwind utilities available (~500KB)
 - Production: Only used utilities included (~50-100KB depending on usage)
 - Next.js automatically optimizes CSS during build
@@ -160,6 +186,7 @@ The `content` array in `tailwind.config.ts` ensures only used CSS classes are in
 ## Accessibility Features
 
 ### Implemented
+
 - Focus-visible states with ring styles for keyboard navigation
 - `antialiased` class for better text rendering
 - Semantic HTML structure preserved
@@ -167,6 +194,7 @@ The `content` array in `tailwind.config.ts` ensures only used CSS classes are in
 - Smooth transitions between theme changes
 
 ### Best Practices
+
 - All interactive elements have visible focus states
 - Color is never the only means of conveying information
 - Button components include proper padding and sizing for touch targets
@@ -175,10 +203,12 @@ The `content` array in `tailwind.config.ts` ensures only used CSS classes are in
 ## Next Steps (Dependent Tasks)
 
 ### Phase 4 - npm install
+
 - Run `npm install` to install tailwindcss and autoprefixer packages
 - Verify configuration files are recognized by build process
 
 ### Adding shadcn/ui Components
+
 ```bash
 npx shadcn-ui@latest add button
 npx shadcn-ui@latest add card
@@ -186,7 +216,9 @@ npx shadcn-ui@latest add card
 ```
 
 ### Customizing Theme
+
 Edit `tailwind.config.ts` theme.extend section:
+
 ```typescript
 colors: {
   primary: '#your-brand-color',
@@ -195,7 +227,9 @@ colors: {
 ```
 
 ### Adding Custom Components
+
 Add to `globals.css` in `@layer components` section:
+
 ```css
 @layer components {
   .my-custom-component {
@@ -243,21 +277,25 @@ Add to `globals.css` in `@layer components` section:
 ## Troubleshooting
 
 ### Tailwind Classes Not Working
+
 - Verify file path matches content configuration in tailwind.config.ts
 - Restart dev server after adding new directories
 - Check for typos in class names
 
 ### Dark Mode Not Toggling
+
 - Ensure `dark` class is properly added to html/body element
 - Verify `darkMode: 'class'` in tailwind.config.ts
 - Check browser DevTools for class attribute changes
 
 ### PostCSS Errors
+
 - Ensure tailwindcss and autoprefixer are installed
 - Verify postcss.config.js syntax (JSON-like format)
 - Restart dev server after configuration changes
 
 ### shadcn/ui Component Installation Issues
+
 - Verify components.json exists in project root
 - Check path aliases match tsconfig.json
 - Ensure all dependencies are installed

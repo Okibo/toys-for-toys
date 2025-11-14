@@ -15,12 +15,14 @@ The Toy-for-Toy PRD has been decomposed into **75 granular implementation tasks*
 ## Task Distribution by Category
 
 ### Epic 1: Project Setup & Infrastructure (6 tasks)
+
 **Effort:** 6 developer-days
 **Timeline:** Week 1
 **Owner:** DevOps Lead
 **Status:** Pending
 
 Tasks cover:
+
 - Monorepo initialization (Next.js, TypeScript, dependencies)
 - Supabase project setup (EU region, local development)
 - Firebase configuration (Cloud Messaging)
@@ -34,12 +36,14 @@ Tasks cover:
 ---
 
 ### Epic 2: Database Schema & Core Models (10 tasks)
+
 **Effort:** 12 developer-days (2.9 includes RLS complexity)
 **Timeline:** Weeks 2-3
 **Owner:** Database Architect
 **Status:** Pending
 
 Tasks cover:
+
 - Core tables (users, profiles, kids)
 - Ticket economy (tickets, fragments, transaction log)
 - Toy listings (toys, photos, views)
@@ -57,12 +61,14 @@ Tasks cover:
 ---
 
 ### Epic 3: Authentication & GDPR Compliance (9 tasks)
+
 **Effort:** 11 developer-days
 **Timeline:** Weeks 3-4
 **Owner:** Backend/Security Lead
 **Status:** Pending
 
 Tasks cover:
+
 - Email/password authentication
 - Login/sign-up UI pages
 - Parental consent flow (multi-step, GDPR Article 8)
@@ -77,6 +83,7 @@ Tasks cover:
 **Success Metric:** Sign-up/login functional, GDPR consent flows working, all legal docs accessible
 
 **GDPR Compliance Focus:**
+
 - Explicit consent required (no pre-checked boxes)
 - Consent recorded with timestamp, IP, version
 - Revocation with 30-day grace period
@@ -87,12 +94,14 @@ Tasks cover:
 ---
 
 ### Epic 4: Core APIs & Ticket Economy (10 tasks)
+
 **Effort:** 10 developer-days
 **Timeline:** Weeks 4-5
 **Owner:** Backend Lead
 **Status:** Pending
 
 Tasks cover:
+
 - Authentication endpoints (login, signup, logout, token refresh)
 - User profile endpoints (get, update, delete)
 - Toy listing endpoints (create, search, get, update, delete)
@@ -108,6 +117,7 @@ Tasks cover:
 **Success Metric:** All APIs functional, documented, tested with Postman/curl
 
 **Key Business Logic:**
+
 - Ticket freezing on request (escrow)
 - Ticket release on delivery confirmation
 - Auto-refund if request declined
@@ -117,12 +127,14 @@ Tasks cover:
 ---
 
 ### Epic 5: Mini-Games & Rewards System (6 tasks)
+
 **Effort:** 7 developer-days
 **Timeline:** Weeks 5-6
 **Owner:** Frontend/Game Developer
 **Status:** Pending
 
 Tasks cover:
+
 - Game architecture & component design
 - Color Match Puzzle game implementation (2 days due to complexity)
 - Fragment reward system
@@ -132,12 +144,14 @@ Tasks cover:
 
 **Game MVP Scope:** 1 game (Color Match)
 **Fragment Mechanics:**
+
 - Each game: 0.5 fragments per completion
 - Bonus: 0.25 fragments per rewarded video (max 2/day)
 - Conversion: 4 fragments = 1 ticket
 - Parental controls: Disable games, session limits
 
 **Out of Scope for MVP:**
+
 - 2nd & 3rd games (Memory, Trivia) → Phase 2
 - Rewarded video ads → Phase 2
 - Leaderboards → Phase 2
@@ -148,12 +162,14 @@ Tasks cover:
 ---
 
 ### Epic 6: Frontend Core UI (12 tasks)
+
 **Effort:** 14 developer-days
 **Timeline:** Weeks 6-8
 **Owner:** Frontend Lead
 **Status:** Pending
 
 Pages/Components:
+
 1. Dashboard layout & navigation
 2. Toy discovery (search, filters, infinite scroll)
 3. Toy detail page (photos, condition, request button, similar toys)
@@ -177,12 +193,14 @@ Pages/Components:
 ---
 
 ### Epic 7: Notifications & Communication (7 tasks)
+
 **Effort:** 7 developer-days
 **Timeline:** Weeks 8-9
 **Owner:** Backend Lead
 **Status:** Pending
 
 Tasks cover:
+
 - Email notification system (SendGrid integration)
 - Notification preference endpoints (frequency, channels)
 - In-app notification center (persistent inbox)
@@ -192,6 +210,7 @@ Tasks cover:
 - Message retention/cleanup jobs (delete 30 days post-exchange)
 
 **Notification Types (MVP):**
+
 - Match found (daily digest)
 - Request received (instant)
 - Exchange status changes (instant)
@@ -199,6 +218,7 @@ Tasks cover:
 - Delivery overdue (escalation)
 
 **Out of Scope for MVP:**
+
 - SMS notifications → Phase 2
 - Push notifications (Firebase FCM) → Phase 2
 - Quiet hours enforcement → Phase 2
@@ -209,12 +229,14 @@ Tasks cover:
 ---
 
 ### Epic 8: Matching Engine & Smart Wishlist (5 tasks)
+
 **Effort:** 6 developer-days
 **Timeline:** Weeks 9-10
 **Owner:** Data/Backend Lead
 **Status:** Pending
 
 Tasks cover:
+
 - Matching algorithm (scoring: tags 40%, age 30%, condition 20%, recency 10%)
 - Daily matching Edge Function (02:00 UTC)
 - Match notification triggering
@@ -222,6 +244,7 @@ Tasks cover:
 - Manual toy discovery optimization (search, filters)
 
 **Matching Scope:**
+
 - Runs daily at 02:00 UTC
 - Score threshold: ≥60% to notify
 - Top 3 matches per child per day
@@ -229,12 +252,14 @@ Tasks cover:
 - De-duplication of same toy
 
 **Algorithm Details:**
+
 - Tag match: Exact (100%), partial (70%), category (40%), none (0%)
 - Age match: Exact (100%), ±1yr (80%), ±2yr (50%), no tag (100%)
 - Condition: Meets preference (100%), 1 level below (70%), 2+ below (0%)
 - Recency: 7d (100%), 14d (80%), 30d (60%), 30d+ (40%)
 
 **Out of Scope for MVP:**
+
 - ML-based personalization → Phase 3
 - Advanced matching preferences → Phase 2
 
@@ -244,12 +269,14 @@ Tasks cover:
 ---
 
 ### Epic 9: Ad Integration & Analytics (5 tasks)
+
 **Effort:** 5 developer-days
 **Timeline:** Weeks 10-11
 **Owner:** Frontend/Growth Lead
 **Status:** Pending
 
 Tasks cover:
+
 - Google AdMob web integration (mobile ads)
 - Google AdSense web fallback (display ads)
 - Ad placement components (banner, native)
@@ -257,6 +284,7 @@ Tasks cover:
 - Revenue monitoring dashboards
 
 **Ad Placements (MVP):**
+
 - Toy detail page (banner below description): 0.02-0.05 EUR CPM
 - Search results (every 5th item): 0.03-0.06 EUR CPM
 - Exchange flow (awaiting response): 0.05-0.10 EUR CPM
@@ -264,12 +292,14 @@ Tasks cover:
 - Notification digest footer: 0.01-0.02 EUR CPM
 
 **GDPR Compliance:**
+
 - No PII transmitted to ad networks
 - Only age group + interests
 - Targeting: G-rated, family-appropriate ads only
 - No tracking of individual game actions
 
 **Out of Scope for MVP:**
+
 - Rewarded video ads → Phase 2
 - Sponsored listings → Phase 2
 - Advanced targeting → Phase 3
@@ -280,12 +310,14 @@ Tasks cover:
 ---
 
 ### Epic 10: Testing, QA & Polish (8 tasks)
+
 **Effort:** 10 developer-days
 **Timeline:** Weeks 11-12
 **Owner:** QA Lead
 **Status:** Pending
 
 Tasks cover:
+
 - Unit tests (core business logic): 2 days
 - Integration tests (API layer): 2 days
 - E2E tests (user flows): 2 days
@@ -296,6 +328,7 @@ Tasks cover:
 - Bug fixes & final polish: 2 days
 
 **Testing Targets:**
+
 - Unit test coverage: 80%+
 - Integration tests for all APIs
 - E2E tests for core flows (signup → exchange → confirm)
@@ -309,19 +342,19 @@ Tasks cover:
 
 ## Summary Table
 
-| Epic | Tasks | Effort (days) | Timeline | Owner |
-|------|-------|---------------|----------|-------|
-| 1. Setup | 6 | 6 | Week 1 | DevOps |
-| 2. Database | 10 | 12 | Weeks 2-3 | DB Architect |
-| 3. Auth/GDPR | 9 | 11 | Weeks 3-4 | Backend/Security |
-| 4. Core APIs | 10 | 10 | Weeks 4-5 | Backend |
-| 5. Games | 6 | 7 | Weeks 5-6 | Frontend/Game |
-| 6. Frontend UI | 12 | 14 | Weeks 6-8 | Frontend |
-| 7. Notifications | 7 | 7 | Weeks 8-9 | Backend |
-| 8. Matching | 5 | 6 | Weeks 9-10 | Data/Backend |
-| 9. Ads | 5 | 5 | Weeks 10-11 | Frontend/Growth |
-| 10. Testing | 8 | 10 | Weeks 11-12 | QA |
-| **Total** | **75** | **95-105** | **12 weeks** | **3-4 devs** |
+| Epic             | Tasks  | Effort (days) | Timeline     | Owner            |
+| ---------------- | ------ | ------------- | ------------ | ---------------- |
+| 1. Setup         | 6      | 6             | Week 1       | DevOps           |
+| 2. Database      | 10     | 12            | Weeks 2-3    | DB Architect     |
+| 3. Auth/GDPR     | 9      | 11            | Weeks 3-4    | Backend/Security |
+| 4. Core APIs     | 10     | 10            | Weeks 4-5    | Backend          |
+| 5. Games         | 6      | 7             | Weeks 5-6    | Frontend/Game    |
+| 6. Frontend UI   | 12     | 14            | Weeks 6-8    | Frontend         |
+| 7. Notifications | 7      | 7             | Weeks 8-9    | Backend          |
+| 8. Matching      | 5      | 6             | Weeks 9-10   | Data/Backend     |
+| 9. Ads           | 5      | 5             | Weeks 10-11  | Frontend/Growth  |
+| 10. Testing      | 8      | 10            | Weeks 11-12  | QA               |
+| **Total**        | **75** | **95-105**    | **12 weeks** | **3-4 devs**     |
 
 ---
 
@@ -355,30 +388,35 @@ Week 3-4: Epic 3 (Auth) ───┬──→ Epic 4 (APIs)
 ## Task Sequencing: Top 5 Priority Tasks to Start With
 
 ### 1. **Task 1.1: Initialize Monorepo Structure** (Day 1-2)
+
 - **Why First:** Unblocks all subsequent work
 - **Owner:** DevOps Lead
 - **Deliverable:** Working Next.js project with dev server running
 - **Success:** `npm run dev` launches without errors
 
 ### 2. **Task 1.2: Configure Supabase Project** (Day 3-4)
+
 - **Why Critical:** Database is foundation for everything
 - **Owner:** DevOps/Backend Lead
 - **Deliverable:** Supabase project created, local dev environment working
 - **Success:** `npx supabase start` runs, Studio accessible
 
 ### 3. **Task 2.1: Create Core Tables Schema** (Day 5)
+
 - **Why Essential:** Data model unblocks API development
 - **Owner:** Database Architect
 - **Deliverable:** profiles, kids, toys tables created
 - **Success:** Tables visible in Supabase, migrations run cleanly
 
 ### 4. **Task 2.9: Set Up RLS Policies** (Day 6-9)
+
 - **Why Critical:** Security enforcement cannot be afterthought
 - **Owner:** Security/Backend Lead
 - **Deliverable:** RLS policies enforced on all tables
 - **Success:** User A cannot see User B's data; admins can see all
 
 ### 5. **Task 3.1: Implement Email/Password Authentication** (Day 10-11)
+
 - **Why Unblocks:** Auth required for all protected features
 - **Owner:** Backend Lead
 - **Deliverable:** Sign-up, login, logout, token refresh working
@@ -391,6 +429,7 @@ Week 3-4: Epic 3 (Auth) ───┬──→ Epic 4 (APIs)
 **Sprint Goal:** Infrastructure and database foundations ready
 
 ### Tasks to Complete:
+
 1. Task 1.1 (Monorepo)
 2. Task 1.2 (Supabase)
 3. Task 1.3 (Firebase)
@@ -405,6 +444,7 @@ Week 3-4: Epic 3 (Auth) ───┬──→ Epic 4 (APIs)
 **Total Effort:** ~20 developer-days
 **Team:** 3 engineers (1 DevOps/Infra, 2 Backend/Database)
 **Success Metrics:**
+
 - Dev environment fully functional
 - CI/CD pipeline passing
 - All core tables created
@@ -416,6 +456,7 @@ Week 3-4: Epic 3 (Auth) ───┬──→ Epic 4 (APIs)
 ## Effort Breakdown by Discipline
 
 ### Backend/API Development: ~35 days
+
 - Authentication (Task 3.1, 3.9)
 - Core APIs (Epic 4: 10 tasks)
 - Matching algorithm (Epic 8.1-8.3)
@@ -423,17 +464,20 @@ Week 3-4: Epic 3 (Auth) ───┬──→ Epic 4 (APIs)
 - Database design (Epic 2: 10 tasks)
 
 ### Frontend Development: ~35 days
+
 - UI pages (Epic 6: 12 tasks)
 - Game implementation (Epic 5: 6 tasks)
 - Ad integration (Epic 9: 5 tasks)
 - Auth UI (Task 3.2)
 
 ### DevOps/Infrastructure: ~10 days
+
 - Project setup (Epic 1: 6 tasks)
 - CI/CD & deployment (Task 1.4, 1.5)
 - Monitoring & performance (Epic 10.6)
 
 ### QA/Testing: ~15 days
+
 - Unit tests (2 days)
 - Integration tests (2 days)
 - E2E tests (2 days)
@@ -442,6 +486,7 @@ Week 3-4: Epic 3 (Auth) ───┬──→ Epic 4 (APIs)
 - Beta testing (2 days)
 
 ### Data/Analytics: ~6 days
+
 - Matching algorithm (Epic 8: 5 tasks)
 - Analytics setup (Epic 9.4-9.5)
 
@@ -454,12 +499,14 @@ Week 3-4: Epic 3 (Auth) ───┬──→ Epic 4 (APIs)
 ### Optimal Team: 4 Engineers
 
 **Phase 1 (Weeks 1-4):**
+
 - 1 DevOps/Infra lead
 - 2 Backend engineers
 - 1 Frontend engineer
 - **Activity:** Setup, database, auth
 
 **Phase 2 (Weeks 5-8):**
+
 - 1 Backend lead
 - 1 Frontend lead
 - 1 Game developer
@@ -467,6 +514,7 @@ Week 3-4: Epic 3 (Auth) ───┬──→ Epic 4 (APIs)
 - **Activity:** APIs, games, core UI
 
 **Phase 3 (Weeks 9-12):**
+
 - 1 Data engineer (matching)
 - 1 Backend engineer (notifications)
 - 1 Frontend engineer (UI polish, ads)
@@ -478,11 +526,13 @@ Week 3-4: Epic 3 (Auth) ───┬──→ Epic 4 (APIs)
 ## Success Criteria Summary
 
 ### Functional Completeness
+
 - [ ] All 10 epics completed
 - [ ] 75/75 tasks completed
 - [ ] All user stories from PRD implemented
 
 ### Non-Functional Requirements
+
 - [ ] Page load <2s (first paint)
 - [ ] API response <200ms (p95)
 - [ ] 99.5% uptime
@@ -491,12 +541,14 @@ Week 3-4: Epic 3 (Auth) ───┬──→ Epic 4 (APIs)
 - [ ] 80%+ test coverage
 
 ### Business Metrics
+
 - [ ] 100+ beta users enrolled
 - [ ] 90%+ consent completion rate
 - [ ] Ad network live (AdMob + AdSense)
 - [ ] EUR 200-500/month initial ad revenue
 
 ### GDPR Compliance
+
 - [ ] Explicit consent collected for 100% of accounts
 - [ ] DSAR response within 10 working days
 - [ ] Data deletion within 30 days of request
@@ -563,6 +615,7 @@ All tasks are documented in the following structure:
 ```
 
 Each task.md file contains:
+
 - Detailed description of all tasks in that epic
 - Acceptance criteria for each task
 - Dependencies and blocking relationships
@@ -596,4 +649,3 @@ Each task.md file contains:
 **Date:** November 13, 2025
 **Status:** Ready for team review and approval
 **Version:** 1.0 (MVP Phase)
-

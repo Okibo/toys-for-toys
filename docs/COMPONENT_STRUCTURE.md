@@ -31,6 +31,7 @@ This document outlines the component structure created for the Toy-for-Toy proje
 ### Layout Components (`/components/layout/`)
 
 #### Header.tsx
+
 - **Purpose**: Top navigation header for the application
 - **Props**:
   - `className?: string` - Custom CSS classes
@@ -42,6 +43,7 @@ This document outlines the component structure created for the Toy-for-Toy proje
   - Flexible children support for custom navigation
 
 #### Footer.tsx
+
 - **Purpose**: Application footer with copyright and links
 - **Props**:
   - `className?: string` - Custom CSS classes
@@ -53,6 +55,7 @@ This document outlines the component structure created for the Toy-for-Toy proje
   - Responsive padding
 
 #### Container.tsx
+
 - **Purpose**: Responsive content container with consistent max-width
 - **Props**:
   - `className?: string` - Custom CSS classes
@@ -66,6 +69,7 @@ This document outlines the component structure created for the Toy-for-Toy proje
 ### Common Components (`/components/common/`)
 
 #### Button.tsx
+
 - **Purpose**: Primary button component with multiple variants
 - **Props**:
   - `variant?: 'primary' | 'secondary' | 'outline' | 'ghost' | 'destructive'`
@@ -81,6 +85,7 @@ This document outlines the component structure created for the Toy-for-Toy proje
   - Disabled state handling
 
 #### Card.tsx
+
 - **Purpose**: Container component for grouped content
 - **Props**:
   - `title?: React.ReactNode` - Card title
@@ -96,6 +101,7 @@ This document outlines the component structure created for the Toy-for-Toy proje
   - Automatic divider lines between sections
 
 #### Input.tsx
+
 - **Purpose**: Form input field with validation support
 - **Props**:
   - `type?: string` - Input type (text, email, password, etc.)
@@ -112,6 +118,7 @@ This document outlines the component structure created for the Toy-for-Toy proje
   - Focus ring styling
 
 #### Label.tsx
+
 - **Purpose**: Form label with optional required indicator
 - **Props**:
   - `children: React.ReactNode` - Label text
@@ -127,6 +134,7 @@ This document outlines the component structure created for the Toy-for-Toy proje
 ### Form Components (`/components/forms/`)
 
 #### Form.tsx
+
 - **Purpose**: Base form wrapper with consistent structure
 - **Props**:
   - `title?: string` - Form title
@@ -145,6 +153,7 @@ This document outlines the component structure created for the Toy-for-Toy proje
   - Dark mode support
 
 #### FormField.tsx
+
 - **Purpose**: Complete form field with label, input, and validation
 - **Props**:
   - `label?: string` - Field label text
@@ -166,15 +175,18 @@ This document outlines the component structure created for the Toy-for-Toy proje
 ### UI Components (`/components/ui/`)
 
 Reserved for shadcn/ui components. Currently contains:
+
 - `index.ts` - Barrel export file with instructions
 - `.gitkeep` - Directory placeholder
 
 To add shadcn/ui components:
+
 ```bash
 npx shadcn-ui@latest add [component-name]
 ```
 
 Then add the export to `index.ts`:
+
 ```typescript
 export { Button } from './button';
 export { Input } from './input';
@@ -279,6 +291,7 @@ export function LoginForm() {
 ## Styling Approach
 
 All components use **Tailwind CSS** utility classes for styling:
+
 - **Mobile-first approach**: Base styles for mobile, then responsive breakpoints
 - **Dark mode support**: `dark:` prefixes for dark mode variants
 - **Consistent spacing**: Uses Tailwind spacing scale (px-4, py-2, etc.)
@@ -287,6 +300,7 @@ All components use **Tailwind CSS** utility classes for styling:
 ## TypeScript Support
 
 All components have:
+
 - Full TypeScript support with strict mode enabled
 - Proper prop interfaces using JSDoc comments
 - Exported prop types for external use
@@ -307,6 +321,7 @@ import { Button } from '@/components/common/Button';
 ## Accessibility
 
 Components include:
+
 - Semantic HTML elements (`<header>`, `<footer>`, `<label>`, `<button>`)
 - ARIA attributes where needed
 - Focus ring styling for keyboard navigation
@@ -316,6 +331,7 @@ Components include:
 ## Dark Mode
 
 All components support dark mode with Tailwind CSS `dark:` prefixes:
+
 - Background colors adapt
 - Text colors adapt
 - Border colors adapt

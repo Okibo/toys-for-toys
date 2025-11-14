@@ -18,6 +18,7 @@ Create and configure a Supabase project with proper EU regional settings for GDP
 ## Acceptance Criteria
 
 ### Supabase Project Setup
+
 - [x] Supabase account created at https://supabase.com
 - [x] New project created with:
   - [x] Project name: `toys-for-toys` (or similar)
@@ -28,6 +29,7 @@ Create and configure a Supabase project with proper EU regional settings for GDP
 - [x] Project fully provisioned and accessible
 
 ### Database Configuration
+
 - [x] PostgreSQL database accessible via connection string
 - [x] Row-Level Security (RLS) enabled at project level
 - [x] Realtime enabled for core tables (to be configured in Task 2.1)
@@ -38,6 +40,7 @@ Create and configure a Supabase project with proper EU regional settings for GDP
   - [x] `pgsodium` (for additional crypto utilities)
 
 ### Authentication Setup
+
 - [x] Auth provider configured:
   - [x] Email/password enabled
   - [x] Email confirmations required (production setting)
@@ -52,6 +55,7 @@ Create and configure a Supabase project with proper EU regional settings for GDP
   - [x] `https://your-domain.com/api/auth/callback` (Vercel staging)
 
 ### Local Development Setup
+
 - [x] Supabase CLI installed (`npm install -g supabase`)
 - [x] Local Supabase instance running via Docker:
   - [x] `npx supabase start` initializes local environment
@@ -63,6 +67,7 @@ Create and configure a Supabase project with proper EU regional settings for GDP
 - [x] `.env.local` configured with local credentials
 
 ### Environment Variables Configuration
+
 - [x] `.env.local` created with:
   ```
   NEXT_PUBLIC_SUPABASE_URL=<local-or-remote-url>
@@ -75,6 +80,7 @@ Create and configure a Supabase project with proper EU regional settings for GDP
 - [x] `.env.local` added to `.gitignore`
 
 ### Testing & Verification
+
 - [x] Next.js app connects to Supabase without errors
 - [x] Browser console shows: "✅ Connected to Supabase"
 - [x] Query test executed: `SELECT 1` returns 1 row
@@ -83,6 +89,7 @@ Create and configure a Supabase project with proper EU regional settings for GDP
 - [x] Local backup created as starting point
 
 ### Documentation
+
 - [x] Database configuration documented in `docs/DATABASE.md`:
   - [x] EU region choice and GDPR rationale
   - [x] Local setup instructions
@@ -98,10 +105,12 @@ Create and configure a Supabase project with proper EU regional settings for GDP
 ### Step 1: Create Supabase Project
 
 #### 1.1 Sign Up / Log In
+
 - Navigate to https://supabase.com/dashboard
 - Create account or log in with existing credentials
 
 #### 1.2 Create New Project
+
 1. Click "New project"
 2. Fill in project details:
    - **Name:** `toys-for-toys-mvp` (or similar)
@@ -116,6 +125,7 @@ Create and configure a Supabase project with proper EU regional settings for GDP
 4. Wait for provisioning (usually 2-3 minutes)
 
 #### 1.3 Verify Project Creation
+
 - Dashboard shows project name and region
 - "Ready" status indicator displays
 - Connection string visible under "Connection pooling" or "Database"
@@ -123,9 +133,11 @@ Create and configure a Supabase project with proper EU regional settings for GDP
 ### Step 2: Enable Extensions & RLS
 
 #### 2.1 Enable Required Extensions
+
 1. In Supabase Studio, go to **SQL Editor**
 2. Click "New Query"
 3. Run the following SQL:
+
 ```sql
 -- Enable required extensions
 CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
@@ -137,7 +149,9 @@ ALTER DATABASE postgres SET "app.settings.jwt_secret" = 'YOUR_JWT_SECRET';
 ```
 
 #### 2.2 Verify Extensions
+
 Go to **Database** → **Extensions** and confirm:
+
 - ✅ `uuid-ossp` - Active
 - ✅ `pgcrypto` - Active
 - ✅ `pgsodium` - Active
@@ -145,6 +159,7 @@ Go to **Database** → **Extensions** and confirm:
 ### Step 3: Configure Authentication
 
 #### 3.1 Email/Password Provider
+
 1. Go to **Authentication** → **Providers**
 2. Ensure "Email" provider is **Enabled**
 3. Configure settings:
@@ -153,6 +168,7 @@ Go to **Database** → **Extensions** and confirm:
    - **Restrict new signups:** OFF (open registration for MVP)
 
 #### 3.2 Configure JWT Settings
+
 1. Go to **Authentication** → **Settings**
 2. Set JWT expiration:
    - **JWT Expiry limit:** 3600 (1 hour)
@@ -162,6 +178,7 @@ Go to **Database** → **Extensions** and confirm:
    - Store securely (will need for verification)
 
 #### 3.3 Configure Redirect URLs
+
 1. Go to **Authentication** → **URL Configuration**
 2. Add site URLs:
    - `http://localhost:3000` (local development)
@@ -177,6 +194,7 @@ Go to **Database** → **Extensions** and confirm:
 ### Step 4: Configure Backups
 
 #### 4.1 Set Backup Schedule
+
 1. Go to **Database** → **Backups**
 2. Configure backup policy:
    - **Daily backup:** ON
@@ -185,6 +203,7 @@ Go to **Database** → **Extensions** and confirm:
    - **Backup window:** 00:00-06:00 UTC (low-traffic hours)
 
 #### 4.2 Manual Backup
+
 1. Click "Start backup now" to create initial snapshot
 2. Note backup ID for reference
 3. Verify backup completes successfully
@@ -192,6 +211,7 @@ Go to **Database** → **Extensions** and confirm:
 ### Step 5: Get Connection Credentials
 
 #### 5.1 From Supabase Studio
+
 1. Go to **Project Settings** → **Database**
 2. Copy the following:
    - **Project URL:** `https://xxxxx.supabase.co`
@@ -201,6 +221,7 @@ Go to **Database** → **Extensions** and confirm:
    - **Database URL:** `postgresql://postgres:password@db.xxxxx.supabase.co:5432/postgres`
 
 #### 5.2 Store Credentials Securely
+
 - Use password manager to store:
   - Project URL
   - Anon Key
@@ -211,28 +232,34 @@ Go to **Database** → **Extensions** and confirm:
 ### Step 6: Install & Configure Supabase CLI
 
 #### 6.1 Install CLI
+
 ```bash
 npm install -g supabase
 ```
 
 Verify installation:
+
 ```bash
 supabase --version
 ```
 
 #### 6.2 Initialize Local Project
+
 ```bash
 cd /path/to/toys-for-toys
 supabase init
 ```
 
 This creates:
+
 - `/supabase/config.toml` (local configuration)
 - `/supabase/migrations/` (directory for SQL migrations)
 - `/supabase/seed.sql` (optional seed data)
 
 #### 6.3 Configure Remote Connection
+
 Edit `supabase/config.toml`:
+
 ```toml
 # supabase/config.toml
 [api]
@@ -251,7 +278,9 @@ port = 54323
 ```
 
 #### 6.4 Link to Remote Project (Optional)
+
 For CI/CD and migrations, link local project to remote:
+
 ```bash
 supabase link --project-ref <your-project-id>
 ```
@@ -261,15 +290,18 @@ Provide credentials when prompted.
 ### Step 7: Start Local Supabase
 
 #### 7.1 Prerequisites
+
 - Docker installed and running
 - Docker Compose available
 
 #### 7.2 Start Local Instance
+
 ```bash
 npx supabase start
 ```
 
 Output should show:
+
 ```
 Started supabase local development server.
 
@@ -281,6 +313,7 @@ Inbucket URL: http://localhost:54324
 ```
 
 #### 7.3 Access Supabase Studio
+
 1. Navigate to http://localhost:54323
 2. Sign in with default credentials:
    - **Email:** `supabase@example.com`
@@ -290,7 +323,9 @@ Inbucket URL: http://localhost:54324
 ### Step 8: Configure `.env.local`
 
 #### 8.1 For Local Development
+
 Create or update `.env.local`:
+
 ```env
 # Supabase - Local Development
 NEXT_PUBLIC_SUPABASE_URL=http://localhost:54321
@@ -304,13 +339,16 @@ NEXT_PUBLIC_SUPABASE_REGION=eu-west-1
 ```
 
 #### 8.2 Secure Environment Variables
+
 Add to `.gitignore`:
+
 ```
 .env.local
 .env.*.local
 ```
 
 Verify `.env.local` is not in git:
+
 ```bash
 git check-ignore -v .env.local
 # Output: .env.local
@@ -319,21 +357,24 @@ git check-ignore -v .env.local
 ### Step 9: Create Supabase Client in Next.js
 
 #### 9.1 Create `lib/supabase.ts`
-```typescript
-import { createClient } from '@supabase/supabase-js'
 
-const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL
-const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY
+```typescript
+import { createClient } from '@supabase/supabase-js';
+
+const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
+const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
 
 if (!supabaseUrl || !supabaseAnonKey) {
-  throw new Error('Missing Supabase environment variables')
+  throw new Error('Missing Supabase environment variables');
 }
 
-export const supabase = createClient(supabaseUrl, supabaseAnonKey)
+export const supabase = createClient(supabaseUrl, supabaseAnonKey);
 ```
 
 #### 9.2 Test Connection in App
+
 Create `app/page.tsx`:
+
 ```typescript
 import { supabase } from '@/lib/supabase'
 
@@ -364,11 +405,13 @@ export default async function Home() {
 ```
 
 #### 9.3 Run Development Server
+
 ```bash
 npm run dev
 ```
 
 Verify:
+
 - App loads at http://localhost:3000
 - Message displays: "✅ Connected to Supabase"
 - Browser console shows no errors
@@ -376,17 +419,21 @@ Verify:
 ### Step 10: Create Backup & Documentation
 
 #### 10.1 Create Initial Local Backup
+
 ```bash
 # Export local database state
 pg_dump postgresql://postgres:postgres@localhost:5432/postgres > supabase/backups/init-backup.sql
 ```
 
 #### 10.2 Create Database Documentation
+
 Create `docs/DATABASE.md`:
+
 ```markdown
 # Database Setup & Configuration
 
 ## Overview
+
 - **Project:** Toy-for-Toy
 - **Database:** PostgreSQL 15+ (Supabase)
 - **Region:** EU-West-1 (Ireland)
@@ -395,26 +442,32 @@ Create `docs/DATABASE.md`:
 ## Local Development
 
 ### Prerequisites
+
 - Docker & Docker Compose installed
 - Supabase CLI installed globally
 
 ### Start Local Instance
+
 \`\`\`bash
 npx supabase start
 \`\`\`
 
 ### Access Supabase Studio
+
 - URL: http://localhost:54323
 - Email: supabase@example.com
 - Password: [as configured]
 
 ## Environment Variables
+
 See `.env.example` for complete list.
 
 ## Backup & Recovery
+
 [To be documented in Task 8.4]
 
 ## RLS Policies
+
 [To be documented in Task 2.9]
 ```
 
@@ -423,24 +476,28 @@ See `.env.example` for complete list.
 ## Testing Checklist
 
 ### Local Setup
+
 - [ ] `supabase start` completes successfully
 - [ ] Supabase Studio accessible at http://localhost:54323
 - [ ] Database connection verified in Studio
 - [ ] Extensions visible and active (uuid-ossp, pgcrypto, pgsodium)
 
 ### Next.js Integration
+
 - [ ] `npm run dev` starts without environment variable errors
 - [ ] App loads and displays "✅ Connected to Supabase"
 - [ ] Browser console shows no connection errors
 - [ ] Network requests to Supabase show 200 status
 
 ### Remote Configuration (if not local-only)
+
 - [ ] Remote project accessible at https://supabase.com/dashboard
 - [ ] Project region is EU (Ireland or Germany)
 - [ ] Backup schedule configured and first backup completed
 - [ ] Auth providers enabled and redirect URLs configured
 
 ### Security Verification
+
 - [ ] RLS enabled at project level (check Project Settings)
 - [ ] Service Role Key is never exposed in browser (check Network tab)
 - [ ] `.env.local` not committed to git
@@ -451,12 +508,14 @@ See `.env.example` for complete list.
 ## Implementation Notes
 
 ### GDPR & Regional Compliance
+
 - **EU Region:** Ireland (`eu-west-1`) chosen to satisfy EU data residency requirements
 - **Data Retention:** All data stored in EU; no cross-border transfers
 - **Backup Location:** Backups retained in same region (default Supabase behavior)
 - **Compliance Note:** Document this choice in privacy policy
 
 ### Security Best Practices
+
 1. **API Keys Rotation:** Plan to rotate keys quarterly
 2. **Service Role Key:** NEVER expose to client; only use in server-side functions
 3. **Anon Key:** Safe to expose; limited by RLS policies
@@ -464,31 +523,35 @@ See `.env.example` for complete list.
 5. **Least Privilege:** Future API users created with minimal necessary permissions
 
 ### Performance Considerations
+
 - **Connection Pooling:** Supabase provides PgBouncer connection pooling
 - **Query Optimization:** Add indexes in Task 2.1 for common queries
 - **Realtime Subscriptions:** Enable only for tables that need live updates (tasks, messages, notifications)
 - **Caching:** Plan for Redis caching layer in Phase 2 if needed
 
 ### Troubleshooting
-| Issue | Solution |
-|-------|----------|
-| **Connection refused (localhost)** | Ensure `supabase start` is running; check Docker status |
-| **Auth error (remote)** | Verify anon key and URL in `.env.local` |
-| **Extensions not found** | Re-run CREATE EXTENSION commands in SQL Editor |
-| **Backup failed** | Check database size; free tier has storage limits |
-| **RLS blocking queries** | RLS policies created in Task 2.9; expected to fail before then |
+
+| Issue                              | Solution                                                       |
+| ---------------------------------- | -------------------------------------------------------------- |
+| **Connection refused (localhost)** | Ensure `supabase start` is running; check Docker status        |
+| **Auth error (remote)**            | Verify anon key and URL in `.env.local`                        |
+| **Extensions not found**           | Re-run CREATE EXTENSION commands in SQL Editor                 |
+| **Backup failed**                  | Check database size; free tier has storage limits              |
+| **RLS blocking queries**           | RLS policies created in Task 2.9; expected to fail before then |
 
 ---
 
 ## Success Criteria
 
 ### Objective Metrics
+
 - ✅ Local Supabase starts in <30 seconds
 - ✅ Studio loads in <5 seconds
 - ✅ Database query responds in <100ms
 - ✅ Zero connection errors in 5-minute stability test
 
 ### Subjective Metrics
+
 - ✅ Team can start local instance with single command
 - ✅ Backup strategy documented and verified
 - ✅ Environment variables clearly documented
@@ -499,11 +562,13 @@ See `.env.example` for complete list.
 ## Dependencies & Blockers
 
 ### Unblocks
+
 - Task 2.1 (Database Schema Creation) - need live database to create tables
 - Task 3.1 (Authentication Setup) - need Supabase Auth configured
 - All subsequent backend development
 
 ### Blocked By
+
 - Task 1.1 (Monorepo Setup) - need Node.js environment
 
 ---
@@ -533,14 +598,14 @@ toys-for-toys/
 
 ## Timeline
 
-| Phase | Duration | Activities |
-|-------|----------|------------|
-| **Phase 1: Create Project** | 30 min | Sign up, create project, wait for provisioning |
-| **Phase 2: Configure** | 1-2 hours | Enable extensions, set auth, configure backups |
-| **Phase 3: Local Setup** | 1 hour | Install CLI, start local, link to remote |
-| **Phase 4: Integration** | 1 hour | Configure Next.js, test connection |
-| **Phase 5: Verify** | 30 min | Run connection tests, document setup |
-| **Total** | ~5-6 hours | 1 developer day |
+| Phase                       | Duration   | Activities                                     |
+| --------------------------- | ---------- | ---------------------------------------------- |
+| **Phase 1: Create Project** | 30 min     | Sign up, create project, wait for provisioning |
+| **Phase 2: Configure**      | 1-2 hours  | Enable extensions, set auth, configure backups |
+| **Phase 3: Local Setup**    | 1 hour     | Install CLI, start local, link to remote       |
+| **Phase 4: Integration**    | 1 hour     | Configure Next.js, test connection             |
+| **Phase 5: Verify**         | 30 min     | Run connection tests, document setup           |
+| **Total**                   | ~5-6 hours | 1 developer day                                |
 
 ---
 

@@ -1,6 +1,7 @@
 # Epic: Core APIs & Ticket Economy (Weeks 4-5)
 
 ## Overview
+
 Implement RESTful API endpoints for all core platform features: user management, toy listings, exchanges, tickets, wishlists, and messaging.
 
 ---
@@ -12,9 +13,11 @@ Implement RESTful API endpoints for all core platform features: user management,
 **Dependencies:** Task 3.1, 3.3
 
 ### Description
+
 Implement JWT-based authentication endpoints using Supabase Auth.
 
 ### Acceptance Criteria
+
 - [ ] `POST /api/auth/signup` endpoint:
   - Input: {email, password, full_name, kid_profiles[], consent_granted}
   - Output: {user_id, email, session_token}
@@ -56,6 +59,7 @@ Implement JWT-based authentication endpoints using Supabase Auth.
   - Retain logs 90 days for security audit
 
 ### Implementation Notes
+
 - Use Supabase Auth library for token management
 - Implement rate limiting at middleware level
 - No passwords logged (hash before storage)
@@ -63,6 +67,7 @@ Implement JWT-based authentication endpoints using Supabase Auth.
 - CORS: Restricted to trusted domains only
 
 ### Testing
+
 - Signup creates user successfully
 - Login with correct credentials succeeds
 - Login with wrong password fails (401)
@@ -80,9 +85,11 @@ Implement JWT-based authentication endpoints using Supabase Auth.
 **Dependencies:** Task 2.1, 4.1
 
 ### Description
+
 Implement endpoints for user profile management and child profile CRUD operations.
 
 ### Acceptance Criteria
+
 - [ ] `GET /api/profile` endpoint:
   - Input: None (uses auth token)
   - Output: {user_id, email, full_name, language, notification_preferences, children[]}
@@ -130,6 +137,7 @@ Implement endpoints for user profile management and child profile CRUD operation
   - 409: Conflict (e.g., revoking already revoked consent)
 
 ### Implementation Notes
+
 - Birthdate validation: Age must be 0-18
 - Interests: Must match predefined taxonomy
 - RLS policy: Users can only see/modify own kids
@@ -137,6 +145,7 @@ Implement endpoints for user profile management and child profile CRUD operation
 - Email notifications: Parent notified of all changes
 
 ### Testing
+
 - User can retrieve own profile
 - User cannot see other users' profiles
 - User can update their own profile
@@ -153,9 +162,11 @@ Implement endpoints for user profile management and child profile CRUD operation
 **Dependencies:** Task 2.3, 4.1
 
 ### Description
+
 Implement CRUD endpoints for toy listings and photo management.
 
 ### Acceptance Criteria
+
 - [ ] `POST /api/toys` endpoint:
   - Input: {name, description, category, tags[], age_range[], condition, photos[]}
   - Output: {toy_id, status: 'pending_moderation', created_at}
@@ -214,6 +225,7 @@ Implement CRUD endpoints for toy listings and photo management.
   - 429: Rate limited (max 10 listings per hour)
 
 ### Implementation Notes
+
 - Photo compression: Use sharp library
 - Supabase Storage path: `/toys/[user_id]/[toy_id]/[photo_id]`
 - Soft delete preserves data for analytics/disputes
@@ -221,6 +233,7 @@ Implement CRUD endpoints for toy listings and photo management.
 - Auto-refund if listing rejected (done in moderation task)
 
 ### Testing
+
 - User can list toy successfully
 - Photo upload works (validate format, size)
 - Toy appears in search (if status='active')
@@ -238,9 +251,11 @@ Implement CRUD endpoints for toy listings and photo management.
 **Dependencies:** Task 2.2, 4.1
 
 ### Description
+
 Implement wallet management, balance checks, and fragment redemption endpoints.
 
 ### Acceptance Criteria
+
 - [ ] `GET /api/wallet` endpoint:
   - Input: None
   - Output: {balance, available, frozen, earned_from_games, pending_earned}
@@ -282,6 +297,7 @@ Implement wallet management, balance checks, and fragment redemption endpoints.
   - 429: Rate limited (max 1 redemption per 5 seconds)
 
 ### Implementation Notes
+
 - Balance is denormalized (updated via triggers) for performance
 - Wallet queries should be instant (<10ms)
 - All balance changes logged (audit trail for disputes)
@@ -289,6 +305,7 @@ Implement wallet management, balance checks, and fragment redemption endpoints.
 - Consider: Future gifting/trading (Phase 2/3)
 
 ### Testing
+
 - User can view wallet balance
 - Ticket frozen when request created
 - Ticket released when request declined
@@ -306,9 +323,11 @@ Implement wallet management, balance checks, and fragment redemption endpoints.
 **Dependencies:** Task 2.4, 4.1, 4.3, 4.4
 
 ### Description
+
 Implement the core exchange flow: request creation, acceptance/decline, and escrow mechanics.
 
 ### Acceptance Criteria
+
 - [ ] `POST /api/exchanges` endpoint (Request Toy):
   - Input: {toy_id, kid_for_id, message}
   - Output: {exchange_id, status: 'pending_request', created_at}
@@ -365,6 +384,7 @@ Implement the core exchange flow: request creation, acceptance/decline, and escr
   - 422: Invalid status transition
 
 ### Implementation Notes
+
 - Escrow mechanics are critical; double-check DB constraints
 - Status transitions: pending_request → accepted → (in_transit) → delivered → confirmed → completed
 - Timeout handling: Use Supabase Edge Function (scheduled job)
@@ -372,6 +392,7 @@ Implement the core exchange flow: request creation, acceptance/decline, and escr
 - Consider: What if lister lists same toy to multiple requesters? (Handled by taking first accept, declining others)
 
 ### Testing
+
 - User can request toy (1 ticket frozen)
 - Lister can accept (escrow created)
 - Lister can decline (ticket refunded)
@@ -389,9 +410,11 @@ Implement the core exchange flow: request creation, acceptance/decline, and escr
 **Dependencies:** Task 2.4, 4.5
 
 ### Description
+
 Implement delivery confirmation and dispute handling workflow.
 
 ### Acceptance Criteria
+
 - [ ] `POST /api/exchanges/[id]/confirm-delivery` endpoint:
   - Input: {condition_received, notes, photos[]}
   - Output: {success: true, status: 'confirmed'}
@@ -437,6 +460,7 @@ Implement delivery confirmation and dispute handling workflow.
   - 409: Exchange not in 'delivered' state
 
 ### Implementation Notes
+
 - Delivery photos stored in Supabase Storage (same as toy photos)
 - Dispute resolution: Admin reviews and decides (Task 6.x)
 - Auto-completion: Edge Function runs hourly
@@ -444,6 +468,7 @@ Implement delivery confirmation and dispute handling workflow.
 - Realtime: Exchange status change broadcasts to both users
 
 ### Testing
+
 - User can confirm delivery with condition
 - Delivery confirmation creates delivery_confirmation row
 - Auto-complete works after 7 days (without manual confirmation)
@@ -460,9 +485,11 @@ Implement delivery confirmation and dispute handling workflow.
 **Dependencies:** Task 2.6, 4.1
 
 ### Description
+
 Implement wishlist management for personalized matching.
 
 ### Acceptance Criteria
+
 - [ ] `GET /api/wishlists/[kid-id]` endpoint:
   - Input: None
   - Output: {wishlist_id, items: [{item_id, toy_id, custom_text, priority_order}], updated_at}
@@ -505,12 +532,14 @@ Implement wishlist management for personalized matching.
   - 422: Wishlist full (50 items max)
 
 ### Implementation Notes
+
 - Wishlists are private (not visible to other users)
 - Matching happens via Edge Function (daily at 02:00 UTC)
 - Wishlist used as input for matching algorithm
 - No real-time wishlist sharing in MVP (Phase 2)
 
 ### Testing
+
 - User can create wishlist for kid
 - User can add items (both toys and custom wishes)
 - Max 50 items enforced
@@ -527,9 +556,11 @@ Implement wishlist management for personalized matching.
 **Dependencies:** Task 2.5, 4.5
 
 ### Description
+
 Implement in-app messaging for exchange coordination (not general chat).
 
 ### Acceptance Criteria
+
 - [ ] `POST /api/exchanges/[id]/messages` endpoint:
   - Input: {content}
   - Output: {message_id, sender_id, created_at}
@@ -573,6 +604,7 @@ Implement in-app messaging for exchange coordination (not general chat).
   - 429: Rate limited (max 10 messages per minute per exchange)
 
 ### Implementation Notes
+
 - Realtime: Message appears instantly for both users
 - Moderation: Automated flags, human review for escalation
 - Privacy: Messages not searchable (scoped to exchanges only)
@@ -580,6 +612,7 @@ Implement in-app messaging for exchange coordination (not general chat).
 - Consider: Auto-lock messages after exchange completed (Phase 2)
 
 ### Testing
+
 - Users can message within exchange
 - Messages appear in real-time
 - Flagged messages work (auto-detect)
@@ -597,9 +630,11 @@ Implement in-app messaging for exchange coordination (not general chat).
 **Dependencies:** Task 4.1-4.8
 
 ### Description
+
 Implement security controls for API protection and cross-origin requests.
 
 ### Acceptance Criteria
+
 - [ ] Rate Limiting (middleware):
   - Global: 1,000 requests per hour per IP
   - Per-user: 1,000 requests per hour (authenticated)
@@ -608,7 +643,7 @@ Implement security controls for API protection and cross-origin requests.
     - Toy listing: 10 per hour per user (prevent spam)
     - Fragment redemption: 1 per 5 seconds per user
   - Algorithm: Token bucket (sliding window)
-  - Headers: Return X-RateLimit-* headers
+  - Headers: Return X-RateLimit-\* headers
   - Exceeded: 429 Too Many Requests response
 - [ ] CORS Configuration:
   - Allowed origins:
@@ -645,12 +680,14 @@ Implement security controls for API protection and cross-origin requests.
   - Track API latency (p50, p95, p99)
 
 ### Implementation Notes
+
 - Rate limiting library: `express-rate-limit` or `Vercel Edge Middleware`
-- CORS: Implement at middleware level (Next.js pages/api/_middleware)
+- CORS: Implement at middleware level (Next.js pages/api/\_middleware)
 - Input validation: Use Zod schemas (already in deps)
 - Error codes: Document in API docs (OpenAPI)
 
 ### Testing
+
 - Rate limit enforcement works
 - CORS preflight handled
 - Security headers present in responses
@@ -667,9 +704,11 @@ Implement security controls for API protection and cross-origin requests.
 **Dependencies:** Task 4.1-4.9
 
 ### Description
+
 Generate comprehensive API documentation using OpenAPI 3.0 specification.
 
 ### Acceptance Criteria
+
 - [ ] OpenAPI 3.0 Specification Created:
   - File: `/docs/openapi.yaml` or `/swagger.json`
   - Includes all endpoints (35+ endpoints)
@@ -713,6 +752,7 @@ Generate comprehensive API documentation using OpenAPI 3.0 specification.
   - Rate Limiting Explanation
 
 ### Implementation Notes
+
 - Use `swagger-jsdoc` to generate OpenAPI from code comments
 - Or maintain YAML manually (more control)
 - Swagger UI auto-deployed with app
@@ -720,9 +760,9 @@ Generate comprehensive API documentation using OpenAPI 3.0 specification.
 - Include code examples (curl, JavaScript, Python)
 
 ### Testing
+
 - Swagger UI loads at /api/docs
 - All endpoints documented with examples
 - "Try it out" works for GET requests
 - Schemas accurate (test with actual responses)
 - No broken references or missing fields
-
