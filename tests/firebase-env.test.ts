@@ -51,7 +51,7 @@ describe('Firebase Environment Variables', () => {
       process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID = 'test-project-id';
 
       expect(process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID).not.toBe('');
-      expect(process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID).toHaveLength(expect.any(Number));
+      expect(process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID).toHaveLength(15);
     });
 
     test('NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID should be defined', () => {
@@ -165,7 +165,7 @@ describe('Firebase Environment Variables', () => {
       process.env.FIREBASE_ADMIN_SDK_KEY = serviceAccount;
 
       expect(process.env.FIREBASE_ADMIN_SDK_KEY).not.toBe('');
-      expect(process.env.FIREBASE_ADMIN_SDK_KEY).toHaveLength(expect.any(Number));
+      expect(process.env.FIREBASE_ADMIN_SDK_KEY!.length).toBeGreaterThan(0);
     });
 
     test('FIREBASE_ADMIN_SDK_KEY should be valid JSON', () => {
@@ -234,9 +234,10 @@ describe('Firebase Environment Variables', () => {
     test('empty string env var should be treated as invalid', () => {
       process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID = '';
 
-      const isValid =
+      const isValid = Boolean(
         process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID &&
-        process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID.length > 0;
+          process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID.length > 0
+      );
 
       expect(isValid).toBe(false);
     });
@@ -253,7 +254,7 @@ describe('Firebase Environment Variables', () => {
       process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID = '   ';
 
       const trimmed = process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID?.trim();
-      const isValid = trimmed && trimmed.length > 0;
+      const isValid = Boolean(trimmed && trimmed.length > 0);
 
       expect(isValid).toBe(false);
     });
