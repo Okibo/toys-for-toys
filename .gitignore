@@ -102,6 +102,5 @@ logs/
 docker-compose.override.yml
 
 # Project specific
-.claude/
 .mcp.json
 *.bck/
