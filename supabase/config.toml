@@ -5,6 +5,7 @@ max_rows = 1000
 [db]
 port = 5432
 major_version = 15
+seed_file = "./seed.sql"
 
 [studio]
 port = 54323
