@@ -22,6 +22,9 @@
     "type-check": "tsc --noEmit"
   },
   "dependencies": {
+    "@hookform/resolvers": "^5.2.2",
+    "@radix-ui/react-label": "^2.1.8",
+    "@radix-ui/react-slot": "^1.2.4",
     "@supabase/auth-helpers-nextjs": "^0.8.0",
     "@supabase/realtime-js": "^2.81.1",
     "@supabase/supabase-js": "^2.38.0",
@@ -39,6 +42,7 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-hook-form": "^7.48.0",
+    "tailwind-merge": "^3.4.0",
     "zod": "^3.22.4",
     "zustand": "^4.4.1"
   },

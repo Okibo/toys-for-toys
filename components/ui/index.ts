@@ -9,8 +9,11 @@
  * export { Component } from './component';
  */
 
-// Import shadcn/ui components here as they are added
-// Example:
-// export { Button } from './button';
-// export { Input } from './input';
-// export { Card, CardContent, CardDescription, CardHeader, CardTitle } from './card';
+// Import shadcn/ui components
+export { Button, buttonVariants } from './button';
+export type { ButtonProps } from './button';
+
+export { Input } from './input';
+export type { InputProps } from './input';
+
+export { Label } from './label';
