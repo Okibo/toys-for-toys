@@ -1,0 +1,115 @@
+name: Tests with Supabase (Optional)
+
+# This workflow is available for future use if you want to run database tests in CI
+# To enable it, uncomment the 'on' section and optionally add database testing steps
+#
+# Note: Starting a full Supabase instance in CI will increase build time.
+# For now, database tests are skipped in the main CI workflow.
+#
+# To use this workflow:
+# 1. Uncomment the 'on' section
+# 2. Uncomment the 'services' and database test steps
+# 3. This workflow will run alongside the main CI workflow
+#
+# Keeping this file as a template for future CI/CD enhancements
+
+on:
+  # Uncomment to enable this workflow
+  # push:
+  #   branches:
+  #     - main
+  #     - develop
+  #   paths:
+  #     - 'tests/database/**'
+  #     - 'supabase/migrations/**'
+  # pull_request:
+  #   branches:
+  #     - main
+  #     - develop
+  #   paths:
+  #     - 'tests/database/**'
+  #     - 'supabase/migrations/**'
+
+jobs:
+  test-with-supabase:
+    runs-on: ubuntu-latest
+
+    # Uncomment to add Supabase service container
+    # services:
+    #   supabase:
+    #     image: supabase/postgres:15-1.0
+    #     env:
+    #       POSTGRES_PASSWORD: postgres
+    #     options: >-
+    #       --health-cmd pg_isready
+    #       --health-interval 10s
+    #       --health-timeout 5s
+    #       --health-retries 5
+    #     ports:
+    #       - 5432:5432
+
+    strategy:
+      matrix:
+        node-version: [18.x, 20.x]
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: 'npm'
+
+      # Uncomment the following steps to test with a real Supabase instance
+      # Note: This requires setting up Supabase CLI in the CI environment
+
+      # - name: Install Supabase CLI
+      #   run: npm install -g @supabase/cli
+
+      # - name: Start Supabase
+      #   run: |
+      #     supabase start
+      #     echo "Waiting for Supabase to be ready..."
+      #     sleep 10
+
+      # - name: Apply migrations
+      #   run: npx supabase db push
+      #   env:
+      #     SUPABASE_DB_PASSWORD: postgres
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Lint
+        run: npm run lint
+
+      - name: Build
+        run: npm run build
+
+      # Uncomment to run database tests with Supabase
+      # - name: Run database tests
+      #   run: npm run test:database
+      #   env:
+      #     NEXT_PUBLIC_SUPABASE_URL: http://localhost:54321
+      #     NEXT_PUBLIC_SUPABASE_ANON_KEY: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImV4YW1wbGUiLCJyb2xlIjoiYW5vbiIsImlhdCI6MTYxNTIzOTAyMiwiZXhwIjoxNjQ2NzU1MDIyfQ.rdJfE2tGPDNM9M1Dj56R0X5ZW5eaZ5xqKD5cG6j5vQA
+
+      - name: Run unit tests
+        run: npm run test:unit
+
+# Future Enhancement Notes:
+#
+# If you decide to add database testing to CI in the future, consider:
+#
+# 1. Using Supabase's official Docker image or CLI for local testing
+# 2. Running tests in sequence (--runInBand) for shared database state
+# 3. Setting extended timeouts for database operations (--testTimeout=30000+)
+# 4. Caching database state if tests are deterministic
+# 5. Parallel workflows: Main CI for speed, optional Supabase CI for thorough testing
+#
+# Performance Considerations:
+# - Current setup: ~2-3 minutes (unit tests only)
+# - With Supabase: ~5-10 minutes (startup + migrations + database tests)
+# - Cost-benefit: Full test coverage vs. build time trade-off
+#
+# Recommended approach: Use this workflow for database-only PRs or scheduled runs

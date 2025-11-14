@@ -36,5 +36,7 @@ jobs:
       - name: Build
         run: npm run build
 
-      - name: Test
-        run: npm test
+      - name: Run Unit Tests (CI environment - excludes database tests)
+        run: npm run test:ci
+        env:
+          CI: true

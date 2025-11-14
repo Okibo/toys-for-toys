@@ -3,7 +3,14 @@
  *
  * Jest configuration for toys-for-toys project
  * Handles TypeScript files, path aliases, and coverage collection
+ *
+ * CI Environment Support:
+ * - When CI=true (set by GitHub Actions), database tests are skipped
+ * - Local development (npm test) runs all tests including database tests
+ * - Use npm run test:ci for CI-compatible testing locally
  */
+
+const isCI = process.env.CI === 'true';
 
 module.exports = {
   // Use ts-jest preset to handle TypeScript files
@@ -68,6 +75,7 @@ module.exports = {
   // },
 
   // Files and directories to ignore
+  // In CI environment, skip database tests that require local Supabase instance
   testPathIgnorePatterns: [
     '/node_modules/',
     '/.next/',
@@ -75,6 +83,7 @@ module.exports = {
     '/build/',
     '/out/',
     '/tests/e2e/',
+    ...(isCI ? ['/tests/database/'] : []), // Skip database tests in CI
   ],
 
   // Setup files to run before tests
