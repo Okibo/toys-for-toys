@@ -40,7 +40,6 @@ junit.xml
 .Trashes
 ehthumbs.db
 Thumbs.db
-.env.example
 .mcp.json
 
 # Firebase & Secrets (CRITICAL - Never commit)
