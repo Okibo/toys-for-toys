@@ -7,7 +7,7 @@ This command directly orchestrates task implementation. You will:
 3. **Create a new git branch** using format: `task/<task-name>` (slugified)
 4. **Decompose the task** into sub-tasks
 5. **Delegate to specialist subagents ONLY** (never invoke agent-orchestrator):
-   - Identify which agents are needed for this task
+   - Identify which agents are needed for each sub-task
    - Call each agent with precise, focused instructions
    - Agents write tests first (TDD), then implementation
    - No documentation from agents - only report blockers
