@@ -24,9 +24,11 @@ import {
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
+import { useSignupContext } from '@/lib/signup-context';
 
 export function SignupForm(): React.ReactNode {
   const router = useRouter();
+  const { updateStep1Data } = useSignupContext();
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [apiError, setApiError] = useState<string | null>(null);
   const [passwordStrength, setPasswordStrength] = useState<'weak' | 'medium' | 'strong'>('weak');
@@ -94,6 +96,14 @@ export function SignupForm(): React.ReactNode {
     setApiError(null);
 
     try {
+      // Save Step 1 data to context
+      updateStep1Data({
+        email: data.email,
+        password: data.password,
+        fullName: data.fullName,
+        agreeToTerms: data.agreeToTerms,
+      });
+
       const response = await fetch('/api/auth/signup', {
         method: 'POST',
         headers: {
@@ -114,8 +124,8 @@ export function SignupForm(): React.ReactNode {
         return;
       }
 
-      // Signup successful - redirect to next step or dashboard
-      router.push('/auth/signup/step-2');
+      // Signup successful - redirect to next step (Step 2: Child Profiles)
+      router.push('/auth/signup/step2');
     } catch (error) {
       setApiError('An error occurred. Please try again.');
       setIsSubmitting(false);

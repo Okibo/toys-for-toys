@@ -174,3 +174,163 @@ export async function checkEmailExists(_email: string): Promise<boolean> {
  * Tokens should be long random strings
  */
 export const resetTokenSchema = z.string().min(20, 'Invalid reset token format').optional();
+
+/**
+ * Child name validation schema for Step 2
+ * - 2-50 characters
+ * - Alphanumeric + spaces, hyphens, apostrophes only
+ */
+export const childNameSchema = z
+  .string()
+  .min(2, 'Child name must be at least 2 characters')
+  .max(50, 'Child name must be less than 50 characters')
+  .regex(
+    /^[a-zA-Z\s'-]+$/,
+    'Child name can only contain letters, spaces, hyphens, and apostrophes'
+  );
+
+/**
+ * Birth date validation schema for Step 2
+ * - Valid date format (YYYY-MM-DD)
+ * - Child must be < 18 years old
+ */
+export const birthDateSchema = z
+  .string()
+  .regex(/^\d{4}-\d{2}-\d{2}$/, 'Invalid date format (use YYYY-MM-DD)')
+  .refine((val) => {
+    const birthDate = new Date(val);
+    const today = new Date();
+    const age = today.getFullYear() - birthDate.getFullYear();
+    const hasBirthdayThisYear =
+      today.getMonth() > birthDate.getMonth() ||
+      (today.getMonth() === birthDate.getMonth() && today.getDate() >= birthDate.getDate());
+    const actualAge = hasBirthdayThisYear ? age : age - 1;
+
+    return actualAge >= 0 && actualAge < 18;
+  }, 'Child must be under 18 years old');
+
+/**
+ * Interests validation schema for Step 2
+ * - At least 1 interest required
+ * - At most 5 interests allowed
+ * - Predefined options
+ */
+export const interestsSchema = z
+  .array(
+    z.enum(['toys', 'books', 'sports', 'art', 'music', 'games', 'outdoor', 'educational', 'other'])
+  )
+  .min(1, 'Select at least 1 interest')
+  .max(5, 'Select at most 5 interests');
+
+/**
+ * Allergies/Safety notes validation schema for Step 2
+ * - Optional (can be empty string)
+ * - Max 500 characters
+ */
+export const allergiesSchema = z.string().max(500, 'Safety notes must be less than 500 characters');
+
+/**
+ * Child profile validation schema for Step 2
+ */
+export const childProfileSchema = z.object({
+  name: childNameSchema,
+  birthDate: birthDateSchema,
+  interests: interestsSchema,
+  allergies: allergiesSchema,
+});
+
+export type ChildProfile = z.infer<typeof childProfileSchema>;
+
+/**
+ * Child profiles array validation schema for Step 2
+ * - At least 1 child
+ * - At most 5 children
+ */
+export const childProfilesSchema = z
+  .array(childProfileSchema)
+  .min(1, 'Add at least 1 child')
+  .max(5, 'Maximum 5 children per parent');
+
+/**
+ * Step 2 form validation schema (Child Profiles)
+ */
+export const signupStep2FormSchema = z.object({
+  children: childProfilesSchema,
+});
+
+export type SignupStep2FormData = z.infer<typeof signupStep2FormSchema>;
+
+/**
+ * Consent text in Polish (Phase 1)
+ * Store the exact text shown to user for GDPR proof
+ */
+export const getConsentTextPl = (): string => {
+  return `I confirm I am the parent/guardian of the child(ren) listed above and consent to Toy-for-Toy storing their profile for toy matching, age-appropriate recommendations, and our service features. I understand their data will be stored securely and handled according to our Privacy Policy.`;
+};
+
+/**
+ * Main consent validation schema for Step 3
+ * - Must be explicitly checked (true)
+ */
+export const mainConsentSchema = z.boolean().refine((val) => val === true, {
+  message: 'You must accept to proceed',
+});
+
+/**
+ * Marketing consent validation schema for Step 3
+ * - Optional (can be true or false)
+ */
+export const marketingConsentSchema = z.boolean();
+
+/**
+ * Language validation schema for consent
+ * - Phase 1: Polish only
+ * - Phase 2: Will support German, English
+ */
+export const consentLanguageSchema = z.enum(['pl']);
+
+/**
+ * Step 3 form validation schema (Consent)
+ */
+export const signupStep3FormSchema = z.object({
+  mainConsent: mainConsentSchema,
+  marketingConsent: marketingConsentSchema,
+  language: consentLanguageSchema,
+});
+
+export type SignupStep3FormData = z.infer<typeof signupStep3FormSchema>;
+
+/**
+ * Predefined interests for child profiles
+ * Used in dropdowns and multi-select components
+ */
+export const CHILD_INTERESTS = [
+  { value: 'toys', label: 'Toys' },
+  { value: 'books', label: 'Books' },
+  { value: 'sports', label: 'Sports' },
+  { value: 'art', label: 'Art' },
+  { value: 'music', label: 'Music' },
+  { value: 'games', label: 'Games' },
+  { value: 'outdoor', label: 'Outdoor' },
+  { value: 'educational', label: 'Educational' },
+  { value: 'other', label: 'Other' },
+] as const;
+
+/**
+ * Helper function to calculate child age from birth date
+ */
+export function calculateChildAge(birthDate: string): number {
+  const birth = new Date(birthDate);
+  const today = new Date();
+  let age = today.getFullYear() - birth.getFullYear();
+
+  const hasBirthdayThisYear =
+    today.getMonth() > birth.getMonth() ||
+    (today.getMonth() === birth.getMonth() && today.getDate() >= birth.getDate());
+
+  if (!hasBirthdayThisYear) {
+    age--;
+  }
+
+  return age;
+}

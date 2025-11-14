@@ -25,6 +25,7 @@
     "@hookform/resolvers": "^5.2.2",
     "@radix-ui/react-label": "^2.1.8",
     "@radix-ui/react-slot": "^1.2.4",
+    "@sendgrid/mail": "^8.1.6",
     "@supabase/auth-helpers-nextjs": "^0.8.0",
     "@supabase/realtime-js": "^2.81.1",
     "@supabase/supabase-js": "^2.38.0",
