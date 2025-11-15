@@ -18,7 +18,7 @@ This command directly orchestrates task implementation. You will:
    - Merge to develop (or create PR if preferred)
 7. **Report final status**:
    - ✅ Success or 🚨 Blockers only
-   - List any warnings
+  - List any warnings
 
 ## Agent Selection Guide
 
