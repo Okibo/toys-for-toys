@@ -368,3 +368,176 @@ export function getRateLimitHeaders(
       : '60'
   };
 }
+
+/**
+ * Hash an email address for rate limiting
+ * Uses SHA-256 to avoid storing plain email addresses in cache
+ *
+ * @param email - Email address to hash
+ * @returns Hex-encoded SHA-256 hash of email
+ */
+export function hashEmailForRateLimit(email: string): string {
+  const { createHash } = require('crypto');
+  return createHash('sha256')
+    .update(email.toLowerCase().trim())
+    .digest('hex');
+}
+
+/**
+ * Rate limit configuration for login endpoint
+ * Max 5 attempts per minute per email (hashed)
+ */
+export const LOGIN_RATE_LIMIT: RateLimitConfig = {
+  maxAttempts: 5,
+  windowMs: 60 * 1000 // 1 minute
+};
+
+/**
+ * Rate limit configuration for forgot password endpoint
+ * Max 3 requests per hour per email (hashed)
+ */
+export const FORGOT_PASSWORD_RATE_LIMIT: RateLimitConfig = {
+  maxAttempts: 3,
+  windowMs: 60 * 60 * 1000 // 1 hour
+};
+
+/**
+ * Rate limit configuration for reset password endpoint
+ * Max 5 attempts per hour per email (hashed)
+ */
+export const RESET_PASSWORD_RATE_LIMIT: RateLimitConfig = {
+  maxAttempts: 5,
+  windowMs: 60 * 60 * 1000 // 1 hour
+};
+
+/**
+ * Check if login is allowed for an email
+ *
+ * @param email - User email address
+ * @returns True if login is allowed
+ */
+export function isLoginAllowed(email: string): boolean {
+  const hashedEmail = hashEmailForRateLimit(email);
+  return checkRateLimit('login', hashedEmail, LOGIN_RATE_LIMIT);
+}
+
+/**
+ * Get remaining login attempts for an email
+ *
+ * @param email - User email address
+ * @returns Number of remaining attempts
+ */
+export function getRemainingLoginAttempts(email: string): number {
+  const hashedEmail = hashEmailForRateLimit(email);
+  return getRemainingAttempts('login', hashedEmail, LOGIN_RATE_LIMIT);
+}
+
+/**
+ * Get login rate limit reset time
+ *
+ * @param email - User email address
+ * @returns Reset time as Unix timestamp, or null if no limit
+ */
+export function getLoginRateLimitResetTime(email: string): number | null {
+  const hashedEmail = hashEmailForRateLimit(email);
+  return getRateLimitResetTime('login', hashedEmail);
+}
+
+/**
+ * Check if forgot password request is allowed for an email
+ *
+ * @param email - User email address
+ * @returns True if forgot password is allowed
+ */
+export function isForgotPasswordAllowed(email: string): boolean {
+  const hashedEmail = hashEmailForRateLimit(email);
+  return checkRateLimit('forgot-password', hashedEmail, FORGOT_PASSWORD_RATE_LIMIT);
+}
+
+/**
+ * Get remaining forgot password attempts for an email
+ *
+ * @param email - User email address
+ * @returns Number of remaining attempts
+ */
+export function getRemainingForgotPasswordAttempts(email: string): number {
+  const hashedEmail = hashEmailForRateLimit(email);
+  return getRemainingAttempts('forgot-password', hashedEmail, FORGOT_PASSWORD_RATE_LIMIT);
+}
+
+/**
+ * Get forgot password rate limit reset time
+ *
+ * @param email - User email address
+ * @returns Reset time as Unix timestamp, or null if no limit
+ */
+export function getForgotPasswordRateLimitResetTime(email: string): number | null {
+  const hashedEmail = hashEmailForRateLimit(email);
+  return getRateLimitResetTime('forgot-password', hashedEmail);
+}
+
+/**
+ * Check if password reset is allowed for an email
+ *
+ * @param email - User email address
+ * @returns True if password reset is allowed
+ */
+export function isResetPasswordAllowed(email: string): boolean {
+  const hashedEmail = hashEmailForRateLimit(email);
+  return checkRateLimit('reset-password', hashedEmail, RESET_PASSWORD_RATE_LIMIT);
+}
+
+/**
+ * Get remaining password reset attempts for an email
+ *
+ * @param email - User email address
+ * @returns Number of remaining attempts
+ */
+export function getRemainingResetPasswordAttempts(email: string): number {
+  const hashedEmail = hashEmailForRateLimit(email);
+  return getRemainingAttempts('reset-password', hashedEmail, RESET_PASSWORD_RATE_LIMIT);
+}
+
+/**
+ * Get password reset rate limit reset time
+ *
+ * @param email - User email address
+ * @returns Reset time as Unix timestamp, or null if no limit
+ */
+export function getResetPasswordRateLimitResetTime(email: string): number | null {
+  const hashedEmail = hashEmailForRateLimit(email);
+  return getRateLimitResetTime('reset-password', hashedEmail);
+}
+
+/**
+ * Get rate limit headers for login endpoint
+ *
+ * @param email - User email address
+ * @returns Headers object for 429 response
+ */
+export function getLoginRateLimitHeaders(email: string): { [key: string]: string } {
+  const hashedEmail = hashEmailForRateLimit(email);
+  return getRateLimitHeaders('login', hashedEmail, LOGIN_RATE_LIMIT);
+}
+
+/**
+ * Get rate limit headers for forgot password endpoint
+ *
+ * @param email - User email address
+ * @returns Headers object for 429 response
+ */
+export function getForgotPasswordRateLimitHeaders(email: string): { [key: string]: string } {
+  const hashedEmail = hashEmailForRateLimit(email);
+  return getRateLimitHeaders('forgot-password', hashedEmail, FORGOT_PASSWORD_RATE_LIMIT);
+}
+
+/**
+ * Get rate limit headers for reset password endpoint
+ *
+ * @param email - User email address
+ * @returns Headers object for 429 response
+ */
+export function getResetPasswordRateLimitHeaders(email: string): { [key: string]: string } {
+  const hashedEmail = hashEmailForRateLimit(email);
+  return getRateLimitHeaders('reset-password', hashedEmail, RESET_PASSWORD_RATE_LIMIT);
+}

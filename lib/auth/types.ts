@@ -264,3 +264,148 @@ export interface ConsentWithdrawErrorResponse {
     details?: string[];
   };
 }
+
+/**
+ * Login request payload
+ */
+export interface LoginRequest {
+  email: string;
+  password: string;
+  rememberMe?: boolean;
+}
+
+/**
+ * Login response (success)
+ */
+export interface LoginResponse {
+  success: true;
+  message: string;
+  user_id: string;
+  email: string;
+}
+
+/**
+ * Login error response
+ */
+export interface LoginErrorResponse {
+  success?: false;
+  error?: string;
+  details?: string | string[];
+  message?: string;
+}
+
+/**
+ * Forgot password request payload
+ */
+export interface ForgotPasswordRequest {
+  email: string;
+}
+
+/**
+ * Forgot password response (success)
+ */
+export interface ForgotPasswordResponse {
+  success: true;
+  message: string;
+}
+
+/**
+ * Forgot password error response
+ */
+export interface ForgotPasswordErrorResponse {
+  success?: false;
+  error?: string;
+  details?: string | string[];
+  message?: string;
+}
+
+/**
+ * Reset password request payload
+ */
+export interface ResetPasswordRequest {
+  token: string;
+  email: string;
+  password: string;
+}
+
+/**
+ * Reset password response (success)
+ */
+export interface ResetPasswordResponse {
+  success: true;
+  message: string;
+}
+
+/**
+ * Reset password error response
+ */
+export interface ResetPasswordErrorResponse {
+  success?: false;
+  error?: string;
+  details?: string | string[];
+  message?: string;
+}
+
+/**
+ * Validate reset token request payload
+ */
+export interface ValidateResetTokenRequest {
+  token: string;
+  email: string;
+}
+
+/**
+ * Validate reset token response (success)
+ */
+export interface ValidateResetTokenResponse {
+  success: true;
+  valid: boolean;
+  message: string;
+}
+
+/**
+ * Validate reset token error response
+ */
+export interface ValidateResetTokenErrorResponse {
+  success?: false;
+  error?: string;
+  details?: string | string[];
+  message?: string;
+}
+
+/**
+ * Session user info response
+ */
+export interface SessionUserResponse {
+  success: true;
+  user_id: string;
+  email: string;
+}
+
+/**
+ * Session error response
+ */
+export interface SessionErrorResponse {
+  success?: false;
+  error?: string;
+  details?: string | string[];
+  message?: string;
+}
+
+/**
+ * Logout response (success)
+ */
+export interface LogoutResponse {
+  success: true;
+  message: string;
+}
+
+/**
+ * Logout error response
+ */
+export interface LogoutErrorResponse {
+  success?: false;
+  error?: string;
+  details?: string | string[];
+  message?: string;
+}

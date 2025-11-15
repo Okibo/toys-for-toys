@@ -337,3 +337,76 @@ export function generateCSRFMetaTag(token: string): string {
 export function generateCSRFFormInput(token: string): string {
   return `<input type="hidden" name="_csrf" value="${token}" />`;
 }
+
+/**
+ * Create CSRF token for password reset form
+ * Password reset forms need special handling because they're accessed via email links
+ *
+ * @param email - User email (used as session identifier)
+ * @returns CSRF token for password reset form
+ */
+export function createPasswordResetCSRFToken(email: string): string {
+  // Use email hash as session ID for password reset forms
+  const sessionId = `reset:${Buffer.from(email).toString('base64')}`;
+  return createCSRFToken(sessionId, 3600000); // 1 hour expiry
+}
+
+/**
+ * Verify CSRF token for password reset form
+ *
+ * @param email - User email
+ * @param token - Token to verify
+ * @returns Verification result
+ */
+export function verifyPasswordResetCSRFToken(
+  email: string,
+  token: string
+): { isValid: boolean; error?: string } {
+  const sessionId = `reset:${Buffer.from(email).toString('base64')}`;
+  return validateCSRFToken(sessionId, token);
+}
+
+/**
+ * Get CSRF token for password reset form
+ *
+ * @param email - User email
+ * @returns Existing CSRF token or null
+ */
+export function getPasswordResetCSRFToken(email: string): string | null {
+  const sessionId = `reset:${Buffer.from(email).toString('base64')}`;
+  return getCSRFToken(sessionId);
+}
+
+/**
+ * Revoke password reset CSRF token
+ * Called after successful password reset
+ *
+ * @param email - User email
+ */
+export function revokePasswordResetCSRFToken(email: string): void {
+  const sessionId = `reset:${Buffer.from(email).toString('base64')}`;
+  revokeCSRFToken(sessionId);
+}
+
+/**
+ * Validate password reset form submission
+ * Checks both token presence and validity
+ *
+ * @param email - User email
+ * @param csrfToken - CSRF token from form
+ * @returns Validation result with detailed error message
+ */
+export function validatePasswordResetForm(
+  email: string,
+  csrfToken: string | null | undefined
+): { isValid: boolean; error?: string } {
+  if (!email || email.trim().length === 0) {
+    return { isValid: false, error: 'Email is required' };
+  }
+
+  if (!csrfToken) {
+    return { isValid: false, error: 'CSRF token is missing from form' };
+  }
+
+  return verifyPasswordResetCSRFToken(email, csrfToken);
+}
