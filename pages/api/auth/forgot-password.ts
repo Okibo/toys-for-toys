@@ -11,7 +11,7 @@
 
 import type { NextApiRequest, NextApiResponse } from 'next';
 import { validateEmail } from '@/lib/auth/email-validator';
-import { requestPasswordReset, getUserByEmail } from '@/lib/auth/password-reset-service';
+import { requestPasswordReset, emailExists } from '@/lib/auth/password-reset-service';
 import { generatePasswordResetEmail, getPasswordResetEmailSubject } from '@/lib/email/password-reset-template';
 import { sendEmail } from '@/lib/email/send-email';
 import { checkRateLimit, getRateLimitHeaders } from '@/lib/auth/rate-limiter';
@@ -152,17 +152,17 @@ export default async function handler(
     }
 
     // Check if user exists and send email if they do
-    const user = await getUserByEmail(normalizedEmail);
+    const exists = await emailExists(normalizedEmail);
 
-    if (user) {
+    if (exists) {
       try {
         // Generate reset token
         const resetToken = await generateResetToken(normalizedEmail);
 
         if (resetToken) {
           // Generate email content
-          const emailContent = generatePasswordResetEmail(resetToken, normalizedEmail, user.language || 'en');
-          const subject = getPasswordResetEmailSubject(user.language || 'en');
+          const emailContent = generatePasswordResetEmail(resetToken, normalizedEmail, 'en');
+          const subject = getPasswordResetEmailSubject('en');
 
           // Send email
           await sendEmail({

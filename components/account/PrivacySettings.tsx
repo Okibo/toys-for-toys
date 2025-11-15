@@ -16,7 +16,6 @@ interface PrivacySettingsProps {
  * Displays consent history with dates and timestamps
  */
 export const PrivacySettings: React.FC<PrivacySettingsProps> = ({
-  userId,
   onWithdraw,
   className = ''
 }) => {

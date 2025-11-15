@@ -45,7 +45,7 @@ export default function LoginPage() {
         </div>
 
         <LoginForm
-          onSuccess={(user_id: string) => {
+          onSuccess={() => {
             // Redirect to dashboard after successful login
             router.push('/dashboard');
           }}
