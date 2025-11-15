@@ -1,0 +1,103 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Home Page Snapshots home page matches snapshot 1`] = `
+<div>
+  <title>
+    Toy-for-Toy - Cashless Toy Exchange Platform
+  </title>
+  <meta
+    content="Exchange toys with other families using tickets. No money involved!"
+    name="description"
+  />
+  <meta
+    content="width=device-width, initial-scale=1"
+    name="viewport"
+  />
+  <link
+    href="/favicon.ico"
+    rel="icon"
+  />
+  <main
+    class="min-h-screen bg-gradient-to-b from-blue-50 to-white"
+  >
+    <div
+      class="max-w-6xl mx-auto px-4 py-12 sm:py-16 lg:py-20"
+    >
+      <div
+        class="text-center"
+      >
+        <h1
+          class="text-4xl sm:text-5xl lg:text-6xl font-bold text-gray-900 mb-4"
+        >
+          Toy-for-Toy
+        </h1>
+        <p
+          class="text-xl text-gray-600 mb-8"
+        >
+          A cashless toy exchange platform for families
+        </p>
+        <p
+          class="text-lg text-gray-500 mb-12"
+        >
+          Exchange toys with other families using our ticket-based economy system
+        </p>
+        <div
+          class="grid grid-cols-1 md:grid-cols-3 gap-8"
+        >
+          <div
+            class="bg-white rounded-lg shadow-md p-6"
+          >
+            <h2
+              class="text-xl font-semibold text-gray-900 mb-2"
+            >
+              Fair Exchange
+            </h2>
+            <p
+              class="text-gray-600"
+            >
+              1 toy = 1 ticket. Simple, transparent, and fair for everyone
+            </p>
+          </div>
+          <div
+            class="bg-white rounded-lg shadow-md p-6"
+          >
+            <h2
+              class="text-xl font-semibold text-gray-900 mb-2"
+            >
+              No Money
+            </h2>
+            <p
+              class="text-gray-600"
+            >
+              Keep your wallet closed. Everything is ticket-based
+            </p>
+          </div>
+          <div
+            class="bg-white rounded-lg shadow-md p-6"
+          >
+            <h2
+              class="text-xl font-semibold text-gray-900 mb-2"
+            >
+              Community
+            </h2>
+            <p
+              class="text-gray-600"
+            >
+              Join families sharing and exchanging toys in your area
+            </p>
+          </div>
+        </div>
+        <div
+          class="mt-12"
+        >
+          <p
+            class="text-sm text-gray-500"
+          >
+            Application is currently in development
+          </p>
+        </div>
+      </div>
+    </div>
+  </main>
+</div>
+`;

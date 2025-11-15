@@ -164,3 +164,103 @@ export interface EmailValidationResult {
   errors: string[];
   normalizedEmail: string | null;
 }
+
+/**
+ * Consent types enum - matches database consent_type enum
+ */
+export type ConsentType = 'privacy_policy' | 'terms_of_service' | 'behavioral_analytics';
+
+/**
+ * Consent record from database
+ */
+export interface ConsentRecord {
+  id: string;
+  user_id: string;
+  consent_type: ConsentType;
+  consent_given: boolean;
+  timestamp: string; // ISO 8601 timestamp
+  ip_address: string | null;
+  user_agent: string | null;
+  withdrawn_at: string | null; // ISO 8601 timestamp
+}
+
+/**
+ * Consent request payload
+ */
+export interface ConsentRequest {
+  privacy_policy: boolean;
+  terms_of_service: boolean;
+  behavioral_analytics?: boolean;
+}
+
+/**
+ * Consent response (success)
+ */
+export interface ConsentResponse {
+  success: true;
+  message: string;
+}
+
+/**
+ * Consent error response
+ */
+export interface ConsentErrorResponse {
+  success: false;
+  error: {
+    code: 'INVALID_PAYLOAD' | 'UNAUTHORIZED' | 'ALREADY_RECORDED' | 'INTERNAL_ERROR' | 'RATE_LIMIT';
+    message: string;
+    details?: string[];
+  };
+}
+
+/**
+ * Consent status response
+ */
+export interface ConsentStatusResponse {
+  success: true;
+  consent_records: ConsentRecord[];
+}
+
+/**
+ * Consent status error response
+ */
+export interface ConsentStatusErrorResponse {
+  success: false;
+  error: {
+    code: 'UNAUTHORIZED' | 'INTERNAL_ERROR';
+    message: string;
+    details?: string[];
+  };
+}
+
+/**
+ * Consent withdrawal request payload
+ */
+export interface ConsentWithdrawRequest {
+  consent_type: ConsentType;
+}
+
+/**
+ * Consent withdrawal response (success)
+ */
+export interface ConsentWithdrawResponse {
+  success: true;
+  message: string;
+  new_record: {
+    consent_type: ConsentType;
+    consent_given: false;
+    withdrawn_at: string; // ISO 8601 timestamp
+  };
+}
+
+/**
+ * Consent withdrawal error response
+ */
+export interface ConsentWithdrawErrorResponse {
+  success: false;
+  error: {
+    code: 'INVALID_TYPE' | 'CANNOT_WITHDRAW' | 'NOT_FOUND' | 'UNAUTHORIZED' | 'INTERNAL_ERROR';
+    message: string;
+    details?: string[];
+  };
+}
