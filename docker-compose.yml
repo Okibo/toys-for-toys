@@ -1,0 +1,203 @@
+version: '3.8'
+
+# Docker Compose Configuration for Toy-for-Toy Development Environment
+#
+# Services:
+# - postgres (5432):    PostgreSQL database backend with Supabase extensions
+# - postgrest (3000):   PostgREST API layer for RESTful database access
+# - studio (5555):      Supabase Studio (Web UI for database management)
+# - mailhog (8025):     Email testing service (SMTP on 1025, UI on 8025)
+#
+# Network: toy-for-toy-network (custom bridge for service isolation)
+# Volumes: postgres_data (persistent PostgreSQL data)
+#
+# Setup: docker-compose up -d
+# Cleanup: docker-compose down -v
+# Logs: docker-compose logs -f [service-name]
+
+services:
+  # PostgreSQL Database with Supabase Extensions
+  # Stores all application data with Row-Level Security (RLS) policies
+  postgres:
+    image: supabase/postgres:15-1.50.3
+    container_name: toy-for-toy-postgres
+    hostname: postgres
+    ports:
+      # PostgreSQL port exposed for development (do not expose in production)
+      - "5432:5432"
+    environment:
+      # CRITICAL: Change these values in .env.local for production
+      POSTGRES_USER: ${POSTGRES_USER:-postgres}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-postgres}
+      POSTGRES_DB: ${POSTGRES_DB:-postgres}
+      # Supabase-specific configuration with debugging and monitoring
+      POSTGRES_INITDB_ARGS: "-c log_statement=all -c log_duration=on -c pgaudit.log=all,misc"
+      POSTGRES_HOST_AUTH_METHOD: "md5"
+      POSTGRES_INITDB_WALDIR: "/var/log/postgresql"
+    volumes:
+      # Named volume for persistent data across container restarts
+      # Data persists even if container is removed (unless volume is deleted)
+      - postgres_data:/var/lib/postgresql/data
+      # Custom initialization scripts (optional, place *.sql files in ./supabase/docker)
+      - ./supabase/migrations:/docker-entrypoint-initdb.d:ro
+    networks:
+      - toy-for-toy-network
+    healthcheck:
+      # Ensures PostgreSQL is fully initialized before other services connect
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-postgres} -d ${POSTGRES_DB:-postgres}"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 30s
+    restart: unless-stopped
+    # Resource limits (adjust based on development machine capacity)
+    deploy:
+      resources:
+        limits:
+          cpus: '2'
+          memory: 2G
+        reservations:
+          cpus: '1'
+          memory: 1G
+
+  # PostgREST API Server
+  # Auto-generates RESTful API from PostgreSQL schema
+  # Automatically enforces RLS policies defined in PostgreSQL
+  postgrest:
+    image: postgrest/postgrest:v12.0.1
+    container_name: toy-for-toy-postgrest
+    depends_on:
+      postgres:
+        condition: service_healthy
+    ports:
+      # PostgREST REST API endpoint (queries at http://localhost:3000)
+      - "3000:3000"
+    environment:
+      # Database connection configuration
+      PGRST_DB_URI: "postgres://${POSTGRES_USER:-postgres}:${POSTGRES_PASSWORD:-postgres}@postgres:5432/${POSTGRES_DB:-postgres}"
+      # JWT configuration for authentication
+      PGRST_JWT_SECRET: ${POSTGREST_JWT_SECRET:-super-secret-jwt-token-change-in-production}
+      PGRST_JWT_AUD: authenticated
+      # Enable detailed schema discovery
+      PGRST_DB_SCHEMA: public
+      # API request settings (development permissive, tighten for production)
+      PGRST_DB_ANON_ROLE: authenticated
+      # Enable row-level security enforcement
+      PGRST_DB_USE_LEGACY_GUESSING: "false"
+      PGRST_LOG_LEVEL: info
+    networks:
+      - toy-for-toy-network
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:3000/"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 10s
+    restart: unless-stopped
+    # Resource limits (API server should be responsive)
+    deploy:
+      resources:
+        limits:
+          cpus: '1'
+          memory: 512M
+        reservations:
+          cpus: '0.5'
+          memory: 256M
+
+  # Supabase Studio (Web UI)
+  # Provides graphical interface for database management, editing, and monitoring
+  studio:
+    image: supabase/studio:20240919-6cfe189
+    container_name: toy-for-toy-studio
+    depends_on:
+      - postgres
+      - postgrest
+    ports:
+      # Studio web interface (access at http://localhost:5555)
+      - "5555:3000"
+    environment:
+      # Studio configuration
+      STUDIO_PG_SCHEMA_PUBLISH_ENABLED: "true"
+      # IMPORTANT: These are placeholders for development
+      # For production, set to real Supabase project credentials
+      SUPABASE_URL: "http://postgrest:3000"
+      SUPABASE_PUBLIC_URL: "http://localhost:3000"
+      SUPABASE_ANON_KEY: ${SUPABASE_ANON_KEY:-eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImRldiIsInJvbGUiOiJhbm9uIiwiaWF0IjoxNjAwMDAwMDAwLCJleHAiOjE5MzAwMDAwMDB9.PLACEHOLDER_ANON_KEY}
+      SUPABASE_SERVICE_ROLE_KEY: ${SUPABASE_SERVICE_ROLE_KEY:-eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImRldiIsInJvbGUiOiJzZXJ2aWNlX3JvbGUiLCJpYXQiOjE2MDAwMDAwMDAsImV4cCI6MTkzMDAwMDAwMH0.PLACEHOLDER_SERVICE_ROLE_KEY}
+      # Database connection for Studio
+      DATABASE_URL: "postgres://${POSTGRES_USER:-postgres}:${POSTGRES_PASSWORD:-postgres}@postgres:5432/${POSTGRES_DB:-postgres}"
+      # Telemetry (disable in development if you prefer)
+      STUDIO_TELEMETRY_ENABLED: "false"
+    networks:
+      - toy-for-toy-network
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:3000"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    restart: unless-stopped
+    deploy:
+      resources:
+        limits:
+          cpus: '1'
+          memory: 512M
+        reservations:
+          cpus: '0.5'
+          memory: 256M
+
+  # Mailhog Email Testing Service
+  # Captures all SMTP emails sent by the application for development/testing
+  # Web UI at http://localhost:8025 shows all sent emails
+  # Useful for testing notification and transactional email flows
+  mailhog:
+    image: mailhog/mailhog:v1.0.1
+    container_name: toy-for-toy-mailhog
+    ports:
+      # SMTP server (configure your app to send mail to localhost:1025)
+      - "1025:1025"
+      # Web UI (access at http://localhost:8025)
+      - "8025:8025"
+    environment:
+      # Mailhog configuration (minimal setup, works out of the box)
+      MH_SMTP_BIND_ADDR: "0.0.0.0:1025"
+      MH_UI_WEB_PATH: ""
+      MH_API_BIND_ADDR: "0.0.0.0:8025"
+    networks:
+      - toy-for-toy-network
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8025"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    restart: unless-stopped
+    deploy:
+      resources:
+        limits:
+          cpus: '0.5'
+          memory: 256M
+        reservations:
+          cpus: '0.25'
+          memory: 128M
+
+# Named Volumes
+# Persists container state across restarts and removals
+volumes:
+  postgres_data:
+    # Uses local driver to store data on host machine
+    # Location: /var/lib/docker/volumes/toy-for-toy-postgres_data/_data
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      # Uncomment and configure if you want to use a specific host directory:
+      # device: /path/to/postgres/data
+
+# Custom Network
+# Isolates containers and enables service-to-service communication by hostname
+# Services can communicate using service name (e.g., postgres:5432 from postgrest)
+networks:
+  toy-for-toy-network:
+    driver: bridge
+    # Optional: Uncomment driver_opts to customize network behavior
+    # driver_opts:
+    #   com.docker.driver.mtu: 1500

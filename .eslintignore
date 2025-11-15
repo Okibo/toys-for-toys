@@ -1,0 +1,53 @@
+# Dependencies
+node_modules
+/.pnp
+.pnp.js
+
+# Testing
+/coverage
+/.jest-cache
+
+# Production
+/build
+/dist
+/.next
+/out
+
+# Misc
+.DS_Store
+*.pem
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Environment
+.env
+.env.local
+.env.*.local
+
+# IDE
+.vscode
+.idea
+*.swp
+*.swo
+*~
+
+# Capacitor
+/android
+/ios
+
+# Build artifacts
+.turbo
+.cache
+
+# Generated files
+next-env.d.ts
+
+# Third-party
+/supabase
+.eslintrc.js
+jest.config.js
+postcss.config.js
+tailwind.config.ts
+next.config.js
