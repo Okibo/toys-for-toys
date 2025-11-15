@@ -1,7 +1,6 @@
 'use client';
 
 import React, { useState } from 'react';
-import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { useConsent } from '@/lib/hooks/useConsent';
 
@@ -20,7 +19,6 @@ interface ConsentFormProps {
  */
 export const ConsentForm: React.FC<ConsentFormProps> = ({
   onSuccess,
-  onError,
   onDecline,
   className = ''
 }) => {

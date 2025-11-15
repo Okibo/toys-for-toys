@@ -18,16 +18,16 @@ import { useAuth } from '@/lib/hooks/useAuth';
  */
 export default function CreateToyPage() {
   const router = useRouter();
-  const { user, isLoading: authLoading, session } = useAuth();
+  const { user_id, loading: authLoading, isAuthenticated } = useAuth();
   const toyListing = useToyListing();
   const imageUpload = useImageUpload();
 
   // Redirect to login if not authenticated
   useEffect(() => {
-    if (!authLoading && !user) {
+    if (!authLoading && !isAuthenticated) {
       router.push('/auth/login');
     }
-  }, [user, authLoading, router]);
+  }, [isAuthenticated, authLoading, router]);
 
   // Show loading state while checking auth
   if (authLoading) {
@@ -42,7 +42,7 @@ export default function CreateToyPage() {
   }
 
   // Don't render if not authenticated
-  if (!user) {
+  if (!user_id) {
     return null;
   }
 

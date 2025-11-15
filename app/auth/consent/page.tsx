@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { useRouter } from 'next/navigation';
 import ConsentForm from '@/components/auth/ConsentForm';
 
@@ -13,7 +13,6 @@ import ConsentForm from '@/components/auth/ConsentForm';
  */
 export default function ConsentPage() {
   const router = useRouter();
-  const [isEmailVerified, setIsEmailVerified] = useState(true); // TODO: Check actual verification status
 
   const handleConsentSuccess = () => {
     // Redirect to dashboard after successful consent

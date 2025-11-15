@@ -15,8 +15,8 @@ export default function ResetPasswordPage() {
   const searchParams = useSearchParams();
   const [isReady, setIsReady] = useState(false);
 
-  const token = searchParams.get('token') || '';
-  const email = searchParams.get('email') || '';
+  const token = searchParams?.get('token') || '';
+  const email = searchParams?.get('email') || '';
 
   useEffect(() => {
     // Check if token and email are present in URL

@@ -13,7 +13,7 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
 import { validateEmail } from '@/lib/auth/email-validator';
 import { validatePassword } from '@/lib/auth/password-validator';
-import { resetPassword, getUserByEmail } from '@/lib/auth/password-reset-service';
+import { resetPassword, emailExists } from '@/lib/auth/password-reset-service';
 import { generatePasswordChangedEmail, getPasswordChangedEmailSubject } from '@/lib/email/password-changed-template';
 import { sendEmail } from '@/lib/email/send-email';
 import { checkRateLimit, getRateLimitHeaders } from '@/lib/auth/rate-limiter';
@@ -185,11 +185,11 @@ export default async function handler(
 
     // Send confirmation email
     try {
-      const user = await getUserByEmail(normalizedEmail);
+      const exists = await emailExists(normalizedEmail);
 
-      if (user) {
-        const emailContent = generatePasswordChangedEmail(normalizedEmail, user.language || 'en');
-        const subject = getPasswordChangedEmailSubject(user.language || 'en');
+      if (exists) {
+        const emailContent = generatePasswordChangedEmail(normalizedEmail, 'en');
+        const subject = getPasswordChangedEmailSubject('en');
 
         await sendEmail({
           to: normalizedEmail,
